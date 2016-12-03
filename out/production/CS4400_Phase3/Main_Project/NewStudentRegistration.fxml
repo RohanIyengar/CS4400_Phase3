@@ -30,7 +30,7 @@
                   <Font name="BebasNeue" size="17.0" />
                </font>
             </Text>
-            <Button layoutX="290.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#setCreateBtn" text="Create">
+            <Button fx:id="createBtn" layoutX="290.0" layoutY="321.0" mnemonicParsing="false" onMouseClicked="#setCreateBtn" text="Create">
                <effect>
                   <DropShadow />
                </effect>

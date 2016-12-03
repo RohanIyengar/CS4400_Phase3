@@ -4,20 +4,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
-import java.awt.*;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-import java.awt.event.ActionEvent;
 
 public class Controller {
     private Scene root;
-//    public Stage primaryStage = Main.primaryStage;
-    public Stage primaryStage = new Stage();
+    public Stage primaryStage;
 
+    /* ===============================================================
+                             LOGIN SCREEN FUNCTIONS
+       ===============================================================
+    * */
     @FXML
     private Button loginBtn;
 
@@ -92,6 +93,11 @@ public class Controller {
 //        MasterController.getInstance().loadNewStudentRegistrationScene();
     }
 
+
+    /* ===============================================================
+                             REGISTRATION SCREEN FUNCTIONS
+       ===============================================================
+    * */
     @FXML
     private Text emailExistsMsg;
 
@@ -116,7 +122,8 @@ public class Controller {
 
     @FXML
     private Text invalidgtEmailAddrNSR;
-
+    @FXML
+    private Button createBtn;
     @FXML
     private void setCreateBtn() {
         invalidUsernameNSR.setVisible(false);
@@ -155,6 +162,9 @@ public class Controller {
             Boolean success = true;
             if (success) {
                 System.out.println("Made an account succesfully.");
+                Stage stage = (Stage) createBtn.getScene().getWindow();
+                // do what you have to do
+                stage.close();
             }
             else {
                 System.out.println("Could not create account successfully...");
@@ -165,7 +175,10 @@ public class Controller {
 
     }
 
-
+    /* ===============================================================
+                             MAIN PAGE SCREEN FUNCTIONS
+       ===============================================================
+    * */
 
 
 //    @FXML
@@ -182,6 +195,11 @@ public class Controller {
 //        }
 //
 //    }
+
+    /* ===============================================================
+                             ME SCREEN FUNCTIONS
+       ===============================================================
+    * */
 
         @FXML
     private void setMe() {
@@ -224,10 +242,20 @@ public class Controller {
     private void setBackMe() {
         MasterController.getInstance().loadMainPageScene();
     }
+
+    /* ===============================================================
+                             EDIT PROFILE SCREEN FUNCTIONS
+       ===============================================================
+    * */
     @FXML
     private void setBackEditProfile() {
         MasterController.getInstance().loadMeScene();
     }
+
+    /* ===============================================================
+                             MY APPLICATION SCREEN FUNCTIONS
+       ===============================================================
+    * */
     @FXML
     private void setBackMyApplication() {
         MasterController.getInstance().loadMeScene();
