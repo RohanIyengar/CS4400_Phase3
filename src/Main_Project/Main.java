@@ -6,9 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.Serializable;
 
 
-public class Main extends Application {
+public class Main  extends Application implements Serializable {
 
     /**
      Stage.
@@ -21,10 +22,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        primaryStage = stage;
-        stage.setTitle("Group 54 Phase 3");
-        stage.setScene(new Scene(root, 700, 500));
+//        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+//        primaryStage = stage;
+//        stage.setTitle("Group 54 Phase 3");
+//        stage.setScene(new Scene(root, 700, 500));
+//        stage.show();
+
+        MasterController controller = MasterController.getInstance();
+        controller.setStage(stage);
+        controller.loadLoginScene();
+        stage.setTitle("Group 54 - Phase 3");
         stage.show();
     }
 

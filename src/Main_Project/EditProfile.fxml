@@ -35,7 +35,7 @@
             </Text>
             <ChoiceBox layoutX="239.0" layoutY="141.0" prefHeight="27.0" prefWidth="207.0" />
             <ChoiceBox layoutX="239.0" layoutY="177.0" prefWidth="150.0" />
-            <Button layoutX="270.0" layoutY="323.0" mnemonicParsing="false" text="Back">
+            <Button layoutX="270.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setBackEditProfile" text="Back">
                <effect>
                   <DropShadow />
                </effect>

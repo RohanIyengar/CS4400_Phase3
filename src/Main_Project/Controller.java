@@ -64,16 +64,13 @@ public class Controller {
             boolean isValid = true;
             if (isValid) {
                 Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("MainPage" +
-                            ".fxml"));
-                    primaryStage.setTitle("Group 54 Phase 3");
-                    primaryStage.setScene(new Scene(root));
-                    primaryStage.show();
+                //                    root = FXMLLoader.load(getClass().getResource("MainPage" +
+//                            ".fxml"));
+//                    primaryStage.setTitle("Group 54 Phase 3");
+//                    primaryStage.setScene(new Scene(root));
+//                    primaryStage.show();
+                MasterController.getInstance().loadMainPageScene();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
             else {
                 invalidMsg.setVisible(true);
@@ -85,16 +82,14 @@ public class Controller {
     }
 
     @FXML
-    private void setRegistrationBtn() {
+    private void setRegistrationBtn() throws IOException {
         Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("NewStudentRegistration.fxml"));
-            primaryStage.setTitle("Group 54 Phase 3");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        root = FXMLLoader.load(getClass().getResource("NewStudentRegistration.fxml"));
+        primaryStage = new Stage();
+        primaryStage.setTitle("Group 54 Phase 3");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
+//        MasterController.getInstance().loadNewStudentRegistrationScene();
     }
 
     @FXML
@@ -190,47 +185,51 @@ public class Controller {
 
         @FXML
     private void setMe() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("Me.fxml"));
-            primaryStage = new Stage();
-            primaryStage.setTitle("Group 54 Phase 3");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Parent root = null;
+            //            root = FXMLLoader.load(getClass().getResource("Me.fxml"));
+//            primaryStage = new Stage();
+//            primaryStage.setTitle("Group 54 Phase 3");
+//            primaryStage.setScene(new Scene(root));
+//            primaryStage.show();
+            MasterController.getInstance().loadMeScene();
 
-    }
+        }
 
     @FXML
     private void setEditProfile() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("EditProfile.fxml"));
-            primaryStage = new Stage();
-            primaryStage.setTitle("Group 54 Phase 3");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Parent root = null;
+        //            root = FXMLLoader.load(getClass().getResource("EditProfile.fxml"));
+//            primaryStage = new Stage();
+//            primaryStage.setTitle("Group 54 Phase 3");
+//            primaryStage.setScene(new Scene(root));
+//            primaryStage.show();
+        MasterController.getInstance().loadEditProfileScene();
 
     }
 
     @FXML
     private void setMyApplication() {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("MyApplication" +
-                    ".fxml"));
-            primaryStage = new Stage();
-            primaryStage.setTitle("Group 54 Phase 3");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Parent root = null;
+        //            root = FXMLLoader.load(getClass().getResource("MyApplication" +
+//                    ".fxml"));
+//            primaryStage = new Stage();
+//            primaryStage.setTitle("Group 54 Phase 3");
+//            primaryStage.setScene(new Scene(root));
+//            primaryStage.show();
+        MasterController.getInstance().loadMyApplicationScene();
 
+    }
+
+    @FXML
+    private void setBackMe() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+    @FXML
+    private void setBackEditProfile() {
+        MasterController.getInstance().loadMeScene();
+    }
+    @FXML
+    private void setBackMyApplication() {
+        MasterController.getInstance().loadMeScene();
     }
 }
