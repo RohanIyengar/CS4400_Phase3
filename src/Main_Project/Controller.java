@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import java.io.IOException;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -66,7 +67,7 @@ public class Controller {
             boolean isValid = true;
             if (isValid) {
                 //TODO: CHECK IF THE USER LOG IN IS ADMIN OR NOT
-                boolean isAdmin = true;
+                boolean isAdmin = false;
                 if (isAdmin) {
                     MasterController.getInstance().loadChooseFunctionalityScene();
                 } else {
@@ -198,6 +199,40 @@ public class Controller {
 //        }
 //
 //    }
+
+
+    @FXML
+    private RadioButton projectRadio;
+    @FXML
+    private RadioButton courseRadio;
+    @FXML
+    private RadioButton bothRadio;
+
+
+    @FXML
+    private void setResetFilter() {
+        projectRadio.setSelected(false);
+        courseRadio.setSelected(false);
+        bothRadio.setSelected(false);
+
+    }
+
+    @FXML
+    private void setBothRadio() {
+        projectRadio.setSelected(false);
+        courseRadio.setSelected(false);
+        bothRadio.setSelected(true);
+    }
+
+    @FXML
+    private void setRadioBtn() {
+        if(projectRadio.isSelected() && courseRadio.isSelected()){
+            setBothRadio();
+        } else {
+            bothRadio.setSelected(false);
+        }
+
+    }
 
     /* ===============================================================
                              ME SCREEN FUNCTIONS
