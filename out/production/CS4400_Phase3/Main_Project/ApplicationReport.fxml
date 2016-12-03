@@ -18,7 +18,7 @@
                   <Font size="28.0" />
                </font>
             </Text>
-            <Button layoutX="57.0" layoutY="323.0" mnemonicParsing="false" text="Back">
+            <Button layoutX="57.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setBackAdmin" text="Back">
                <effect>
                   <DropShadow />
                </effect>

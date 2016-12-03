@@ -35,6 +35,11 @@ public class MasterController implements Serializable {
     private Scene viewCourseScene;
     private Scene chooseFunctionalityScene;
     private Scene applicationReportScene;
+    private Scene popularProjectScene;
+    private Scene viewApplicationScene;
+
+    private Scene addProjectScene;
+    private Scene addCourseScene;
     /**
      * Creates a singleton
      */
@@ -92,6 +97,23 @@ public class MasterController implements Serializable {
             applicationReportScene = new Scene(root);
 
 
+            root = FXMLLoader.load(getClass().getResource(
+                    "PopularProject.fxml"));
+            popularProjectScene = new Scene(root);
+
+            root = FXMLLoader.load(getClass().getResource(
+                    "Application.fxml"));
+            viewApplicationScene = new Scene(root);
+
+            root = FXMLLoader.load(getClass().getResource(
+                    "AddaProject.fxml"));
+            addProjectScene = new Scene(root);
+
+            root = FXMLLoader.load(getClass().getResource(
+                    "AddaCourse.fxml"));
+            addCourseScene = new Scene(root);
+
+
         } catch (IOException e) {
             System.out.println("MasterController(): " + e);
         }
@@ -129,7 +151,7 @@ public class MasterController implements Serializable {
         stage.setScene(viewProjectScene);
     }
 
-    public final void loadViewcoureScene() {
+    public final void loadViewCourseScene() {
         stage.setScene(viewCourseScene);
     }
 
@@ -139,6 +161,23 @@ public class MasterController implements Serializable {
 
     public final void loadApplicationReportScene() {
         stage.setScene(applicationReportScene);
+}
+
+
+    public final void loadPopularProjectScene() {
+        stage.setScene(popularProjectScene);
+    }
+
+    public final void loadViewApplicationScene() {
+        stage.setScene(viewApplicationScene);
+    }
+
+    public final void loadAddAProject() {
+        stage.setScene(addProjectScene);
+    }
+
+    public final void loadAddACourse() {
+        stage.setScene(addCourseScene);
     }
 
 

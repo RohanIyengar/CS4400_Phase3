@@ -64,13 +64,14 @@ public class Controller {
             //TODO: CHECK HERE FOR VALID LOG IN CREDENTIALS
             boolean isValid = true;
             if (isValid) {
-                Parent root = null;
-                //                    root = FXMLLoader.load(getClass().getResource("MainPage" +
-//                            ".fxml"));
-//                    primaryStage.setTitle("Group 54 Phase 3");
-//                    primaryStage.setScene(new Scene(root));
-//                    primaryStage.show();
-                MasterController.getInstance().loadMainPageScene();
+                //TODO: CHECK IF THE USER LOG IN IS ADMIN OR NOT
+                boolean isAdmin = true;
+                if (isAdmin) {
+                    MasterController.getInstance().loadChooseFunctionalityScene();
+                } else {
+                    MasterController.getInstance().loadMainPageScene();
+                }
+
 
             }
             else {
@@ -84,13 +85,14 @@ public class Controller {
 
     @FXML
     private void setRegistrationBtn() throws IOException {
-        Parent root = null;
+          Parent root = null;
         root = FXMLLoader.load(getClass().getResource("NewStudentRegistration.fxml"));
         primaryStage = new Stage();
         primaryStage.setTitle("Group 54 Phase 3");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-//        MasterController.getInstance().loadNewStudentRegistrationScene();
+
+
     }
 
 
@@ -321,14 +323,11 @@ public class Controller {
        ===============================================================
     * */
 
-    @FXML
-    private void setViewApplications() {
-        MasterController.getInstance().loadMainPageScene();
-    }
+
 
     @FXML
-    private void setViewPopulatProjects() {
-        MasterController.getInstance().loadMainPageScene();
+    private void setViewPopularProjects() {
+        MasterController.getInstance().loadPopularProjectScene();
     }
 
     @FXML
@@ -337,18 +336,23 @@ public class Controller {
     }
 
     @FXML
+    private void setViewApplications() {
+        MasterController.getInstance().loadViewApplicationScene();
+    }
+
+    @FXML
     private void setAddAProject() {
-        MasterController.getInstance().loadMainPageScene();
+        MasterController.getInstance().loadAddAProject();
     }
 
     @FXML
     private void setAddACourse() {
-        MasterController.getInstance().loadMainPageScene();
+        MasterController.getInstance().loadAddACourse();
     }
 
     @FXML
     private void setLogoutBtn() {
-        MasterController.getInstance().loadMainPageScene();
+        MasterController.getInstance().loadLoginScene();
     }
 
      /* ===============================================================
@@ -357,7 +361,9 @@ public class Controller {
     * */
 
     @FXML
-    private void setBackApplicationReport() {
+    private void setBackAdmin() {
         MasterController.getInstance().loadChooseFunctionalityScene();
     }
+
+
 }
