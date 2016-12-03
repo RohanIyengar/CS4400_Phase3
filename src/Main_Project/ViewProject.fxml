@@ -23,7 +23,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button layoutX="350.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#setBackMyApplication" text="Apply">
+            <Button layoutX="350.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#setApply" text="Apply">
                <effect>
                   <DropShadow />
                </effect>
@@ -38,6 +38,7 @@
             <Text fx:id="designationName" layoutX="133.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="designationName" />
             <Text fx:id="requirementsName" layoutX="150.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="requirementsName" />
             <Text fx:id="numberOfStudents" layoutX="247.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numberOfStudents" />
+            <Text fx:id="cannotApplyMsg" fill="RED" layoutX="173.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cannot Apply. Doesn't Meet Requirements." visible="false" />
          </children>
       </AnchorPane>
   </children>

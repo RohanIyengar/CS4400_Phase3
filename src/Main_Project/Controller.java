@@ -62,6 +62,7 @@ public class Controller {
             invalidUsername.setVisible(false);
             invalidPassword.setVisible(false);
             //TODO: CHECK HERE FOR VALID LOG IN CREDENTIALS
+
             boolean isValid = true;
             if (isValid) {
                 //TODO: CHECK IF THE USER LOG IN IS ADMIN OR NOT
@@ -284,11 +285,23 @@ public class Controller {
 
     @FXML
     private Text numberOfStudents;
+    @FXML
+    private Text cannotApplyMsg;
 
     @FXML
     private void setBackViewProject() {
         MasterController.getInstance().loadMainPageScene();
     }
+
+    @FXML
+    private void setApply() {
+        Boolean requirementsMet = false;
+        if(!requirementsMet) {
+            cannotApplyMsg.setVisible(true);
+        }
+
+    }
+
 
      /* ===============================================================
                              VIEW COURSE SCREEN FUNCTIONS
