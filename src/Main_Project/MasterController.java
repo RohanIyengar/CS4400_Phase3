@@ -31,6 +31,10 @@ public class MasterController implements Serializable {
 
     private Scene newStudentRegistrationScene;
 
+    private Scene viewProjectScene;
+    private Scene viewCourseScene;
+    private Scene chooseFunctionalityScene;
+    private Scene applicationReportScene;
     /**
      * Creates a singleton
      */
@@ -71,6 +75,22 @@ public class MasterController implements Serializable {
                     "NewStudentRegistration.fxml"));
             newStudentRegistrationScene = new Scene(root);
 
+            root = FXMLLoader.load(getClass().getResource(
+                    "ViewProject.fxml"));
+            viewProjectScene = new Scene(root);
+
+            root = FXMLLoader.load(getClass().getResource(
+                    "ViewCourse.fxml"));
+            viewCourseScene = new Scene(root);
+
+            root = FXMLLoader.load(getClass().getResource(
+                    "ChooseFunctionality.fxml"));
+            chooseFunctionalityScene = new Scene(root);
+
+            root = FXMLLoader.load(getClass().getResource(
+                    "ApplicationReport.fxml"));
+            applicationReportScene = new Scene(root);
+
 
         } catch (IOException e) {
             System.out.println("MasterController(): " + e);
@@ -91,9 +111,7 @@ public class MasterController implements Serializable {
         stage.setScene(mainPageScene);
     }
 
-    /**
-     * Load Store scene.
-     */
+
     public final void loadMeScene() {
         stage.setScene(meScene);
     }
@@ -107,6 +125,21 @@ public class MasterController implements Serializable {
         stage.setScene(newStudentRegistrationScene);
     }
 
+    public final void loadViewProjectScene() {
+        stage.setScene(viewProjectScene);
+    }
+
+    public final void loadViewcoureScene() {
+        stage.setScene(viewCourseScene);
+    }
+
+    public final void loadChooseFunctionalityScene() {
+        stage.setScene(chooseFunctionalityScene);
+    }
+
+    public final void loadApplicationReportScene() {
+        stage.setScene(applicationReportScene);
+    }
 
 
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main_Project.Controller">
+  <children>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="639.0">
+         <children>
+            <Text fx:id="projectTitle" fill="#c9aa2e" layoutX="222.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Title">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <Button layoutX="198.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#setBackViewProject" text="Back">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button layoutX="350.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#setBackMyApplication" text="Apply">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Text layoutX="44.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor:" />
+            <Text layoutX="44.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:" />
+            <Text layoutX="44.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requirements:" />
+            <Text layoutX="45.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+            <Text layoutX="47.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Number of Students:" />
+            <Text fx:id="advisorName" layoutX="110.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="advisorName" />
+            <Text fx:id="projectDescription" layoutX="69.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="projectDescription" wrappingWidth="413.21875" />
+            <Text fx:id="designationName" layoutX="133.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="designationName" />
+            <Text fx:id="requirementsName" layoutX="150.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="requirementsName" />
+            <Text fx:id="numberOfStudents" layoutX="247.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numberOfStudents" />
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

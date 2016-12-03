@@ -8,6 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="411.0" prefWidth="600.0">
@@ -17,32 +18,32 @@
                   <Font size="31.0" />
                </font>
             </Text>
-            <Text fill="#244cab" layoutX="219.0" layoutY="110.0" onMouseClicked="#setViewApplications" strokeType="OUTSIDE" strokeWidth="0.0" text="View Applications" textAlignment="CENTER" underline="true">
+            <Text fill="#244cab" layoutX="219.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Applications" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#244cab" layoutX="206.0" layoutY="190.0" onMouseClicked="#setViewApplicationReport" strokeType="OUTSIDE" strokeWidth="0.0" text="View Application report" textAlignment="CENTER" underline="true">
+            <Text fill="#244cab" layoutX="206.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Application report" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#244cab" layoutX="174.0" layoutY="150.0" onMouseClicked="#setViewPopularProjects" strokeType="OUTSIDE" strokeWidth="0.0" text="View Popular Project Reports" textAlignment="CENTER" underline="true">
+            <Text fill="#244cab" layoutX="174.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View Popular Project Reports" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#244cab" layoutX="236.0" layoutY="230.0" onMouseClicked="#setAddAProject" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Project" textAlignment="CENTER" underline="true">
+            <Text fill="#244cab" layoutX="236.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a Project" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Text fill="#244cab" layoutX="237.0" layoutY="270.0" onMouseClicked="#setAddACourse" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a course" textAlignment="CENTER" underline="true">
+            <Text fill="#244cab" layoutX="237.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a course" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Text>
-            <Button layoutX="349.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#setLogoutBtn" text="Logout">
+            <Button layoutX="349.0" layoutY="310.0" mnemonicParsing="false" text="Logout">
                <effect>
                   <DropShadow />
                </effect>

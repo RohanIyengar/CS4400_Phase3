@@ -13,12 +13,12 @@
   <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="639.0">
          <children>
-            <Text fill="#c9aa2e" layoutX="198.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application Report">
+            <Text fill="#c9aa2e" layoutX="219.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Popular Project">
                <font>
                   <Font size="28.0" />
                </font>
             </Text>
-            <Button layoutX="57.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setBackApplicationReport" text="Back">
+            <Button layoutX="57.0" layoutY="323.0" mnemonicParsing="false" text="Back">
                <effect>
                   <DropShadow />
                </effect>

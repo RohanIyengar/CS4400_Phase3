@@ -260,4 +260,104 @@ public class Controller {
     private void setBackMyApplication() {
         MasterController.getInstance().loadMeScene();
     }
+
+    /* ===============================================================
+                             VIEW PROJECT SCREEN FUNCTIONS
+       ===============================================================
+    * */
+
+    @FXML
+    private Text projectTitle;
+    @FXML
+    private Text adminName;
+
+    @FXML
+    private Text projectDescription;
+
+    @FXML
+    private Text designationName;
+
+    @FXML
+    private Text requirementsName;
+
+    @FXML
+    private Text numberOfStudents;
+
+    @FXML
+    private void setBackViewProject() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+     /* ===============================================================
+                             VIEW COURSE SCREEN FUNCTIONS
+       ===============================================================
+    * */
+
+    @FXML
+    private Text courseTitle;
+
+    @FXML
+    private Text courseName;
+
+    @FXML
+    private Text instructorName;
+
+    @FXML
+    private Text designationNameCourse;
+
+    @FXML
+    private Text categoryName;
+
+    @FXML
+    private Text numberOfStudentsCourse;
+
+    @FXML
+    private void setBackViewCourse() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+      /* ===============================================================
+                            ADMIN VIEW: CHOOSE FUNCTIONALITY SCREEN FUNCTIONS
+       ===============================================================
+    * */
+
+    @FXML
+    private void setViewApplications() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+    @FXML
+    private void setViewPopulatProjects() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+    @FXML
+    private void setViewApplicationReport() {
+        MasterController.getInstance().loadApplicationReportScene();
+    }
+
+    @FXML
+    private void setAddAProject() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+    @FXML
+    private void setAddACourse() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+    @FXML
+    private void setLogoutBtn() {
+        MasterController.getInstance().loadMainPageScene();
+    }
+
+     /* ===============================================================
+                            ADMIN VIEW: APPLICATION REPORT SCREEN FUNCTIONS
+       ===============================================================
+    * */
+
+    @FXML
+    private void setBackApplicationReport() {
+        MasterController.getInstance().loadChooseFunctionalityScene();
+    }
 }
