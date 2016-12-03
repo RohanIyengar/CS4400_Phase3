@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 import javafx.scene.control.Button;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
@@ -395,5 +396,63 @@ public class Controller {
         MasterController.getInstance().loadChooseFunctionalityScene();
     }
 
+    /* ===============================================================
+                          ADMIN: ADD A PROJECT FUNCTIONS
+       ===============================================================
+    * */
+    @FXML
+    private TextField projectName;
 
+    @FXML
+    private TextField advisorName;
+
+    @FXML
+    private TextField advisorEmail;
+    @FXML
+    private TextField projDescription;
+    @FXML
+    private TextField numStudents;
+
+    @FXML
+    private SplitMenuButton category1Btn;
+
+    @FXML
+    private SplitMenuButton category2Btn;
+
+    @FXML
+    private SplitMenuButton projDesignation;
+
+    @FXML
+    private Text invalidProjectName;
+
+    @FXML
+    private Text invalidAdvisorName;
+
+    @FXML
+    private Text invalidEmail;
+
+    @FXML
+    private Text validEmail;
+
+    @FXML
+    private Text invalidDescription;
+
+    @FXML
+    private Text invalidCategory;
+
+    @FXML
+    private Text invalidDesignation;
+
+    @FXML
+    private Button submitBtn;
+    @FXML
+    private void setSubmitBtn() {
+        invalidProjectName.setVisible(false);
+        invalidAdvisorName.setVisible(false);
+        invalidEmail.setVisible(false);
+        invalidDescription.setVisible(false);
+        invalidCategory.setVisible(false);
+        invalidDesignation.setVisible(false);
+     // TODO: Add statements to show the invalid messages
+    }
 }
