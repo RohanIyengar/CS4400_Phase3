@@ -23,12 +23,12 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="acceptBtn" layoutX="409.0" layoutY="323.0" mnemonicParsing="false" text="Accept">
+            <Button fx:id="acceptBtn" layoutX="409.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setAcceptBtn" text="Accept">
                <effect>
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="rejectBtn" layoutX="506.0" layoutY="323.0" mnemonicParsing="false" text="Reject">
+            <Button fx:id="rejectBtn" layoutX="506.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setRejectBtn" text="Reject">
                <effect>
                   <DropShadow />
                </effect>

@@ -28,7 +28,15 @@ public class ApplicationController {
     @FXML
     private TableView apps;
 
+    @FXML
+    private void setAcceptBtn() {
+        System.out.println("Okay, accepting this project!");
+    }
 
+    @FXML
+    private void setRejectBtn() {
+        System.out.println("Okay, denying this project.");
+    }
     @FXML
     private void setBackAdmin() {
         MasterController.getInstance().loadChooseFunctionalityScene();
@@ -86,7 +94,7 @@ public class ApplicationController {
                             public void handle(MouseEvent event) {
                                 if (event.getClickCount() > 1) {
                                     TableCell c = (TableCell) event.getSource();
-                                    System.out.println(c.getText());
+//                                    System.out.println(c.getText());
                                     int index = c.getTableRow().getIndex();
                                     if (populateTable.get(index).getStatuss()
                                             .equals("pending")) {
