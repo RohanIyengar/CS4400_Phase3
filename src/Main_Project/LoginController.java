@@ -67,7 +67,7 @@ public class LoginController {
             if (isValid) {
                 //TODO: CHECK IF THE USER LOG IN IS ADMIN OR NOT
 
-                boolean isAdmin = true;
+                boolean isAdmin = false;
 
                 if (isAdmin) {
                     MasterController.getInstance().loadChooseFunctionalityScene();

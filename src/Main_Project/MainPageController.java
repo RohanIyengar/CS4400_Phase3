@@ -4,9 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.control.SplitMenuButton;
-
+import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 
 /**
@@ -58,11 +60,32 @@ public class MainPageController {
 
 
     @FXML
+    private TableView mainPageTable;
+
+    @FXML
     private void setResetFilter() {
         projectRadio.setSelected(false);
         courseRadio.setSelected(false);
         bothRadio.setSelected(false);
 
+    }
+
+    @FXML
+    private final ObservableList<MainPageTableEntry> populateTable =
+            FXCollections.observableArrayList(
+     new MainPageTableEntry("Name1", "Course1"),
+     new MainPageTableEntry("Name2", "Course2"),
+    new MainPageTableEntry("Name2", "Course2"),
+    new MainPageTableEntry("Name2", "Course2")
+
+            );
+
+    @FXML
+    private void setApplyFilter() {
+
+
+        mainPageTable.setEditable(true);
+        mainPageTable.setItems(populateTable);
     }
 
     @FXML
@@ -119,6 +142,18 @@ public class MainPageController {
         majorMP.getItems().clear();
         majorMP.getItems().addAll(majorList);
 
+        TableColumn nameCol = new TableColumn("Name");
+        TableColumn courseCol = new TableColumn("Course");
+        nameCol.setCellValueFactory(
+                new PropertyValueFactory<MainPageTableEntry,String>("name")
+        );
+        nameCol.setMaxWidth(200);
+        courseCol.setCellValueFactory(
+                new PropertyValueFactory<MainPageTableEntry,String>("course")
+        );
+        courseCol.setMaxWidth(200);
+        mainPageTable.getColumns().clear();
+        mainPageTable.getColumns().addAll(nameCol, courseCol);
     }
 
 }
