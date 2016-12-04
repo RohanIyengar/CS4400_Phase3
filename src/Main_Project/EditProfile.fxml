@@ -33,14 +33,14 @@
                   <Font name="BebasNeue" size="17.0" />
                </font>
             </Text>
-            <ChoiceBox layoutX="239.0" layoutY="141.0" prefHeight="27.0" prefWidth="207.0" />
-            <ChoiceBox layoutX="239.0" layoutY="177.0" prefWidth="150.0" />
             <Button layoutX="270.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setBackEditProfile" text="Back">
                <effect>
                   <DropShadow />
                </effect>
             </Button>
-            <Text layoutX="239.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department - TBA" />
+            <Text fx:id="departmentList" layoutX="251.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department - TBA" />
+            <ComboBox fx:id="majorList" layoutX="251.0" layoutY="140.0" prefWidth="150.0" />
+            <ComboBox fx:id="yearList" layoutX="251.0" layoutY="176.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
   </children>
