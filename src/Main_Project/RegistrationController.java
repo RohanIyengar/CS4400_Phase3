@@ -7,11 +7,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
 public class RegistrationController {
 
+    SQLController sContr = new SQLController();
     /* ===============================================================
                            REGISTRATION SCREEN FUNCTIONS
      ===============================================================
@@ -79,13 +82,16 @@ public class RegistrationController {
 //            CHECK TO SEE IF WE CREATED AN ACCOUNT SUCCESSFULLY
             Boolean success = true;
             if (success) {
-                System.out.println("Made an account succesfully.");
-                Stage stage = (Stage) createBtn.getScene().getWindow();
-                // do what you have to do
-                stage.close();
-            }
-            else {
-                System.out.println("Could not create account successfully...");
+                try {
+                    sContr.addUser(usernameNSR.getText(), password1NSR.getText(),
+                            gtEmailAddr.getText(),"Freshman","Undecided","User" );
+                    System.out.println("Made an account succesfully.");
+                    Stage stage = (Stage) createBtn.getScene().getWindow();
+                    stage.close();
+                } catch (SQLException e) {
+                    System.out.println("Could not create account successfully...");
+                }
+
             }
 
         }

@@ -1,18 +1,24 @@
 package Main_Project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
 public class MeController {
 
-
+    SQLController sContr = new SQLController();
 
     /* ===============================================================
                              ME SCREEN FUNCTIONS
        ===============================================================
     * */
+
 
 
 
@@ -34,5 +40,7 @@ public class MeController {
     private void setBackMe() {
         MasterController.getInstance().loadMainPageScene();
     }
+
+
 }
 
