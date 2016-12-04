@@ -567,7 +567,7 @@ public class SQLController {
         try {
             //controller.addAllCourses();
             //controller.addAllProjects();
-            System.out.println(controller.getProjectInfo("Bug Tracking System"));
+            System.out.println(controller.getProjectInfo("Study Abroad Farming Research"));
         } catch(SQLException e) {
             System.err.println("Error getting project");
         }
