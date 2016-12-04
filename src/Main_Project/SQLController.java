@@ -335,6 +335,17 @@ public class SQLController {
         }
     }
 
+    public void updateUser(String username, String major, String year) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "UPDATE USER SET Major= \'" + major + "\', Year = \'"+ year + "\' WHERE Username = \'" + username+ "\'";
+            statement.executeUpdate(sqlQuery);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting user's department: " + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
@@ -348,17 +359,18 @@ public class SQLController {
 //            System.err.println("error adding departments to database");
 //        }
         try {
+            controller.updateUser("Hi", "Undecided", "Senior");
             System.out.println(controller.getDepartment("Hi"));
         } catch(SQLException e) {
             System.err.println("Error getting dept");
         }
-        try {
-            List<String> designations = controller.getAllMajorNames();
-            for (String s: designations) {
-                System.out.println(s);
-            }
-        } catch(SQLException e) {
-            System.err.println("Error adding categories to database");
-        }
+//        try {
+//            List<String> designations = controller.getAllMajorNames();
+//            for (String s: designations) {
+//                System.out.println(s);
+//            }
+//        } catch(SQLException e) {
+//            System.err.println("Error adding categories to database");
+//        }
     }
 }
