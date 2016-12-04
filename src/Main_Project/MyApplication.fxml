@@ -18,12 +18,22 @@
                   <Font size="28.0" />
                </font>
             </Text>
-            <Button layoutX="296.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setBackMyApplication" text="Back">
+            <Button layoutX="71.0" layoutY="339.0" mnemonicParsing="false" onMouseClicked="#setBackMyApplication" text="Back">
                <effect>
                   <DropShadow />
                </effect>
             </Button>
-            <ListView layoutX="128.0" layoutY="85.0" prefHeight="200.0" prefWidth="384.0" />
+            <TableView fx:id="myAppList" layoutX="120.0" layoutY="71.0" prefHeight="200.0" prefWidth="401.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button layoutX="246.0" layoutY="305.0" mnemonicParsing="false" onMouseClicked="#loadMyApps" text="Load My Applications">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
   </children>
