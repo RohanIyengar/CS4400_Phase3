@@ -63,8 +63,6 @@ public class AddACourseController {
     @FXML
     private Text invalidStudentsAddCourse;
 
-    @FXML
-    private Button submitBtn;
 
     @FXML
     private void setSubmitBtn() {
@@ -80,14 +78,35 @@ public class AddACourseController {
         } else if (estimatedNumberofStudents == null || estimatedNumberofStudents.getText().trim().isEmpty()) {
             invalidInstructorName.setVisible(false);
             invalidStudentsAddCourse.setVisible(true);
-        } else if (designationCourse == null) {
-            invalidStudentsAddCourse.setVisible(false);
-            invalidDesignationCourse.setVisible(true);
-        } else if (categoryCourse == null) {
-            invalidDesignationCourse.setVisible(false);
-            invalidCategoryCourse.setVisible(true);
-        } else {
-            return;
+        }
+//        else if (designationCourse.getSelectionModel().getSelectedIndex()
+//                == -1) {
+//            invalidStudentsAddCourse.setVisible(false);
+//            invalidDesignationCourse.setVisible(true);
+//        } else if (categoryCourse.getSelectionModel().getSelectedIndex()
+//                == -1) {
+//            invalidDesignationCourse.setVisible(false);
+//            invalidCategoryCourse.setVisible(true);
+//        }
+        else {
+
+
+            try {
+                System.out.println("do i reach here");
+
+                sContr.addCourse(courseNameAddCourse.getText(),
+                        courseNumberAddCourse.getText(),
+                        instructorCourse.getText(),
+                        Integer.parseInt(estimatedNumberofStudents
+                                .getText()),
+                        designationCourse.getSelectionModel().getSelectedItem(),
+                        categoryCourse.getSelectionModel().getSelectedItem());
+            } catch (SQLException e) {
+                System.out.println("Could not add course.");
+            }
+//            catch (NullPointerException e) {
+//                System.out.println("Could not add course.");
+//            }
         }
     }
 
