@@ -48,6 +48,7 @@ public class LoginController {
     @FXML
     private TextField username;
 
+
     @FXML
     private TextField password;
 
@@ -86,7 +87,7 @@ public class LoginController {
             if (isValid) {
                 System.out.println("Logged in! Welcome, " + username.getText());
                 boolean isAdmin = getIsAdmin(username.getText(),password.getText());
-
+                MasterController.setUsername(username.getText());
                 if (isAdmin) {
                     MasterController.getInstance().loadChooseFunctionalityScene();
                 } else {
@@ -113,4 +114,5 @@ public class LoginController {
         primaryStage.show();
 
     }
+
 }

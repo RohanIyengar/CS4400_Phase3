@@ -10,11 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
 public class AddACourseController {
+    SQLController sContr = new SQLController();
+
     @FXML
     private void setBackAdmin() {
         MasterController.getInstance().loadChooseFunctionalityScene();
@@ -89,14 +92,31 @@ public class AddACourseController {
     }
 
         @FXML
-        private final ObservableList<String> desigList =
-                FXCollections.observableArrayList("CS", "BME",
-                        "ChemE");
+        private final ObservableList<String> desigList =getdesigList();
 
     @FXML
-    private final ObservableList<String> cat1List =
-            FXCollections.observableArrayList("CS", "BME",
-                    "ChemE");
+    private final ObservableList<String> cat1List =getcatList();
+
+    @FXML
+    public ObservableList<String> getcatList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getdesigList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllDesignations();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
 
     public final void initialize() throws IOException {
         designationCourse.getItems().clear();

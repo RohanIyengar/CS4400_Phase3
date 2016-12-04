@@ -26,6 +26,9 @@ public class EditProfileController {
     private ComboBox<String> yearList;
 
     @FXML
+    private Text designationList;
+
+    @FXML
     private Text departmentList;
 
 
@@ -50,10 +53,11 @@ public class EditProfileController {
     }
 
     @FXML
-    public ObservableList<String> getdesigList() {
-        ObservableList<String> toRet = FXCollections.observableArrayList();
+    public String getdesigList() {
+        String toRet ="";
         try {
-            toRet = sContr.getAllDesignations();
+            System.out.println(MasterController.getUsername());
+            toRet = sContr.getDepartment(MasterController.getUsername());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -63,15 +67,26 @@ public class EditProfileController {
 
     @FXML
     private void setBackEditProfile() {
+        try {
+            sContr.updateUser(MasterController.getUsername(), majorList.getSelectionModel()
+                    .getSelectedItem().toString(),yearList.getSelectionModel()
+                    .getSelectedItem()
+                    .toString() );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("Updated major to: " + majorList.getSelectionModel()
                 .getSelectedItem().toString());
+
         System.out.println("Updated year to: " + yearList.getSelectionModel()
                 .getSelectedItem()
                 .toString());
 
+        departmentList.setText(getdesigList());
         MasterController.getInstance().loadMeScene();
-    }
 
+    }
 
     public final void initialize() throws IOException {
         majorList.getItems().clear();
@@ -80,9 +95,7 @@ public class EditProfileController {
         yearList.getItems().clear();
         yearList.getItems().addAll(yList);
 
-        departmentList.setText("Department....Pulling");
+//        designationList.setText("Pulling from database...");
 
     }
 }
-
-

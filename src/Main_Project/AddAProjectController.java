@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
@@ -16,6 +17,8 @@ public class AddAProjectController {
                           ADMIN: ADD A PROJECT FUNCTIONS
        ===============================================================
     * */
+    SQLController sContr = new SQLController();
+
     @FXML
     private TextField projectName;
 
@@ -73,28 +76,68 @@ public class AddAProjectController {
     @FXML
     private Button submitBtn;
 
-    @FXML
-    private final ObservableList<String> cat1List =
-            FXCollections.observableArrayList("Science", "Math", "history");
+
+
 
     @FXML
-    private final ObservableList<String> cat2List =
-            FXCollections.observableArrayList("Politics", "Psyc", "Chem");
+    public ObservableList<String> getMajorList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllMajorNames();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getcatList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getdesigList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllDesignations();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getDepList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllDepartments();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
 
     @FXML
-    private final ObservableList<String> desigList =
-            FXCollections.observableArrayList("lol", "ok", "yah");
+    private final ObservableList<String> cat1List = getcatList();
 
     @FXML
-    private final ObservableList<String> majorList =
-            FXCollections.observableArrayList("CS", "BME", "ChemE");
+    private final ObservableList<String> cat2List = getcatList();
+
+    @FXML
+    private final ObservableList<String> desigList = getdesigList();
+
+    @FXML
+    private final ObservableList<String> majorList = getMajorList();
     @FXML
     private final ObservableList<String> yearList =
-            FXCollections.observableArrayList("1919", "1888", "2020");
+            FXCollections.observableArrayList("Freshman", "Sophomore",
+                    "Junior", "Senior");
+
     @FXML
-    private final ObservableList<String> depList =
-            FXCollections.observableArrayList("Humanties", "computing",
-                    "sciences");
+    private final ObservableList<String> depList = getDepList();
 
     @FXML
     private void setSubmitBtn() {
@@ -117,9 +160,7 @@ public class AddAProjectController {
             invalidDescription.setVisible(false);
             invalidCategory.setVisible(true);
         }
-//        else if (category2Btn == null) {
-//            invalidCategory.setVisible(true);
-//        }
+
         else if (projDesignation == null) {
             invalidCategory.setVisible(false);
             invalidDesignation.setVisible(true);
