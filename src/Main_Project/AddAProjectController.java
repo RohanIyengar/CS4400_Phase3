@@ -1,5 +1,6 @@
 package Main_Project;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -156,19 +157,41 @@ public class AddAProjectController {
             invalidEmail.setVisible(false);
             invalidDescription.setVisible(true);
         }
-        else if (category1Btn == null) {
+        else if (category1Btn.getSelectionModel().getSelectedIndex() == -1) {
             invalidDescription.setVisible(false);
             invalidCategory.setVisible(true);
         }
 
-        else if (projDesignation == null) {
+        else if (projDesignation.getSelectionModel().getSelectedIndex() == -1) {
             invalidCategory.setVisible(false);
             invalidDesignation.setVisible(true);
         }
         else {
-            return;
-        }
 
+            try {
+
+                sContr.addProject(projectName.getText(),
+                        advisorNameAddProj.getText(),
+                        advisorEmail.getText(),
+                        projDescription.getText(),
+                        projDesignation.getSelectionModel().getSelectedItem()
+                                .toString(),
+                        Integer.parseInt(numStudents.getText()),
+                        majorReq
+                        .getSelectionModel().getSelectedItem().toString(),
+                        yearReq
+                        .getSelectionModel().getSelectedItem().toString(),
+                        depReq
+                        .getSelectionModel().getSelectedItem().toString(),
+                        category1Btn
+                        .getSelectionModel().getSelectedItem().toString() );
+            }
+            catch(MySQLIntegrityConstraintViolationException e) {
+                System.out.println("Cannot add duplicate project.");
+            }catch (SQLException e) {
+                System.out.println("Cannot add duplicate project.");
+            }
+        }
     }
 
 
