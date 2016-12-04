@@ -62,10 +62,10 @@ public class MainPageController {
     @FXML
     private final ObservableList<MainPageTableEntry> populateTable =
             FXCollections.observableArrayList(
-     new MainPageTableEntry("Bio Degradable Compost", "Science"),
-     new MainPageTableEntry("Animal Life Cycle", "Policies"),
-    new MainPageTableEntry("Networking 2", "CS"),
-    new MainPageTableEntry("Temple Studies", "Humanities")
+     new MainPageTableEntry("Bio Degradable Compost", "Course"),
+     new MainPageTableEntry("Animal Life Cycle", "Project"),
+    new MainPageTableEntry("Networking 2", "Course"),
+    new MainPageTableEntry("Urban Forest", "Course")
 
             );
 
@@ -141,6 +141,7 @@ public class MainPageController {
         return toRet;
     }
 
+    public static String tempText = "";
 
     public final void initialize() throws IOException {
         yearMP.getItems().clear();
@@ -156,7 +157,7 @@ public class MainPageController {
         majorMP.getItems().addAll(majorList);
 
         TableColumn nameCol = new TableColumn("Name");
-        TableColumn courseCol = new TableColumn("Course");
+        TableColumn courseCol = new TableColumn("Type");
 
         mainPageTable.setEditable(false);
         Callback<TableColumn, TableCell> cellFactory =
@@ -183,9 +184,17 @@ public class MainPageController {
                                     TableCell c = (TableCell) event.getSource();
 
                                     System.out.println(c.getText());
-                                    MasterController.getInstance()
-                                            .loadViewProjectScene();
-//                                    ViewProjectController.onClick(c.getText());
+                                    int index = c.getTableRow().getIndex();
+                                    tempText = populateTable.get(index)
+                                            .getName();
+
+                                    if(populateTable.get(index).getCourse()
+                                            .equals("Course")){
+                                        MasterController.getInstance().loadViewCourseScene();
+                                    } else {
+                                        MasterController.getInstance()
+                                                .loadViewProjectScene();
+                                    }
 
                                 }
                             }

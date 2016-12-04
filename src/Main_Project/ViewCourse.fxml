@@ -13,7 +13,7 @@
   <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="639.0">
          <children>
-            <Text fx:id="courseTitle" fill="#c9aa2e" layoutX="222.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Title">
+            <Text fx:id="courseTitle" fill="#c9aa2e" layoutX="222.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Title" visible="false">
                <font>
                   <Font size="28.0" />
                </font>
@@ -28,11 +28,16 @@
             <Text layoutX="45.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category: " />
             <Text layoutX="45.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor: " />
             <Text layoutX="47.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Number of Students:" />
-            <Text fx:id="courseName" layoutX="146.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="courseName" />
-            <Text fx:id="instructorName" layoutX="143.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="instructorName" wrappingWidth="413.21875" />
-            <Text fx:id="designationNameCourse" layoutX="145.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="designationNameCourse" />
-            <Text fx:id="categoryName" layoutX="140.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categoryName" />
-            <Text fx:id="numberOfStudentsCourse" layoutX="262.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numberOfStudentsCourse" />
+            <Text fx:id="courseName" layoutX="146.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="courseName" visible="false" />
+            <Text fx:id="instructorName" layoutX="143.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="instructorName" visible="false" wrappingWidth="413.21875" />
+            <Text fx:id="designationNameCourse" layoutX="145.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="designationNameCourse" visible="false" />
+            <Text fx:id="categoryName" layoutX="140.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categoryName" visible="false" />
+            <Text fx:id="numberOfStudentsCourse" layoutX="262.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numberOfStudentsCourse" visible="false" />
+            <Button layoutX="65.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#loadNewCourse" text="LOAD NEW COURSE">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
   </children>
