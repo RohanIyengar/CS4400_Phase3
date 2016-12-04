@@ -86,8 +86,8 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE PROJECT" +
-                    "(Name VARCHAR(15) NOT NULL," +
-                    "Description VARCHAR(100) NOT NULL," +
+                    "(Name VARCHAR(40) NOT NULL," +
+                    "Description VARCHAR(200) NOT NULL," +
                     "AdvisorEmail VARCHAR(25) NOT NULL," +
                     "AdvisorName VARCHAR(25) NOT NULL," +
                     "EstimatedNumStudents INT NOT NULL," +
@@ -116,7 +116,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE PROJECT_REQUIREMENT" +
-                    "(Name VARCHAR(25) NOT NULL," +
+                    "(Name VARCHAR(40) NOT NULL," +
                     "Requirement VARCHAR(15) NOT NULL," +
                     "PRIMARY KEY (Name, Requirement)," +
                     "FOREIGN KEY (Name) REFERENCES PROJECT(Name))";
@@ -190,8 +190,8 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE MAJOR" +
-                    "(Name VARCHAR(15) NOT NULL," +
-                    "DeptName VARCHAR(15) NOT NULL," +
+                    "(Name VARCHAR(40) NOT NULL," +
+                    "DeptName VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (Name)," +
                     "FOREIGN KEY (DeptName) REFERENCES DEPARTMENT(Name))";
             statement.executeUpdate(sqlQuery);
@@ -216,7 +216,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE DEPARTMENT" +
-                    "(Name VARCHAR(25) NOT NULL," +
+                    "(Name VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (Name))";
             statement.executeUpdate(sqlQuery);
             System.out.println("Department Table created in database");
@@ -240,11 +240,11 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE COURSE" +
-                    "(Name VARCHAR(15) NOT NULL," +
+                    "(Name VARCHAR(40) NOT NULL," +
                     "CourseNumber VARCHAR(20) NOT NULL," +
-                    "Instructor VARCHAR(15) NOT NULL," +
+                    "Instructor VARCHAR(40) NOT NULL," +
                     "EstimatedNumStudents INT NOT NULL," +
-                    "DesignationName VARCHAR(15) NOT NULL," +
+                    "DesignationName VARCHAR(25) NOT NULL," +
                     "PRIMARY KEY (Name)," +
                     "FOREIGN KEY (DesignationName) REFERENCES DESIGNATION(Name))";
             statement.executeUpdate(sqlQuery);
@@ -269,8 +269,8 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE APPLY" +
-                    "(ProjectName VARCHAR(25) NOT NULL," +
-                    "StudentName VARCHAR(25) NOT NULL," +
+                    "(ProjectName VARCHAR(40) NOT NULL," +
+                    "StudentName VARCHAR(15) NOT NULL," +
                     "Date DATE," +
                     "Status	VARCHAR(20)	NOT NULL," +
                     "PRIMARY KEY (ProjectName, StudentName)," +
@@ -298,8 +298,8 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE PROJECT_IS_CATEGORY" +
-                    "(ProjectName VARCHAR(25) NOT NULL," +
-                    "CategoryName VARCHAR(15) NOT NULL," +
+                    "(ProjectName VARCHAR(40) NOT NULL," +
+                    "CategoryName VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (ProjectName, CategoryName)," +
                     "FOREIGN KEY (ProjectName) REFERENCES PROJECT(Name)," +
                     "FOREIGN KEY (CategoryName) REFERENCES CATEGORY(Name))";
@@ -325,8 +325,8 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE COURSE_IS_CATEGORY" +
-                    "(CourseName VARCHAR(25) NOT NULL," +
-                    "CategoryName VARCHAR(15) NOT NULL," +
+                    "(CourseName VARCHAR(40) NOT NULL," +
+                    "CategoryName VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (CourseName, CategoryName)," +
                     "FOREIGN KEY (CourseName) REFERENCES COURSE(Name)," +
                     "FOREIGN KEY (CategoryName) REFERENCES CATEGORY(Name))";

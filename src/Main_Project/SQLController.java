@@ -14,6 +14,7 @@ import java.util.Arrays;
  */
 public class SQLController {
     private Connection conn;
+    private String hi;
 
     public SQLController() {
         conn = null;
@@ -121,7 +122,7 @@ public class SQLController {
             System.out.println("All Categories added successfully");
 
         } catch(SQLException e) {
-            System.err.println("Exception in getting user from user table: " + e.getMessage());
+            System.err.println("Exception in adding category from user table: " + e.getMessage());
             throw e;
         }
     }
@@ -156,7 +157,7 @@ public class SQLController {
             System.out.println("All Designations added successfully");
 
         } catch(SQLException e) {
-            System.err.println("Exception in getting user from user table: " + e.getMessage());
+            System.err.println("Exception in adding designation to table: " + e.getMessage());
             throw e;
         }
     }
@@ -178,6 +179,112 @@ public class SQLController {
         }
     }
 
+    public void addAllDepartments() throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            List<String> departments = Arrays.asList("College of Computing", "College of Design",
+                    "College of Engineering", "College of Sciences",
+                    "Ivan Allen College of Liberal Arts", "Scheller College of Business");
+            for (String dept : departments) {
+                String sqlQuery = "INSERT INTO DEPARTMENT " +
+                        "VALUES (\'" + dept + "\')";
+                System.out.println(sqlQuery);
+                statement.executeUpdate(sqlQuery);
+            }
+            System.out.println("All Departments added successfully");
+
+        } catch(SQLException e) {
+            System.err.println("Exception in getting user from user table: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public ObservableList<String> getAllDepartments() throws SQLException {
+        List<String> departments = new ArrayList<String>();
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT * FROM DEPARTMENT";
+            ResultSet res = statement.executeQuery(sqlQuery);
+            while (res.next()) {
+                String currDepartment = res.getString("Name");
+                departments.add(currDepartment);
+            }
+            return FXCollections.observableList(departments);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting user from user table: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void addAllMajors() throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            List<String> queries = new ArrayList<String>();
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Computational Media', 'College of Computing')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Computer Science', 'College of Computing')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Architecture', 'College of Design')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Industrial Design', 'College of Design')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Music Technology', 'College of Design')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Aerospace Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Biomedical Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Chemical and Biomolecular', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Chemical and Biomolecular+BioTech', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Civil Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Computer Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Electrical Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Environmental Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Industrial Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Materials Science and Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Mechanical Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Nuclear and Radiological Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Applied Mathematics', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Applied Physics', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Biochemistry', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Biology', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Chemistry', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Discrete Mathematics', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Earth and Atmospheric Sciences', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Physics', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Psychology', 'College of Sciences')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Applied Language+Intercultural Studies', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Economics', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Economics and International Affairs', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Global Economics and Modern Languages', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('History, Technology, and Society', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('International Affairs', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('International Affairs+Modern Languages', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Literature, Media, and Communication', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Public Policy', 'Ivan Allen College of Liberal Arts')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Business Administration', 'Scheller College of Business')");
+            for (String sqlQuery : queries) {
+                System.out.println(sqlQuery);
+                statement.executeUpdate(sqlQuery);
+            }
+            System.out.println("All Majors added successfully");
+
+        } catch (SQLException e) {
+            System.err.println("Exception in getting user from user table: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public ObservableList<String> getAllMajorNames() throws SQLException {
+        List<String> majors = new ArrayList<String>();
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT * FROM MAJOR";
+            ResultSet res = statement.executeQuery(sqlQuery);
+            while (res.next()) {
+                String currDepartment = res.getString("Name");
+                majors.add(currDepartment);
+            }
+            return FXCollections.observableList(majors);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting majors from major table: " + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
@@ -186,8 +293,16 @@ public class SQLController {
         } catch(SQLException e) {
             System.err.println("Error adding user to database");
         }
+//        try {
+//            controller.addAllDepartments();
+//            controller.addAllCategories();
+//            controller.addAllDesignations();
+//            controller.addAllMajors();
+//        } catch(SQLException e) {
+//            System.err.println("error adding departments to database");
+//        }
         try {
-            List<String> designations = controller.getAllDesignations();
+            List<String> designations = controller.getAllMajorNames();
             for (String s: designations) {
                 System.out.println(s);
             }
