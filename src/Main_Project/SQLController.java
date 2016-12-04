@@ -350,23 +350,23 @@ public class SQLController {
                            String majorReq, String yearReq, String departmentReq, String ... categories) throws SQLException {
         try {
             Statement statement = conn.createStatement();
-            String sqlProject = "INSERT INTO PROJECT (ProjectName, EstimatedNumStudents, Description, AdvisorName,AdvisorEmail) " +
-                    "VALUES (\'" + name + "\'," + est +",\'" + desc + "\',\'" + advisor + "\',\'" + advisorEmail + "\')";
+            String sqlProject = "INSERT INTO PROJECT (Name, EstimatedNumStudents, Description, AdvisorName,AdvisorEmail, DesignationName) " +
+                    "VALUES (\'" + name + "\'," + est +",\'" + desc + "\',\'" + advisor + "\',\'" + advisorEmail + "\',\'" + designation + "\')";
             statement.executeUpdate(sqlProject);
             for (String cat: categories) {
                 String sqlProjectIs = "INSERT INTO PROJECT_IS_CATEGORY (ProjectName, CategoryName) VALUES (\'" + name + "\',\'" + cat + "\')";
                 statement.executeUpdate(sqlProjectIs);
             }
             if (majorReq != null) {
-                String sqlProjectReq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + majorReq + "\')";
+                String sqlProjectReq = "INSERT INTO PROJECT_REQUIREMENT (Name, Requirement) VALUES (\'" + name + "\',\'" + majorReq + "\')";
                 statement.executeUpdate(sqlProjectReq);
             }
             if (yearReq != null) {
-                String sqlProjectReqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + yearReq + "\')";
+                String sqlProjectReqq = "INSERT INTO PROJECT_REQUIREMENT (Name, Requirement) VALUES (\'" + name + "\',\'" + yearReq + "\')";
                 statement.executeUpdate(sqlProjectReqq);
             }
             if (departmentReq != null) {
-                String sqlProjectReqqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + departmentReq + "\')";
+                String sqlProjectReqqq = "INSERT INTO PROJECT_REQUIREMENT (Name, Requirement) VALUES (\'" + name + "\',\'" + departmentReq + "\')";
                 statement.executeUpdate(sqlProjectReqqq);
             }
             System.out.println("Project with name: (" + name + ") added successfully");
@@ -379,7 +379,7 @@ public class SQLController {
     public void addCourse(String name, String num, String instr, int est, String desig, String ... categories) throws SQLException {
         try {
             Statement statement = conn.createStatement();
-            String sqlCourse = "INSERT INTO COURSE (CourseName, CourseNumber, Instructor, EstimatedNumStudents, DesignationName) " +
+            String sqlCourse = "INSERT INTO COURSE (Name, CourseNumber, Instructor, EstimatedNumStudents, DesignationName) " +
                     "VALUES (\'" + name + "\',\'" + num +"\',\'" + instr + "\'," + est + ",\'" + desig + "\')";
             statement.executeUpdate(sqlCourse);
             for (String cat: categories) {
@@ -391,6 +391,10 @@ public class SQLController {
             System.err.println("Exception in adding course" + e.getMessage());
             throw e;
         }
+    }
+
+    public void addApplication() {
+        
     }
 
     public static void main(String[] args) {
@@ -406,9 +410,9 @@ public class SQLController {
 //            System.err.println("error adding departments to database");
 //        }
         try {
-            System.out.println(controller.getDepartment("Hi"));
+            controller.addCourse("TestCourse", "CSXXXX", "TestInstr", 40, "Sustainable Communities", "adaptive learning");
         } catch(SQLException e) {
-            System.err.println("Error getting dept");
+            System.err.println("Error adding project");
         }
 //        try {
 //            List<String> designations = controller.getAllMajorNames();
