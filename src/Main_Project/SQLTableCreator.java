@@ -166,7 +166,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE CATEGORY" +
-                    "(Name VARCHAR(25) NOT NULL," +
+                    "(Name VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (Name))";
             statement.executeUpdate(sqlQuery);
             System.out.println("Category Table created in database");
@@ -380,7 +380,7 @@ public class SQLTableCreator {
     public static void main(String args[]) {
         SQLTableCreator creator = new SQLTableCreator();
         creator.createAllTables();
-        creator.deleteAllTables();
+        //creator.deleteAllTables();
     }
 }
 
