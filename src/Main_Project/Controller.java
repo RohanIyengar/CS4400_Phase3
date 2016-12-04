@@ -396,6 +396,7 @@ public class Controller {
         MasterController.getInstance().loadChooseFunctionalityScene();
     }
 
+
     /* ===============================================================
                           ADMIN: ADD A PROJECT FUNCTIONS
        ===============================================================
@@ -455,4 +456,5 @@ public class Controller {
         invalidDesignation.setVisible(false);
      // TODO: Add statements to show the invalid messages
     }
+
 }
