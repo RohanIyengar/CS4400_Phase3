@@ -7,7 +7,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private int year;
+    private String year;
     private String major;
     private String userType;
 
@@ -23,7 +23,7 @@ public class User {
         return email;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
@@ -48,7 +48,7 @@ public class User {
 
     }
 
-    public User(String username, String password, String email, int year, String major, String userType) {
+    public User(String username, String password, String email, String year, String major, String userType) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -68,6 +68,9 @@ public class User {
     public User(String username, String password, String userType) {
         this.username = username;
         this.password = password;
+        this.email = "Not Given";
+        this.year = "Freshman";
+        this.major = "Undecided";
         this.userType = userType;
     }
 }

@@ -60,8 +60,8 @@ public class SQLTableCreator {
                     "(Username VARCHAR(15) NOT NULL," +
                     "Password VARCHAR(15) NOT NULL," +
                     "Email VARCHAR(30) NOT NULL," +
-                    "Year INT NOT NULL," +
-                    "Major VARCHAR(20) NOT NULL," +
+                    "Year VARCHAR(10) NOT NULL," +
+                    "Major VARCHAR(40) NOT NULL," +
                     "UserType VARCHAR(5) NOT NULL," +
                     "PRIMARY KEY (Username)," + "FOREIGN KEY (Major) REFERENCES MAJOR(Name))";
             statement.executeUpdate(sqlQuery);

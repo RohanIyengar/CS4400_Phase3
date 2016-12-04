@@ -88,21 +88,54 @@ public class SQLController {
         }
     }
 
-    public void addUser(String username, String password, String email, int year, String major, String userType) throws SQLException {
+    public void addUser(String username, String password, String email, String year, String major, String userType) throws SQLException {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "INSERT INTO USER " +
                     "VALUES (\'" + username + "\',\'" + password + "\',\'" +
-                    email + "\'," +
-                    year + ",\'" + major + "\',\'" + userType + "\')";
+                    email + "\',\'" +
+                    year + "\',\'" + major + "\',\'" + userType + "\')";
             System.out.println(sqlQuery);
             statement.executeUpdate(sqlQuery);
             System.out.println("User with username: (" + username + ") added successfully");
-            String sqlQuery2 = "DELETE FROM USER WHERE Username = \'" + username + "\'";
-            statement.executeUpdate(sqlQuery2);
-            System.out.println("User with username: (" + username + ") deleted successfully");
+            //String sqlQuery2 = "DELETE FROM USER WHERE Username = \'" + username + "\'";
+            //statement.executeUpdate(sqlQuery2);
+            //System.out.println("User with username: (" + username + ") deleted successfully");
         } catch(SQLException e) {
-            System.err.println("Exception in getting user from user table: " + e.getMessage());
+            System.err.println("Exception in adding user to user table: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void addAllUsers() throws SQLException {
+        try {
+            addUser("Rohan", "Rohan", "riyengar6@gatech.edu", "Senior", "Electrical Engineering", "Admin");
+            addUser("Ashika", "Ashika", "aganesh32@gatech.edu", "Senior", "Computer Science", "Admin");
+            addUser("Sonali", "Sonali", "ssingh313@gatech.edu", "Senior", "Computer Science", "Admin");
+            addUser("Hardik", "Hardik", "htuteja3@gatech.edu", "Senior", "Industrial Engineering", "Admin");
+            addUser("Monica", "Monica", "sweat@gatech.edu", "Senior", "Computer Science", "Admin");
+            addUser("Test", "Test", "test@gatech.edu", "Freshman", "Undecided", "User");
+            addUser("Joe", "Joe", "joe@gatech.edu", "Freshman", "Computer Engineering", "User");
+            addUser("Moe", "Moe", "moe@gatech.edu", "Freshman", "Electrical Engineering", "User");
+            addUser("Lo", "Lo", "lo@gatech.edu", "Freshman", "Industrial Design", "User");
+            addUser("Go", "Go", "go@gatech.edu", "Freshman", "Business Administration", "User");
+            addUser("Jim", "Jim", "jim@gatech.edu", "Sophomore", "Biomedical Engineering", "User");
+            addUser("Kim", "Kim", "kim@gatech.edu", "Sophomore", "Mechanical", "User");
+            addUser("Lim", "Lim", "lim@gatech.edu", "Sophomore", "Undecided", "User");
+            addUser("Mim", "Mim", "mim@gatech.edu", "Sophomore", "Computer Science", "User");
+            addUser("Pim", "Pim", "pim@gatech.edu", "Sophomore", "Computational Media", "User");
+            addUser("Joan", "Joan", "joan@gatech.edu", "Junior", "Undecided", "User");
+            addUser("Goan", "Goan", "goan@gatech.edu", "Junior", "Computational Media", "User");
+            addUser("Sloan", "Sloan", "sloan@gatech.edu", "Junior", "Computer Science", "User");
+            addUser("Ploan", "Ploan", "ploan@gatech.edu", "Junior", "Psychology", "User");
+            addUser("Eloan", "Eloan", "eloan@gatech.edu", "Junior", "Economics", "User");
+            addUser("Sai", "Sai", "sai@gatech.edu", "Senior", "Electrical Engineering", "User");
+            addUser("Hi", "Hi", "hi@gatech.edu", "Senior", "Undecided", "User");
+            addUser("Bye", "Bye", "bye@gatech.edu", "Senior", "Computer Science", "User");
+            addUser("Jii", "Jii", "jii@gatech.edu", "Senior", "International Affairs", "User");
+            addUser("Mii", "Mii", "mii@gatech.edu", "Senior", "Physics", "User");
+        } catch(SQLException e) {
+            System.err.println("Exception in adding user");
             throw e;
         }
     }
@@ -285,22 +318,27 @@ public class SQLController {
         }
     }
 
+
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
         try {
-            controller.addUser("Rohan", "1234", "riyengar6@gatech.edu", 2017, "EE", "ADMIN");
+            controller.addAllDepartments();
+            controller.addAllCategories();
+            controller.addAllDesignations();
+            controller.addAllMajors();
+            controller.addAllUsers();
         } catch(SQLException e) {
-            System.err.println("Error adding user to database");
+            System.err.println("error adding departments to database");
         }
-//        try {
-//            controller.addAllDepartments();
-//            controller.addAllCategories();
-//            controller.addAllDesignations();
-//            controller.addAllMajors();
-//        } catch(SQLException e) {
-//            System.err.println("error adding departments to database");
-//        }
+        try {
+            Statement statement = controller.conn.createStatement();
+            statement.executeUpdate("INSERT INTO MAJOR " + "VALUES ('Undecided', 'College of Engineering')");
+        } catch(SQLException e) {
+            System.err.println("Error adding categories to database");
+        }
+        System.out.println("Undecided major added");
         try {
             List<String> designations = controller.getAllMajorNames();
             for (String s: designations) {
