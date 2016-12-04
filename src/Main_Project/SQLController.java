@@ -318,27 +318,40 @@ public class SQLController {
         }
     }
 
-
+    public String getDepartment(String username) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT DeptName FROM MAJOR WHERE Name = (SELECT Major FROM USER WHERE Username = \'" + username +"\')";
+            //System.out.println(sqlQuery);
+            ResultSet res = statement.executeQuery(sqlQuery);
+            //String result = "";
+            if (!res.next()) {
+                throw new SQLDataException("User not in database");
+            }
+            return res.getString("DeptName");
+        } catch(SQLException e) {
+            System.err.println("Exception in getting user's department: " + e.getMessage());
+            throw e;
+        }
+    }
 
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
+//        try {
+//            controller.addAllDepartments();
+//            controller.addAllCategories();
+//            controller.addAllDesignations();
+//            controller.addAllMajors();
+//            controller.addAllUsers();
+//        } catch(SQLException e) {
+//            System.err.println("error adding departments to database");
+//        }
         try {
-            controller.addAllDepartments();
-            controller.addAllCategories();
-            controller.addAllDesignations();
-            controller.addAllMajors();
-            controller.addAllUsers();
+            System.out.println(controller.getDepartment("Hi"));
         } catch(SQLException e) {
-            System.err.println("error adding departments to database");
+            System.err.println("Error getting dept");
         }
-        try {
-            Statement statement = controller.conn.createStatement();
-            statement.executeUpdate("INSERT INTO MAJOR " + "VALUES ('Undecided', 'College of Engineering')");
-        } catch(SQLException e) {
-            System.err.println("Error adding categories to database");
-        }
-        System.out.println("Undecided major added");
         try {
             List<String> designations = controller.getAllMajorNames();
             for (String s: designations) {
