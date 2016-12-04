@@ -240,7 +240,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE COURSE" +
-                    "(Name VARCHAR(40) NOT NULL," +
+                    "(Name VARCHAR(60) NOT NULL," +
                     "CourseNumber VARCHAR(20) NOT NULL," +
                     "Instructor VARCHAR(40) NOT NULL," +
                     "EstimatedNumStudents INT NOT NULL," +
@@ -288,9 +288,9 @@ public class SQLTableCreator {
             Statement statement = conn.createStatement();
             String sqlQuery = "DROP TABLE APPLY ";
             statement.executeUpdate(sqlQuery);
-            System.out.println("Course Table deleted in database");
+            System.out.println("Apply Table deleted in database");
         } catch(SQLException e) {
-            System.err.println("Exception in deleting course table: " + e.getMessage());
+            System.err.println("Exception in deleting apply table: " + e.getMessage());
         }
     }
 
@@ -325,7 +325,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE COURSE_IS_CATEGORY" +
-                    "(CourseName VARCHAR(40) NOT NULL," +
+                    "(CourseName VARCHAR(60) NOT NULL," +
                     "CategoryName VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (CourseName, CategoryName)," +
                     "FOREIGN KEY (CourseName) REFERENCES COURSE(Name)," +

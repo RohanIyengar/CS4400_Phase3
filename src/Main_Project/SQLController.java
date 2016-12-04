@@ -381,9 +381,11 @@ public class SQLController {
             Statement statement = conn.createStatement();
             String sqlCourse = "INSERT INTO COURSE (Name, CourseNumber, Instructor, EstimatedNumStudents, DesignationName) " +
                     "VALUES (\'" + name + "\',\'" + num +"\',\'" + instr + "\'," + est + ",\'" + desig + "\')";
+            System.out.println(sqlCourse);
             statement.executeUpdate(sqlCourse);
             for (String cat: categories) {
                 String sqlCourseIs = "INSERT INTO COURSE_IS_CATEGORY (CourseName, CategoryName) VALUES (\'" + name + "\',\'" + cat + "\')";
+                System.out.println(sqlCourseIs);
                 statement.executeUpdate(sqlCourseIs);
             }
             System.out.println("Course with name: (" + name + ") added successfully");
@@ -407,26 +409,26 @@ public class SQLController {
 
     public void addAllCourses() throws SQLException {
         try {
-            addCourse("Green Infrastructure: EPA Campus Rainwater Challenge","ARCH 4803","Richard Dagenhart", 26, "Sustainable Communities", "computing for good, doing good for your neighborhood");
-            addCourse("Problems in Biomedical Engineering", "BMED 2250", "Barbara Burks Fasse", 300, "Community", "computing for good, doing good for your neighborhood");
-            addCourse("Environment Policy and Politics", "PUBU 3315", "Alice Favero", 25, "Sustainable Communities", "urban development, sustainable communities");
-            addCourse("Urban Forest", "EAS 2803", "Monica Halka", 10, "Sustainable Communities", "urban development, sustainable communities");
+            addCourse("Green Infrastructure: EPA Campus Rainwater Challenge","ARCH 4803","Richard Dagenhart", 26, "Sustainable Communities", "computing for good", "doing good for your neighborhood");
+            addCourse("Problems in Biomedical Engineering", "BMED 2250", "Barbara Burks Fasse", 300, "Community", "computing for good", "doing good for your neighborhood");
+            addCourse("Environment Policy and Politics", "PUBU 3315", "Alice Favero", 25, "Sustainable Communities", "urban development", "sustainable communities");
+            addCourse("Urban Forest", "EAS 2803", "Monica Halka", 10, "Sustainable Communities", "urban development", "sustainable communities");
             addCourse("Honors Biological Principles; Honors Organismal Biology", "BIOL 1511", "Brian Hammer", 150, "Sustainable Communities", "sustainable Communities");
-            addCourse("Introduction to Environmental Science", "EAS 1600", "Dana Hartley", 600, "Community", "urban development, sustainable communities");
-            addCourse("Habitable Planet", "EAS 1601", "Dana Hartley", 600, "Community", "urban development, sustainable communities");
-            addCourse("Physics of the Weather", "EAS 2750", "Dana Hartley", 30, "Community","urban development, sustainable communities" );
-            addCourse("Project Management", "MGT 4450", "Richard Saap", 40, "Community", "adaptive learning, urban development");
-            addCourse("Ecomedia: Screening Sustainability", "ENGL 1102", "Sarah O'Brien", 20, "Sustainable Communities", "sustainable communities”, collaborative action");
-            addCourse("Technologies of Representation", "LMC 3414", "Lauren Klein", 50, "Community", "collaborative action, crowd-sourced");
-            addCourse("Community Historians & Westside Speaks", "LMC 4699", "Christopher LeDantec", 45, "sustainable communities, technology for social good");
-            addCourse("Semester in the City: Engaging Westside Communitites", "HTS 2803", "Todd Michney", 100, "Community", "urban development, sustainable communities");
+            addCourse("Introduction to Environmental Science", "EAS 1600", "Dana Hartley", 600, "Community", "urban development", "sustainable communities");
+            addCourse("Habitable Planet", "EAS 1601", "Dana Hartley", 600, "Community", "urban development", "sustainable communities");
+            addCourse("Physics of the Weather", "EAS 2750", "Dana Hartley", 30, "Community","urban development", "sustainable communities");
+            addCourse("Project Management", "MGT 4450", "Richard Saap", 40, "Community", "adaptive learning", "urban development");
+            addCourse("Ecomedia: Screening Sustainability", "ENGL 1102", "Sarah O Brien", 20, "Sustainable Communities", "sustainable communities", "collaborative action");
+            addCourse("Technologies of Representation", "LMC 3414", "Lauren Klein", 50, "Community", "collaborative action", "crowd-sourced");
+            addCourse("Community Historians & Westside Speaks", "LMC 4699", "Christopher LeDantec", 45, "sustainable communities", "technology for social good");
+            addCourse("Semester in the City: Engaging Westside Communitites", "HTS 2803", "Todd Michney", 100, "Community", "urban development", "sustainable communities");
             addCourse("Spanish Service Learning", "SPAN 4150", "Juan Carlos Rodrigeuz", 25, "Community", "recipricol teaching and learning");
-            addCourse("Sustainable Business Projects", "MGT 4803", "Jay Cranman", 45, "Sustainable Communities", "sustainable communities, technology for social good");
-            addCourse("Construction Management and Megaprojects", "CEE 4803", "Baabak Ashuri", 70, "Community","urban development, sustainable Communities");
-            addCourse("Sustainable Aquaponic Systems: The Food, Energy, Water Nexus", "CEE 4699", "Steven Van Ginkel", 40, "Sustainable Communities", "doing good for your neighborhood, adaptive learning");
-            addCourse("Objects and Design", "CS 2340", "Robert Waters", 250, "Sustainable Communities", "computing for good, technology for social good");
+            addCourse("Sustainable Business Projects", "MGT 4803", "Jay Cranman", 45, "Sustainable Communities", "sustainable communities", "technology for social good");
+            addCourse("Construction Management and Megaprojects", "CEE 4803", "Baabak Ashuri", 70, "Community","urban development", "sustainable Communities");
+            addCourse("Sustainable Aquaponic Systems: The Food, Energy, Water Nexus", "CEE 4699", "Steven Van Ginkel", 40, "Sustainable Communities", "doing good for your neighborhood", "adaptive learning");
+            addCourse("Objects and Design", "CS 2340", "Robert Waters", 250, "Sustainable Communities", "computing for good", "technology for social good");
             addCourse("First-Year Seminar", "GT 1000", "Colette Fournier", 150, "Community", "collaborative action");
-            addCourse("Introduction to Database Systems", "CS 4400", "Monica Sweat", 100, "Sustainable Communities", "computing for good, technology for social good");
+            addCourse("Introduction to Database Systems", "CS 4400", "Monica Sweat", 100, "Sustainable Communities", "computing for good", "technology for social good");
         } catch(SQLException e) {
             System.err.println("Exception in adding course");
             throw e;
@@ -478,9 +480,9 @@ public class SQLController {
 //            System.err.println("error adding departments to database");
 //        }
         try {
-            controller.addCourse("TestCourse", "CSXXXX", "TestInstr", 40, "Sustainable Communities", "adaptive learning");
+            controller.addAllCourses();
         } catch(SQLException e) {
-            System.err.println("Error adding project");
+            System.err.println("Error adding course");
         }
 //        try {
 //            List<String> designations = controller.getAllMajorNames();
