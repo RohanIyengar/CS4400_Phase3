@@ -46,10 +46,6 @@
                         <Font name="BebasNeue" size="17.0" />
                      </font>
                   </Text>
-                  <ChoiceBox layoutX="413.0" layoutY="63.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="108.0" layoutY="99.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="108.0" layoutY="134.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="108.0" layoutY="167.0" prefWidth="150.0" />
                   <Text layoutX="567.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Category" underline="true">
                      <font>
                         <Font size="8.0" />
@@ -74,6 +70,30 @@
                         <Image url="@Resources/me.png" />
                      </image>
                   </ImageView>
+                  <SplitMenuButton fx:id="designationMP" layoutX="142.0" layoutY="98.0" mnemonicParsing="false" text="Select">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </SplitMenuButton>
+                  <SplitMenuButton fx:id="majorMP" layoutX="142.0" layoutY="133.0" mnemonicParsing="false" text="Select">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </SplitMenuButton>
+                  <SplitMenuButton fx:id="yearMP" layoutX="142.0" layoutY="166.0" mnemonicParsing="false" text="Select">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </SplitMenuButton>
+                  <SplitMenuButton fx:id="categoryMP" layoutX="416.0" layoutY="62.0" mnemonicParsing="false" text="Select">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                     </items>
+                  </SplitMenuButton>
                </children>
             </AnchorPane>
         </content>

@@ -1,5 +1,6 @@
 package Main_Project;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import javafx.util.Duration;
 
 public class Controller {
     private Scene root;
@@ -180,6 +182,19 @@ public class Controller {
                              MAIN PAGE SCREEN FUNCTIONS
        ===============================================================
     * */
+
+    @FXML
+    private SplitMenuButton yearMP;
+
+
+    @FXML
+    private SplitMenuButton designationMP;
+
+    @FXML
+    private SplitMenuButton categoryMP;
+
+    @FXML
+    private SplitMenuButton majorMP;
 
 
 //    @FXML
@@ -373,7 +388,7 @@ public class Controller {
     private void setAddAProject() {
 
         MasterController.getInstance().loadAddAProject();
-
+        setUpAddProject();
     }
 
     @FXML
@@ -465,11 +480,11 @@ public class Controller {
             invalidEmail.setVisible(false);
             invalidDescription.setVisible(true);
         }
-        else if (category1Btn == null) {
+        else if (category1Btn.getText().equals("Select")) {
             invalidDescription.setVisible(false);
             invalidCategory.setVisible(true);
         }
-        else if (projDesignation == null) {
+        else if (projDesignation.getText().equals("Select")) {
             invalidCategory.setVisible(false);
             invalidDesignation.setVisible(true);
         }
@@ -481,6 +496,8 @@ public class Controller {
     }
 
     @FXML
+    private ComboBox<String> tester;
+
     private boolean setUpAddProject() {
         projDesignation.getItems().addAll(new MenuItem("Hello"),new MenuItem
                 ("Bye"));
