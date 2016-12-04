@@ -72,7 +72,7 @@ public class SQLController {
     public User getUser(String username, String password) throws SQLException {
         try {
             Statement statement = conn.createStatement();
-            String sqlQuery = "SELECT Username,Password,UserType FROM User WHERE Username=\'" + username +  "\'" +
+            String sqlQuery = "SELECT Username,Password,UserType FROM USER WHERE Username=\'" + username +  "\'" +
                     "AND Password = \'" + password +  "\'";
             ResultSet res = statement.executeQuery(sqlQuery);
             if (!res.next()) {
