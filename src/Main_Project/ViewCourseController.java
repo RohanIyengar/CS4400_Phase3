@@ -48,7 +48,7 @@ public class ViewCourseController {
         try {
             CourseInfo data = sContr.getCourseInfo(MainPageController.tempText);
 
-            courseName.setText(data.getCourseNun());
+            courseName.setText(data.getCourseNum());
             courseName.setVisible(true);
 
             instructorName.setText(data.getInstructor());
