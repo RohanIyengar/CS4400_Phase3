@@ -467,6 +467,31 @@ public class SQLController {
         }
     }
 
+    public CourseInfo getCourseInfo(String cName) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT (CourseNumber, Instructor, EstimatedNumStudents , DesignationName) FROM Course WHERE Name =\'" + cName + "\'";
+            ResultSet courseSet = statement.executeQuery(sqlQuery);
+            if (!courseSet.next()) {
+                throw new SQLDataException("No course with name " + cName);
+            }
+            String courseNum = courseSet.getString("CourseNumber");
+            String instr = courseSet.getString("Instructor");
+            String desig = courseSet.getString("DesignationName");
+            int num = courseSet.getInt("EstimatedNumStudents");
+            String sqlCat = "SELECT CategoryName FROM COURSE_IS_CATEGORY WHERE CourseName = \'" + cName + "\'";
+            ResultSet resSetCat = statement.executeQuery(sqlCat);
+            List<String> categories = new ArrayList<String>();
+            while (resSetCat.next()) {
+                categories.add(resSetCat.getString("CategoryName"));
+            }
+            return new CourseInfo(courseNum, instr, desig, num, categories);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting course info " + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
