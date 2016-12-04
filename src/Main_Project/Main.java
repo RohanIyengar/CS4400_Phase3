@@ -22,17 +22,12 @@ public class Main  extends Application implements Serializable {
 
     @Override
     public void start(Stage stage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-//        primaryStage = stage;
-//        stage.setTitle("Group 54 Phase 3");
-//        stage.setScene(new Scene(root, 700, 500));
-//        stage.show();
-
         MasterController controller = MasterController.getInstance();
         controller.setStage(stage);
         controller.loadLoginScene();
         stage.setTitle("Group 54 - Phase 3");
         stage.show();
+
     }
 
     public static void main(String[] args) {

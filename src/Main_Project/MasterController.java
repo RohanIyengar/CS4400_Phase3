@@ -174,11 +174,13 @@ public class MasterController implements Serializable {
 
     public final void loadAddAProject() {
         stage.setScene(addProjectScene);
+
     }
 
     public final void loadAddACourse() {
         stage.setScene(addCourseScene);
     }
+
 
 
 
