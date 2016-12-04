@@ -82,12 +82,305 @@ public class SQLTableCreator {
         }
     }
 
+    public void createProjectTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE PROJECT" +
+                    "(Name VARCHAR(15) NOT NULL," +
+                    "Description VARCHAR(100) NOT NULL," +
+                    "AdvisorEmail VARCHAR(25) NOT NULL," +
+                    "AdvisorName VARCHAR(25) NOT NULL," +
+                    "EstimatedNumStudents INT NOT NULL," +
+                    "DesignationName VARCHAR(15) NOT NULL," +
+                    "PRIMARY KEY (Name)," +
+                    "FOREIGN KEY (DesignationName) REFERENCES DESIGNATION(Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Project Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating project table: " + e.getMessage());
+        }
+    }
+
+    public void deleteProjectTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE PROJECT ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Project Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting project table: " + e.getMessage());
+        }
+    }
+
+    public void createProjectRequirementTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE PROJECT_REQUIREMENT" +
+                    "(Name VARCHAR(25) NOT NULL," +
+                    "Requirement VARCHAR(15) NOT NULL," +
+                    "PRIMARY KEY (Name, Requirement)," +
+                    "FOREIGN KEY (Name) REFERENCES PROJECT(Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Project Requirement Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating project requirement table: " + e.getMessage());
+        }
+    }
+
+    public void deleteProjectRequirementTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE PROJECT_REQUIREMENT ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Project Requirement Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting project requirement table: " + e.getMessage());
+        }
+    }
+
+    public void createDesignationTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE DESIGNATION" +
+                    "(Name VARCHAR(25) NOT NULL," +
+                    "PRIMARY KEY (Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Designation Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating designation table: " + e.getMessage());
+        }
+    }
+
+    public void deleteDesignationTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE DESIGNATION ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Designation deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting designation table: " + e.getMessage());
+        }
+    }
+
+    public void createCategoryTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE CATEGORY" +
+                    "(Name VARCHAR(25) NOT NULL," +
+                    "PRIMARY KEY (Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Category Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating category table: " + e.getMessage());
+        }
+    }
+
+    public void deleteCategoryTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE CATEGORY ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Category Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting category table: " + e.getMessage());
+        }
+    }
+
+    public void createMajorTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE MAJOR" +
+                    "(Name VARCHAR(15) NOT NULL," +
+                    "DeptName VARCHAR(15) NOT NULL," +
+                    "PRIMARY KEY (Name)," +
+                    "FOREIGN KEY (DeptName) REFERENCES DEPARTMENT(Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Major Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating major table: " + e.getMessage());
+        }
+    }
+
+    public void deleteMajorTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE MAJOR ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Major Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting major table: " + e.getMessage());
+        }
+    }
+
+    public void createDepartmentTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE DEPARTMENT" +
+                    "(Name VARCHAR(25) NOT NULL," +
+                    "PRIMARY KEY (Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Department Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating department table: " + e.getMessage());
+        }
+    }
+
+    public void deleteDepartmentTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE DEPARTMENT ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Major Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting major table: " + e.getMessage());
+        }
+    }
+
+    public void createCourseTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE COURSE" +
+                    "(Name VARCHAR(15) NOT NULL," +
+                    "CourseNumber VARCHAR(20) NOT NULL," +
+                    "Instructor VARCHAR(15) NOT NULL," +
+                    "EstimatedNumStudents INT NOT NULL," +
+                    "DesignationName VARCHAR(15) NOT NULL," +
+                    "PRIMARY KEY (Name)," +
+                    "FOREIGN KEY (DesignationName) REFERENCES DESIGNATION(Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Course Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating course table: " + e.getMessage());
+        }
+    }
+
+    public void deleteCourseTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE COURSE ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Course Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting course table: " + e.getMessage());
+        }
+    }
+
+    public void createApplyTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE APPLY" +
+                    "(ProjectName VARCHAR(25) NOT NULL," +
+                    "StudentName VARCHAR(25) NOT NULL," +
+                    "Date DATE," +
+                    "Status	VARCHAR(20)	NOT NULL," +
+                    "PRIMARY KEY (ProjectName, StudentName)," +
+                    "FOREIGN KEY (ProjectName) REFERENCES PROJECT(Name)," +
+                    "FOREIGN KEY (StudentName) REFERENCES USER(Username))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Apply Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating apply table: " + e.getMessage());
+        }
+    }
+
+    public void deleteApplyTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE APPLY ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Course Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting course table: " + e.getMessage());
+        }
+    }
+
+    public void createProjectIsCategoryTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE PROJECT_IS_CATEGORY" +
+                    "(ProjectName VARCHAR(25) NOT NULL," +
+                    "CategoryName VARCHAR(15) NOT NULL," +
+                    "PRIMARY KEY (ProjectName, CategoryName)," +
+                    "FOREIGN KEY (ProjectName) REFERENCES PROJECT(Name)," +
+                    "FOREIGN KEY (CategoryName) REFERENCES CATEGORY(Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Project_Is_Category Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating project_is_category table: " + e.getMessage());
+        }
+    }
+
+    public void deleteProjectIsCategoryTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE PROJECT_IS_CATEGORY ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Project_Is_Category Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting project_is_category: " + e.getMessage());
+        }
+    }
+
+    public void createCourseIsCategoryTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "CREATE TABLE COURSE_IS_CATEGORY" +
+                    "(CourseName VARCHAR(25) NOT NULL," +
+                    "CategoryName VARCHAR(15) NOT NULL," +
+                    "PRIMARY KEY (CourseName, CategoryName)," +
+                    "FOREIGN KEY (CourseName) REFERENCES COURSE(Name)," +
+                    "FOREIGN KEY (CategoryName) REFERENCES CATEGORY(Name))";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Course_Is_Category Table created in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in creating course_is_category table: " + e.getMessage());
+        }
+    }
+
+    public void deleteCourseIsCategoryTable() {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "DROP TABLE COURSE_IS_CATEGORY ";
+            statement.executeUpdate(sqlQuery);
+            System.out.println("Course_Is_Category Table deleted in database");
+        } catch(SQLException e) {
+            System.err.println("Exception in deleting course_is_category table: " + e.getMessage());
+        }
+    }
+
+    public void createAllTables() {
+        //Creates all tables in the correct order
+        this.createDesignationTable();
+        this.createCategoryTable();
+        this.createDepartmentTable();
+        this.createMajorTable();
+        this.createUserTable();
+        this.createCourseTable();
+        this.createProjectTable();
+        this.createProjectRequirementTable();
+        this.createApplyTable();
+        this.createProjectIsCategoryTable();
+        this.createCourseIsCategoryTable();
+    }
+
+    public void deleteAllTables() {
+        this.deleteCourseIsCategoryTable();
+        this.deleteProjectIsCategoryTable();
+        this.deleteApplyTable();
+        this.deleteProjectRequirementTable();
+        this.deleteProjectTable();
+        this.deleteCourseTable();
+        this.deleteUserTable();
+        this.deleteMajorTable();
+        this.deleteDepartmentTable();
+        this.deleteCategoryTable();
+        this.deleteDesignationTable();
+    }
+
     public static void main(String args[]) {
         SQLTableCreator creator = new SQLTableCreator();
-        creator.closeConnection();
-        creator.createConnection();
-        creator.deleteUserTable();
-        //creator.createUserTable();
+        creator.createAllTables();
+        creator.deleteAllTables();
     }
 }
 
