@@ -3,6 +3,7 @@ package Main_Project;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -45,16 +46,12 @@ public class MasterController implements Serializable {
      */
     private final static MasterController masterController
             = new MasterController();
+    private final static TableCell c = new TableCell();
 
-    /**
-     * Returns the single instance of MasterController within the entire scope of
-     * the project.
-     *
-     * @return MasterController
-     */
     public static MasterController getInstance() {
         return masterController;
     }
+
 
 
     private MasterController() {
@@ -147,8 +144,10 @@ public class MasterController implements Serializable {
         stage.setScene(newStudentRegistrationScene);
     }
 
-    public final void loadViewProjectScene() {
+
+    public final void loadViewProjectScene(ViewProjectBuild temp) {
         stage.setScene(viewProjectScene);
+        ViewProjectController.setPTitle(temp.getPT());
     }
 
     public final void loadViewCourseScene() {
@@ -192,6 +191,7 @@ public class MasterController implements Serializable {
     public final void setStage(final Stage stage) {
         this.stage = stage;
     }
+
 
 
 }

@@ -1,7 +1,10 @@
 package Main_Project;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
@@ -14,7 +17,8 @@ public class ViewProjectController {
     * */
 
     @FXML
-    private Text projectTitle;
+    private static Text projectTitle;
+
     @FXML
     private Text adminName;
 
@@ -44,5 +48,15 @@ public class ViewProjectController {
             cannotApplyMsg.setVisible(true);
         }
 
+    }
+
+
+    static void setPTitle(String t) {
+        System.out.println("Set the text to: " + t);
+        projectTitle.setText(t);
+
+    }
+
+    public final void initialize() throws IOException {
     }
 }

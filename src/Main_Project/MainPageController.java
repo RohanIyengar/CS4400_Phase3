@@ -4,13 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.*;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
-
+import javafx.event.EventHandler;
+import javafx.util.Callback;
+import javafx.scene.input.MouseEvent;
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
@@ -73,18 +73,16 @@ public class MainPageController {
     @FXML
     private final ObservableList<MainPageTableEntry> populateTable =
             FXCollections.observableArrayList(
-     new MainPageTableEntry("Name1", "Course1"),
-     new MainPageTableEntry("Name2", "Course2"),
-    new MainPageTableEntry("Name2", "Course2"),
-    new MainPageTableEntry("Name2", "Course2")
+     new MainPageTableEntry("Bio Degradable Compost", "Science"),
+     new MainPageTableEntry("Animal Life Cycle", "Policies"),
+    new MainPageTableEntry("Networking 2", "CS"),
+    new MainPageTableEntry("Temple Studies", "Humanities")
 
             );
 
     @FXML
     private void setApplyFilter() {
 
-
-        mainPageTable.setEditable(true);
         mainPageTable.setItems(populateTable);
     }
 
@@ -128,7 +126,6 @@ public class MainPageController {
             FXCollections.observableArrayList("CS", "BME",
                     "ChemE");
 
-
     public final void initialize() throws IOException {
         yearMP.getItems().clear();
         yearMP.getItems().addAll(cat1List);
@@ -144,13 +141,51 @@ public class MainPageController {
 
         TableColumn nameCol = new TableColumn("Name");
         TableColumn courseCol = new TableColumn("Course");
+
+        mainPageTable.setEditable(false);
+        Callback<TableColumn, TableCell> cellFactory =
+                new Callback<TableColumn, TableCell>() {
+                    public TableCell call(TableColumn p) {
+                        TableCell cell = new TableCell<MainPageTableEntry, String>() {
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setText(empty ? null : getString());
+                                setGraphic(null);
+                            }
+
+                            private String getString() {
+                                return getItem() == null ? "" : getItem().toString();
+                            }
+                        };
+
+
+                        cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()      {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                if (event.getClickCount() > 1) {
+                                    TableCell c = (TableCell) event.getSource();
+                                    ViewProjectBuild one = new
+                                            ViewProjectBuild(c.getText());
+                                    System.out.println(c.getText());
+                                    MasterController.getInstance()
+                                            .loadViewProjectScene(one);
+
+                                }
+                            }
+                        });
+                        return cell;
+                    }
+                };
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<MainPageTableEntry,String>("name")
         );
         nameCol.setMaxWidth(200);
+        nameCol.setCellFactory(cellFactory);
         courseCol.setCellValueFactory(
                 new PropertyValueFactory<MainPageTableEntry,String>("course")
         );
+        courseCol.setCellFactory(cellFactory);
         courseCol.setMaxWidth(200);
         mainPageTable.getColumns().clear();
         mainPageTable.getColumns().addAll(nameCol, courseCol);

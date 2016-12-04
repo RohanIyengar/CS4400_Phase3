@@ -15,7 +15,7 @@ public class MainPageTableEntry {
     }
 
     public String getName() {
-        return course.get();
+        return name.get();
     }
 
     public String getCourse() {
