@@ -117,20 +117,10 @@ public class AddAProjectController {
             invalidDescription.setVisible(false);
             invalidCategory.setVisible(true);
         }
-<<<<<<< Updated upstream
+//        else if (category2Btn == null) {
+//            invalidCategory.setVisible(true);
+//        }
         else if (projDesignation == null) {
-=======
-
-        else if (category2Btn.getText().equals("Select")) {
-            invalidCategory.setVisible(false);
-            invalidCategory.setVisible(true);
-        }
-        else if (numStudents == null || numStudents.getText().trim().isEmpty()) {
-            invalidCategory.setVisible(false);
-            invalidNumber.setVisible(true);
-    }
-        else if (projDesignation.getText().equals("Select")) {
->>>>>>> Stashed changes
             invalidCategory.setVisible(false);
             invalidDesignation.setVisible(true);
         }
