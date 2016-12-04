@@ -393,7 +393,6 @@ public class SQLController {
         }
     }
 
-<<<<<<< Updated upstream
     public void addApplication(String pName, String sName, Date date, String status) throws SQLException {
         try {
             Statement statement = conn.createStatement();
@@ -403,7 +402,7 @@ public class SQLController {
             System.out.println("Application for: (" + pName + " from:" + sName + ") added successfully");
         } catch(SQLException e) {
             System.err.println("Exception in adding applications " + e.getMessage());
-=======
+
     public void addAllCourses() throws SQLException {
         try {
             addCourse("Green Infrastructure: EPA Campus Rainwater Challenge","ARCH 4803","Richard Dagenhart", 26, "Sustainable Communities", "Computing for good, Doing good for your neighborhood");
@@ -428,7 +427,6 @@ public class SQLController {
             addCourse("Introduction to Database Systems", "CS 4400", "Monica Sweat", 100, "Sustainable Communities", "Computing for good, Technology for social good");
         } catch(SQLException e) {
             System.err.println("Exception in adding course");
->>>>>>> Stashed changes
             throw e;
         }
     }
