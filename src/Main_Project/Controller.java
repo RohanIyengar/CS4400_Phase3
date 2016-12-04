@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
 import java.io.IOException;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.RadioButton;
+
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -373,7 +371,9 @@ public class Controller {
 
     @FXML
     private void setAddAProject() {
+
         MasterController.getInstance().loadAddAProject();
+
     }
 
     @FXML
@@ -417,6 +417,7 @@ public class Controller {
     @FXML
     private SplitMenuButton category1Btn;
 
+
     @FXML
     private SplitMenuButton category2Btn;
 
@@ -446,8 +447,10 @@ public class Controller {
 
     @FXML
     private Button submitBtn;
+
     @FXML
     private void setSubmitBtn() {
+        setUpAddProject();
         if(projectName == null || projectName.getText().trim().isEmpty()) {
             invalidProjectName.setVisible(true);
         } else if (advisorNameAddProj == null || advisorNameAddProj.getText().trim().isEmpty()) {
@@ -476,5 +479,13 @@ public class Controller {
         }
 
     }
+
+    @FXML
+    private boolean setUpAddProject() {
+        projDesignation.getItems().addAll(new MenuItem("Hello"),new MenuItem
+                ("Bye"));
+        return false;
+    }
+
 
 }
