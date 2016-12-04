@@ -407,6 +407,18 @@ public class SQLController {
         }
     }
 
+    public void addAllApplications() throws SQLException {
+        try {
+            addApplication("Hi", "Creating Sustainable Gardens", new Date(2016, 05, 14), "Pending");
+            addApplication("Hi", "Georgia Tech Waste Audit", new Date(2016, 07, 25), "Accepted");
+            addApplication("Hi", "Georgia Tech Poetry Competition", new Date(2016, 10, 14), "Denied");
+            addApplication("Joe", "Football and Community", new Date(2016, 10, 5), "Accepted");
+            addApplication("Joe", "Bug Tracking System", new Date(2015, 03, 25), "Pending");
+        } catch (SQLException e) {
+           throw e;
+        }
+    }
+
     public void addAllCourses() throws SQLException {
         try {
             addCourse("Green Infrastructure: EPA Campus Rainwater Challenge","ARCH 4803","Richard Dagenhart", 26, "Sustainable Communities", "computing for good", "doing good for your neighborhood");
