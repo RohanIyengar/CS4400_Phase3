@@ -393,8 +393,17 @@ public class SQLController {
         }
     }
 
-    public void addApplication() {
-        
+    public void addApplication(String pName, String sName, Date date, String status) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlApp = "INSERT INTO APPLY (ProjectName, StudentName, Date, Status) " +
+                    "VALUES (\'" + pName + "\',\'" + sName +"\',TO_DATE(\'" + date + "\'),\'" + status + "\')";
+            statement.executeUpdate(sqlApp);
+            System.out.println("Application for: (" + pName + " from:" + sName + ") added successfully");
+        } catch(SQLException e) {
+            System.err.println("Exception in adding applications " + e.getMessage());
+            throw e;
+        }
     }
 
     public static void main(String[] args) {
