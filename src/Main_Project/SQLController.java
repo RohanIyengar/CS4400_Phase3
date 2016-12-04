@@ -438,7 +438,7 @@ public class SQLController {
     public ProjectInfo getProjectInfo(String pName) throws SQLException {
         try {
             Statement statement = conn.createStatement();
-            String sqlQuery = "SELECT (AdvisorName, AdvisorEmail, Description, DesignationName, EstimatedNumStudents) FROM Project WHERE ProjectName = \'" + pName + "\'";
+            String sqlQuery = "SELECT AdvisorName, AdvisorEmail, Description, DesignationName, EstimatedNumStudents FROM PROJECT WHERE ProjectName = \'" + pName + "\'";
             ResultSet projSet = statement.executeQuery(sqlQuery);
             if (!projSet.next()) {
                 throw new SQLDataException("No project with name " + pName);
@@ -470,7 +470,7 @@ public class SQLController {
     public CourseInfo getCourseInfo(String cName) throws SQLException {
         try {
             Statement statement = conn.createStatement();
-            String sqlQuery = "SELECT (CourseNumber, Instructor, EstimatedNumStudents , DesignationName) FROM Course WHERE Name =\'" + cName + "\'";
+            String sqlQuery = "SELECT CourseNumber, Instructor, EstimatedNumStudents , DesignationName FROM COURSE WHERE Name =\'" + cName + "\'";
             ResultSet courseSet = statement.executeQuery(sqlQuery);
             if (!courseSet.next()) {
                 throw new SQLDataException("No course with name " + cName);
@@ -505,7 +505,7 @@ public class SQLController {
 //            System.err.println("error adding departments to database");
 //        }
         try {
-            controller.addAllCourses();
+            System.out.println(controller.getCourseInfo("Introduction to Database Systems"));
         } catch(SQLException e) {
             System.err.println("Error adding course");
         }

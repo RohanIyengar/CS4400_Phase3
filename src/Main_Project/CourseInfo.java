@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class CourseInfo {
 
-    private String courseNun;
+    private String courseNum;
     private String instructor;
     private String designation;
     private int students;
     private List<String> categories;
 
-    public CourseInfo(String courseNun, String instructor, String designation, int students, List<String> categories) {
-        this.courseNun = courseNun;
+    public CourseInfo(String courseNum, String instructor, String designation, int students, List<String> categories) {
+        this.courseNum = courseNum;
         this.instructor = instructor;
         this.designation = designation;
         this.students = students;
@@ -24,7 +24,7 @@ public class CourseInfo {
     @Override
     public String toString() {
         return "CourseInfo{" +
-                "courseNun='" + courseNun + '\'' +
+                "courseNum='" + courseNum + '\'' +
                 ", instructor='" + instructor + '\'' +
                 ", designation='" + designation + '\'' +
                 ", students=" + students +
@@ -40,7 +40,7 @@ public class CourseInfo {
         CourseInfo that = (CourseInfo) o;
 
         if (students != that.students) return false;
-        if (courseNun != null ? !courseNun.equals(that.courseNun) : that.courseNun != null) return false;
+        if (courseNum != null ? !courseNum.equals(that.courseNum) : that.courseNum != null) return false;
         if (instructor != null ? !instructor.equals(that.instructor) : that.instructor != null) return false;
         if (designation != null ? !designation.equals(that.designation) : that.designation != null) return false;
         return categories != null ? categories.equals(that.categories) : that.categories == null;
@@ -49,7 +49,7 @@ public class CourseInfo {
 
     @Override
     public int hashCode() {
-        int result = courseNun != null ? courseNun.hashCode() : 0;
+        int result = courseNum != null ? courseNum.hashCode() : 0;
         result = 31 * result + (instructor != null ? instructor.hashCode() : 0);
         result = 31 * result + (designation != null ? designation.hashCode() : 0);
         result = 31 * result + students;
@@ -58,11 +58,11 @@ public class CourseInfo {
     }
 
     public String getCourseNun() {
-        return courseNun;
+        return courseNum;
     }
 
     public void setCourseNun(String courseNun) {
-        this.courseNun = courseNun;
+        this.courseNum = courseNun;
     }
 
     public String getInstructor() {
