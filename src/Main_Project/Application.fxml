@@ -13,7 +13,7 @@
   <children>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="639.0">
          <children>
-            <Text fill="#c9aa2e" layoutX="222.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Application">
+            <Text fill="#c9aa2e" layoutX="257.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Application">
                <font>
                   <Font size="28.0" />
                </font>
@@ -23,19 +23,27 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button layoutX="409.0" layoutY="323.0" mnemonicParsing="false" text="Accept">
+            <Button fx:id="acceptBtn" layoutX="409.0" layoutY="323.0" mnemonicParsing="false" text="Accept">
                <effect>
                   <DropShadow />
                </effect>
             </Button>
-            <Button layoutX="506.0" layoutY="323.0" mnemonicParsing="false" text="Reject">
+            <Button fx:id="rejectBtn" layoutX="506.0" layoutY="323.0" mnemonicParsing="false" text="Reject">
                <effect>
                   <DropShadow />
                </effect>
             </Button>
-            <ListView layoutX="73.0" layoutY="86.0" prefHeight="200.0" prefWidth="495.0" />
-            <RadioButton layoutX="27.0" layoutY="105.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="13.0" />
-            <RadioButton layoutX="27.0" layoutY="151.0" mnemonicParsing="false" />
+            <TableView fx:id="apps" layoutX="82.0" layoutY="88.0" prefHeight="200.0" prefWidth="498.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button fx:id="loadBtn" layoutX="256.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#setLoadBtn" text="Load Applications">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
   </children>
