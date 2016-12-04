@@ -375,6 +375,54 @@ public class SQLController {
             throw e;
         }
     }
+    public void addAllProjects() throws SQLException {
+        try {
+            addProject("Excel Peer Support Network", "Marnie Williams", "mwilliams@gatech.edu", "Excel (www.excel.gatech.edu) is a four-year, dual certificate program for students with intellectual and developmental disabilities. The Peer Support Network is designed to provide the individualized support necessary for Excel students to thrive at Georgia Tech.",
+                    "Community", 60, "CS students only", "senior students only", null, "Computing for good", "doing good for your neighborhood", "reciprocal teaching and learning");
+            addProject("ESW Hydroponics/Urban Farming Project", "Nicole Kinnard", "nkinnard12@gatech.edu", "The Hydroponics/Urban Farming Project experiments with different ways to grow produce in urban areas using limited space and water resources. We investigate both soil-based and hydroponic methods of growing in order to find the most efficient, economically viable, and environmentally sustainable way to grow produce in Atlanta.",
+                    "Sustainable Communities", 7, null, "Junior students only", null, "urban development","sustainable communities");
+            addProject("Excel Current Events","Ashley Bidlack", "abidlack313@gatech.edu","Excel Current Events is a participation (not for credit) course for degree-seeking students who are interested in developing their communication skills in conversations with adults with intellectual and developmental disabilities.",
+                    "Community", 15, "COC students only", "senior students only", null , "computing for good", "doing good for your neighborhood", "reciprocal teaching and learning", "technology for social good");
+            addProject("Shakespeare in Prison Project", "Sarah Higinbotham", "shiginbotham4@gatech.edu", "As the world celebrates the 400th anniversary of Shakespeare’s death in 2016, Georgia Tech students will travel to a high-security men’s prison outside Atlanta to discuss Shakespeare with incarcerated students.",
+                    "Community",20, "College of Design students only", null, null, "urban development","sustainable communities");
+            addProject("Know Your Water Project", "Neha Kumar", "nkumar12@gatech.edu", "This project will allow students to be part of a large, crowd-sourced study – at little cost to themselves – to contribute to a knowledge bank of how different communities treat and track their water quality. If you are interested in participating in this study, please let us know.",
+                    "Sustainable Communities", 10, "CS students only","senior students only", null, "sustainable communities", "crowd sourced");
+            addProject("Epic Intentions", "Yeji Lee", "ylee31@gatech.edu", "Epic Intentions connects an interdisciplinary team of students with a local nonprofit to apply technical skills for social and civic good to help make the nonprofits make a greater impact in the community.",
+                    "Community", 20, "None", null, null,"doing good for your neighborhood", "collaborative action");
+            addProject("Design of mHealth Tools for HIV Outreach Workers in Gujarat (India)", "Neha Kumar", "nkumar12@gatech.edu", "This project allows students to design tools that workerse in rural parts of India can use to combat HIV",
+                    "Community", 10, "International Affairs students only", "COC students only", null, "technology for social good");
+            addProject("Engineers for a Sustainable World Waste-Derived Nutrient System", "Nicole Kennard", "nkennard5@gatech.edu", "This project allows engineers to analyze how to fix depreciated soil and reinvigorite fields in these conditions",
+                    "Sustainable Communities", 20, "Material Science and Engineering only", null, null, "technology for social good", "sustainable communities");
+            addProject("Excel Collaborative Community Garden", "Marnie Williams", "mwilliams@gatech.edu", "A course on creating technology for a sustainable garden",
+                    "Sustainable Communities", 30, "None", null, null, "urban development", "sustainable communities");
+            addProject("Georgia Tech Waste Audit","Anne Rogers","arogers9@gatech.edu", "Course on tracking and auditing the waste at Georgia Tech through statistical methods",
+                    "Sustainable Communities", 10, "None", null, null, "urban development","sustainable communities");
+            addProject("Georgia Tech Poetry Competition", "Some Teacher", "steacher@gatech.edu", "Students will create and present poetry to their peers",
+                    "Community", 5, null, "freshman students only", null, "crowd sourced");
+            addProject("Designing Sustainable Power Grids", "Taylor John", "tjohn1@gatech.edu", "Students will design and create power grids to replace existing architecture in the United States",
+                    "Sustainable Communities", 10, "EE students only", "senior students only", null, "urban development", "sustainable communities", "collaborative action");
+            addProject("Creating Sustainable Gardens", "Ashley Patterson","apatterson@gatech.edu", "Students will learn which plants make a sustainable garden, focusing on urban communities",
+                    "Sustainable Communities", 50, "None", null, null, "urban development", "sustainable communities");
+            addProject("Bug Tracking System", "Tom Harrison", "tharrison@gatech.edu", "Students will design automated processes to track bugs and other issues in codes",
+                    "Community", 40, "senior students only", null, null, "collaborative action", "computing for good");
+            addProject("Dynamic Programming to Optimize Sustainable Wearables", "Tom Connelly", "tconnelly", "Students will learn how to implement dynamic programming algorithms to breakthrough the wearable market",
+                    "Sustainable Communities", 20, "CS students only", "senior students only", null, "computing for good");
+            addProject("Community Dance Lessons", "Diane Shin", "dshin4@gatech.edu", "Students will take community dance lessons and learn about different cultures through types of dance",
+                    "Community", 20, "freshmen students only", "sophomore students only", null, "collaborative action");
+            addProject("Study Abroad Farming Research", "Best Professor", "bprofessor1@gatech.edu", "Students will travel to South America, Europe, and Asia to research different methods of farming and how they could be improved to create a more sustainable community",
+                    "Sustainable Communities", 35, "junior students only", "senior students only", null, "reciprocal teaching and learning", "collaborative action", "crowd sourced");
+            addProject("The Design of Mobile Control Car Security System", "Haley Cruz", "hcruz19@gatech.edu", "Students will design a security system for cars that can be controlled by mobile phones and allows effective two-way communications between the alarm system and the car owner",
+                    "Community", 15, "ME students only", "senior students only", null, "computing for good", "collaborative action");
+            addProject("Football and Community", "Phil Simms", "psimms@gatech.edu", "Students will interact with a professional NFL commentator and write a paper on how football creates community",
+                    "Community", 100, "freshman students only", "sophomore students only", null, "collaborative action");
+            addProject("The Essence of Napping", "Last Teacher", "lteacher9@gatech.edu", "Students will learn how napping builds community",
+                    "Community", 200, "None", null, null, "collaborative action");
+        } catch(SQLException e) {
+            System.err.println("Exception in adding course");
+            throw e;
+        }
+    }
+
 
     public void addCourse(String name, String num, String instr, int est, String desig, String ... categories) throws SQLException {
         try {
