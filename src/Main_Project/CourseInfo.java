@@ -57,12 +57,12 @@ public class CourseInfo {
         return result;
     }
 
-    public String getCourseNun() {
+    public String getCourseNum() {
         return courseNum;
     }
 
-    public void setCourseNun(String courseNun) {
-        this.courseNum = courseNun;
+    public void setCourseNum(String courseNum) {
+        this.courseNum = courseNum;
     }
 
     public String getInstructor() {
