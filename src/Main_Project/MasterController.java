@@ -49,7 +49,14 @@ public class MasterController implements Serializable {
         return masterController;
     }
 
+    private static String curUser = "";
 
+    public static void setUsername(String t) {
+        curUser = t;}
+
+    public static String getUsername() {
+        return curUser;
+    }
 
     private MasterController() {
         Parent root;
