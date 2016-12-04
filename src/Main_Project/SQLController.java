@@ -357,13 +357,18 @@ public class SQLController {
                 String sqlProjectIs = "INSERT INTO PROJECT_IS_CATEGORY (ProjectName, CategoryName) VALUES (\'" + name + "\',\'" + cat + "\')";
                 statement.executeUpdate(sqlProjectIs);
             }
-
-            String sqlProjectReq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + majorReq + "\')";
-            statement.executeUpdate(sqlProjectReq);
-            String sqlProjectReqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + yearReq + "\')";
-            statement.executeUpdate(sqlProjectReqq);
-            String sqlProjectReqqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + departmentReq + "\')";
-            statement.executeUpdate(sqlProjectReqqq);
+            if (majorReq != null) {
+                String sqlProjectReq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + majorReq + "\')";
+                statement.executeUpdate(sqlProjectReq);
+            }
+            if (yearReq != null) {
+                String sqlProjectReqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + yearReq + "\')";
+                statement.executeUpdate(sqlProjectReqq);
+            }
+            if (departmentReq != null) {
+                String sqlProjectReqqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + departmentReq + "\')";
+                statement.executeUpdate(sqlProjectReqqq);
+            }
             System.out.println("Project with name: (" + name + ") added successfully");
         } catch(SQLException e) {
             System.err.println("Exception in adding project" + e.getMessage());
