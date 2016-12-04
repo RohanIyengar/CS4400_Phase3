@@ -498,7 +498,7 @@ public class SQLController {
     public ProjectInfo getProjectInfo(String pName) throws SQLException {
         try {
             Statement statement = conn.createStatement();
-            String sqlQuery = "SELECT AdvisorName, AdvisorEmail, Description, DesignationName, EstimatedNumStudents FROM PROJECT WHERE ProjectName = \'" + pName + "\'";
+            String sqlQuery = "SELECT AdvisorName, AdvisorEmail, Description, DesignationName, EstimatedNumStudents FROM PROJECT WHERE Name = \'" + pName + "\'";
             ResultSet projSet = statement.executeQuery(sqlQuery);
             if (!projSet.next()) {
                 throw new SQLDataException("No project with name " + pName);
@@ -518,7 +518,7 @@ public class SQLController {
             ResultSet resSetReq = statement.executeQuery(sqlReq);
             List<String> reqs = new ArrayList<String>();
             while (resSetReq.next()) {
-                reqs.add(resSetCat.getString("CategoryName"));
+                reqs.add(resSetReq.getString("Requirement"));
             }
             return new ProjectInfo(advName, advEmail, desc, desig, num, categories, reqs);
         } catch(SQLException e) {
@@ -565,9 +565,11 @@ public class SQLController {
 //            System.err.println("error adding departments to database");
 //        }
         try {
-            System.out.println(controller.getCourseInfo("Introduction to Database Systems"));
+            //controller.addAllCourses();
+            //controller.addAllProjects();
+            System.out.println(controller.getProjectInfo("Bug Tracking System"));
         } catch(SQLException e) {
-            System.err.println("Error adding course");
+            System.err.println("Error getting project");
         }
 //        try {
 //            List<String> designations = controller.getAllMajorNames();

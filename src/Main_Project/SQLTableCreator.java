@@ -86,12 +86,12 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE PROJECT" +
-                    "(Name VARCHAR(40) NOT NULL," +
-                    "Description VARCHAR(200) NOT NULL," +
+                    "(Name VARCHAR(100) NOT NULL," +
+                    "Description VARCHAR(400) NOT NULL," +
                     "AdvisorEmail VARCHAR(25) NOT NULL," +
                     "AdvisorName VARCHAR(25) NOT NULL," +
                     "EstimatedNumStudents INT NOT NULL," +
-                    "DesignationName VARCHAR(15) NOT NULL," +
+                    "DesignationName VARCHAR(25) NOT NULL," +
                     "PRIMARY KEY (Name)," +
                     "FOREIGN KEY (DesignationName) REFERENCES DESIGNATION(Name))";
             statement.executeUpdate(sqlQuery);
@@ -116,8 +116,8 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE PROJECT_REQUIREMENT" +
-                    "(Name VARCHAR(40) NOT NULL," +
-                    "Requirement VARCHAR(15) NOT NULL," +
+                    "(Name VARCHAR(100) NOT NULL," +
+                    "Requirement VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (Name, Requirement)," +
                     "FOREIGN KEY (Name) REFERENCES PROJECT(Name))";
             statement.executeUpdate(sqlQuery);
@@ -269,7 +269,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE APPLY" +
-                    "(ProjectName VARCHAR(40) NOT NULL," +
+                    "(ProjectName VARCHAR(100) NOT NULL," +
                     "StudentName VARCHAR(15) NOT NULL," +
                     "Date DATE," +
                     "Status	VARCHAR(20)	NOT NULL," +
@@ -298,7 +298,7 @@ public class SQLTableCreator {
         try {
             Statement statement = conn.createStatement();
             String sqlQuery = "CREATE TABLE PROJECT_IS_CATEGORY" +
-                    "(ProjectName VARCHAR(40) NOT NULL," +
+                    "(ProjectName VARCHAR(100) NOT NULL," +
                     "CategoryName VARCHAR(40) NOT NULL," +
                     "PRIMARY KEY (ProjectName, CategoryName)," +
                     "FOREIGN KEY (ProjectName) REFERENCES PROJECT(Name)," +
