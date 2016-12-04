@@ -4,18 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.*;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javafx.event.EventHandler;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
+import javafx.scene.input.MouseEvent;
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
 public class MainPageController {
 
+    SQLController sContr = new SQLController();
       /* ===============================================================
                              MAIN PAGE SCREEN FUNCTIONS
        ===============================================================
@@ -34,21 +38,6 @@ public class MainPageController {
     @FXML
     private ComboBox<String> majorMP;
 
-
-//    @FXML
-//    private void setAddCategory() {
-//        Parent root = null;
-//        try {
-//            root = FXMLLoader.load(getClass().getResource("category.fxml"));
-//            primaryStage = new Stage();
-//            primaryStage.setTitle("Group 54 Phase 3");
-//            primaryStage.setScene(new Scene(root, 700, 500));
-//            primaryStage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
 
     @FXML
@@ -73,18 +62,16 @@ public class MainPageController {
     @FXML
     private final ObservableList<MainPageTableEntry> populateTable =
             FXCollections.observableArrayList(
-     new MainPageTableEntry("Name1", "Course1"),
-     new MainPageTableEntry("Name2", "Course2"),
-    new MainPageTableEntry("Name2", "Course2"),
-    new MainPageTableEntry("Name2", "Course2")
+     new MainPageTableEntry("Bio Degradable Compost", "Science"),
+     new MainPageTableEntry("Animal Life Cycle", "Policies"),
+    new MainPageTableEntry("Networking 2", "CS"),
+    new MainPageTableEntry("Temple Studies", "Humanities")
 
             );
 
     @FXML
     private void setApplyFilter() {
 
-
-        mainPageTable.setEditable(true);
         mainPageTable.setItems(populateTable);
     }
 
@@ -111,22 +98,48 @@ public class MainPageController {
         MasterController.getInstance().loadMeScene();
 
     }
+
     @FXML
     private final ObservableList<String> yearList =
-            FXCollections.observableArrayList("199", "123",
-                    "24124");
+            FXCollections.observableArrayList("Freshman", "Sophomore",
+                    "Junior", "Senior");
     @FXML
-    private final ObservableList<String> cat1List =
-            FXCollections.observableArrayList("Humanties", "computing",
-                    "sciences");
+    private final ObservableList<String> cat1List = getcatList();
     @FXML
-    private final ObservableList<String> desigList =
-            FXCollections.observableArrayList("lol", "a",
-                    "asd");
+    private final ObservableList<String> desigList = getdesigList();
     @FXML
-    private final ObservableList<String> majorList =
-            FXCollections.observableArrayList("CS", "BME",
-                    "ChemE");
+    private final ObservableList<String> majorList = getMajorList();
+
+    @FXML
+    public ObservableList<String> getMajorList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllMajorNames();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getcatList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getdesigList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllDesignations();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
 
 
     public final void initialize() throws IOException {
@@ -144,13 +157,51 @@ public class MainPageController {
 
         TableColumn nameCol = new TableColumn("Name");
         TableColumn courseCol = new TableColumn("Course");
+
+        mainPageTable.setEditable(false);
+        Callback<TableColumn, TableCell> cellFactory =
+                new Callback<TableColumn, TableCell>() {
+                    public TableCell call(TableColumn p) {
+                        TableCell cell = new TableCell<MainPageTableEntry, String>() {
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setText(empty ? null : getString());
+                                setGraphic(null);
+                            }
+
+                            private String getString() {
+                                return getItem() == null ? "" : getItem().toString();
+                            }
+                        };
+
+
+                        cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()      {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                if (event.getClickCount() > 1) {
+                                    TableCell c = (TableCell) event.getSource();
+
+                                    System.out.println(c.getText());
+                                    MasterController.getInstance()
+                                            .loadViewProjectScene();
+//                                    ViewProjectController.onClick(c.getText());
+
+                                }
+                            }
+                        });
+                        return cell;
+                    }
+                };
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<MainPageTableEntry,String>("name")
         );
         nameCol.setMaxWidth(200);
+        nameCol.setCellFactory(cellFactory);
         courseCol.setCellValueFactory(
                 new PropertyValueFactory<MainPageTableEntry,String>("course")
         );
+        courseCol.setCellFactory(cellFactory);
         courseCol.setMaxWidth(200);
         mainPageTable.getColumns().clear();
         mainPageTable.getColumns().addAll(nameCol, courseCol);
