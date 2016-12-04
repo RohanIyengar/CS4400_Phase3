@@ -461,6 +461,9 @@ public class Controller {
     private Text invalidDesignation;
 
     @FXML
+    private Text invalidNumber;
+
+    @FXML
     private Button submitBtn;
 
     @FXML
@@ -484,7 +487,19 @@ public class Controller {
             invalidDescription.setVisible(false);
             invalidCategory.setVisible(true);
         }
+<<<<<<< Updated upstream
         else if (projDesignation.getText().equals("Select")) {
+=======
+        else if (category2Btn == null) {
+            invalidCategory.setVisible(false);
+            invalidCategory.setVisible(true);
+        }
+        else if (numStudents == null || numStudents.getText().trim().isEmpty()) {
+            invalidCategory.setVisible(false);
+            invalidNumber.setVisible(true);
+        }
+        else if (projDesignation == null) {
+>>>>>>> Stashed changes
             invalidCategory.setVisible(false);
             invalidDesignation.setVisible(true);
         }
