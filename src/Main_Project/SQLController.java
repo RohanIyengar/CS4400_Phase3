@@ -406,6 +406,38 @@ public class SQLController {
         }
     }
 
+    public ProjectInfo getProjectInfo(String pName) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT (AdvisorName, AdvisorEmail, Description, DesignationName, EstimatedNumStudents) FROM Project WHERE ProjectName = \'" + pName + "\'";
+            ResultSet projSet = statement.executeQuery(sqlQuery);
+            if (!projSet.next()) {
+                throw new SQLDataException("No project with name " + pName);
+            }
+            String advName = projSet.getString("AdvisorName");
+            String advEmail = projSet.getString("AdvisorEmail");
+            String desc = projSet.getString("Description");
+            String desig = projSet.getString("DesignationName");
+            int num = projSet.getInt("EstimatedNumStudents");
+            String sqlCat = "SELECT CategoryName FROM PROJECT_IS_CATEGORY WHERE ProjectName = \'" + pName + "\'";
+            ResultSet resSetCat = statement.executeQuery(sqlCat);
+            List<String> categories = new ArrayList<String>();
+            while (resSetCat.next()) {
+                categories.add(resSetCat.getString("CategoryName"));
+            }
+            String sqlReq = "SELECT Requirement FROM PROJECT_REQUIREMENT WHERE Name = \'" + pName + "\'";
+            ResultSet resSetReq = statement.executeQuery(sqlReq);
+            List<String> reqs = new ArrayList<String>();
+            while (resSetReq.next()) {
+                reqs.add(resSetCat.getString("CategoryName"));
+            }
+            return new ProjectInfo(advName, advEmail, desc, desig, num, categories, reqs);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting project info " + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
