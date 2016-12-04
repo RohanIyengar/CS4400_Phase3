@@ -3,13 +3,11 @@ package Main_Project;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.Serializable;
 
-import java.lang.Object;
 
 public class MasterController implements Serializable {
 
@@ -46,7 +44,6 @@ public class MasterController implements Serializable {
      */
     private final static MasterController masterController
             = new MasterController();
-    private final static TableCell c = new TableCell();
 
     public static MasterController getInstance() {
         return masterController;
@@ -145,9 +142,8 @@ public class MasterController implements Serializable {
     }
 
 
-    public final void loadViewProjectScene(ViewProjectBuild temp) {
+    public final void loadViewProjectScene() {
         stage.setScene(viewProjectScene);
-        ViewProjectController.setPTitle(temp.getPT());
     }
 
     public final void loadViewCourseScene() {

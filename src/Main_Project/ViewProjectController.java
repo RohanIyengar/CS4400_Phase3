@@ -51,10 +51,8 @@ public class ViewProjectController {
     }
 
 
-    static void setPTitle(String t) {
-        System.out.println("Set the text to: " + t);
+    static void onClick(String t) {
         projectTitle.setText(t);
-
     }
 
     public final void initialize() throws IOException {

@@ -8,7 +8,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.event.EventHandler;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.scene.input.MouseEvent;
 /**
@@ -16,6 +19,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class MainPageController {
 
+    SQLController sContr = new SQLController();
       /* ===============================================================
                              MAIN PAGE SCREEN FUNCTIONS
        ===============================================================
@@ -34,21 +38,6 @@ public class MainPageController {
     @FXML
     private ComboBox<String> majorMP;
 
-
-//    @FXML
-//    private void setAddCategory() {
-//        Parent root = null;
-//        try {
-//            root = FXMLLoader.load(getClass().getResource("category.fxml"));
-//            primaryStage = new Stage();
-//            primaryStage.setTitle("Group 54 Phase 3");
-//            primaryStage.setScene(new Scene(root, 700, 500));
-//            primaryStage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
 
     @FXML
@@ -109,22 +98,49 @@ public class MainPageController {
         MasterController.getInstance().loadMeScene();
 
     }
+
     @FXML
     private final ObservableList<String> yearList =
-            FXCollections.observableArrayList("199", "123",
-                    "24124");
+            FXCollections.observableArrayList("Freshman", "Sophomore",
+                    "Junior", "Senior");
     @FXML
-    private final ObservableList<String> cat1List =
-            FXCollections.observableArrayList("Humanties", "computing",
-                    "sciences");
+    private final ObservableList<String> cat1List = getcatList();
     @FXML
-    private final ObservableList<String> desigList =
-            FXCollections.observableArrayList("lol", "a",
-                    "asd");
+    private final ObservableList<String> desigList = getdesigList();
     @FXML
-    private final ObservableList<String> majorList =
-            FXCollections.observableArrayList("CS", "BME",
-                    "ChemE");
+    private final ObservableList<String> majorList = getMajorList();
+
+    @FXML
+    public ObservableList<String> getMajorList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllMajorNames();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getcatList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getdesigList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllDesignations();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+
 
     public final void initialize() throws IOException {
         yearMP.getItems().clear();
@@ -165,11 +181,11 @@ public class MainPageController {
                             public void handle(MouseEvent event) {
                                 if (event.getClickCount() > 1) {
                                     TableCell c = (TableCell) event.getSource();
-                                    ViewProjectBuild one = new
-                                            ViewProjectBuild(c.getText());
+
                                     System.out.println(c.getText());
                                     MasterController.getInstance()
-                                            .loadViewProjectScene(one);
+                                            .loadViewProjectScene();
+//                                    ViewProjectController.onClick(c.getText());
 
                                 }
                             }
