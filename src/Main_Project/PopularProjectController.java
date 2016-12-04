@@ -97,7 +97,6 @@ public class PopularProjectController {
         numCol.setMaxWidth(200);
 
 
-
         popList.getColumns().clear();
         popList.getColumns().addAll(projCol,numCol);
 
