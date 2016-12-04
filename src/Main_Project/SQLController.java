@@ -346,6 +346,48 @@ public class SQLController {
         }
     }
 
+    public void addProject(String name, String advisor, String advisorEmail, String desc, String designation, int est,
+                           String majorReq, String yearReq, String departmentReq, String ... categories) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlProject = "INSERT INTO PROJECT (ProjectName, EstimatedNumStudents, Description, AdvisorName,AdvisorEmail) " +
+                    "VALUES (\'" + name + "\'," + est +",\'" + desc + "\',\'" + advisor + "\',\'" + advisorEmail + "\')";
+            statement.executeUpdate(sqlProject);
+            for (String cat: categories) {
+                String sqlProjectIs = "INSERT INTO PROJECT_IS_CATEGORY (ProjectName, CategoryName) VALUES (\'" + name + "\',\'" + cat + "\')";
+                statement.executeUpdate(sqlProjectIs);
+            }
+
+            String sqlProjectReq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + majorReq + "\')";
+            statement.executeUpdate(sqlProjectReq);
+            String sqlProjectReqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + yearReq + "\')";
+            statement.executeUpdate(sqlProjectReqq);
+            String sqlProjectReqqq = "INSERT INTO PROJECT_REQUIREMENT (ProjectName, Requirement) VALUES (\'" + name + "\',\'" + departmentReq + "\')";
+            statement.executeUpdate(sqlProjectReqqq);
+            System.out.println("Project with name: (" + name + ") added successfully");
+        } catch(SQLException e) {
+            System.err.println("Exception in adding project" + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void addCourse(String name, String num, String instr, int est, String desig, String ... categories) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlCourse = "INSERT INTO COURSE (CourseName, CourseNumber, Instructor, EstimatedNumStudents, DesignationName) " +
+                    "VALUES (\'" + name + "\',\'" + num +"\',\'" + instr + "\'," + est + ",\'" + desig + "\')";
+            statement.executeUpdate(sqlCourse);
+            for (String cat: categories) {
+                String sqlCourseIs = "INSERT INTO COURSE_IS_CATEGORY (CourseName, CategoryName) VALUES (\'" + name + "\',\'" + cat + "\')";
+                statement.executeUpdate(sqlCourseIs);
+            }
+            System.out.println("Course with name: (" + name + ") added successfully");
+        } catch(SQLException e) {
+            System.err.println("Exception in adding course" + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
@@ -359,7 +401,6 @@ public class SQLController {
 //            System.err.println("error adding departments to database");
 //        }
         try {
-            controller.updateUser("Hi", "Undecided", "Senior");
             System.out.println(controller.getDepartment("Hi"));
         } catch(SQLException e) {
             System.err.println("Error getting dept");
