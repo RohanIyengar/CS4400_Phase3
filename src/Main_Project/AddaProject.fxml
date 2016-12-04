@@ -154,12 +154,12 @@
                   <MenuItem mnemonicParsing="false" text="Action 2" />
                </items>
             </SplitMenuButton>
-            <Button layoutX="172.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#setCreateBtn" text="Back">
+            <Button layoutX="172.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#setBackAdmin" text="Back">
                <effect>
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="submitBtn" layoutX="393.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#setCreateBtn" text="Submit">
+            <Button fx:id="submitBtn" layoutX="393.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#setSubmitBtn" text="Submit">
                <effect>
                   <DropShadow />
                </effect>

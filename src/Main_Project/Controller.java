@@ -448,12 +448,12 @@ public class Controller {
     private Button submitBtn;
     @FXML
     private void setSubmitBtn() {
-        invalidProjectName.setVisible(false);
-        invalidAdvisorName.setVisible(false);
-        invalidEmail.setVisible(false);
-        invalidDescription.setVisible(false);
-        invalidCategory.setVisible(false);
-        invalidDesignation.setVisible(false);
+        invalidProjectName.setVisible(true);
+        invalidAdvisorName.setVisible(true);
+        invalidEmail.setVisible(true);
+        invalidDescription.setVisible(true);
+        invalidCategory.setVisible(true);
+        invalidDesignation.setVisible(true);
      // TODO: Add statements to show the invalid messages
     }
 
