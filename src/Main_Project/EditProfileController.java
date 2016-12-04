@@ -72,19 +72,24 @@ public class EditProfileController {
                     .getSelectedItem().toString(),yearList.getSelectionModel()
                     .getSelectedItem()
                     .toString() );
+            System.out.println("Updated major to: " + majorList.getSelectionModel()
+                    .getSelectedItem().toString());
+
+            System.out.println("Updated year to: " + yearList.getSelectionModel()
+                    .getSelectedItem()
+                    .toString());
+            MasterController.getInstance().loadMeScene();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Nothing was changed.");
+            MasterController.getInstance().loadMeScene();
+        }
+        catch (NullPointerException e) {
+            System.out.println("Nothing was changed.");
+            MasterController.getInstance().loadMeScene();
         }
 
-        System.out.println("Updated major to: " + majorList.getSelectionModel()
-                .getSelectedItem().toString());
-
-        System.out.println("Updated year to: " + yearList.getSelectionModel()
-                .getSelectedItem()
-                .toString());
 
         departmentList.setText(getdesigList());
-        MasterController.getInstance().loadMeScene();
 
     }
 
