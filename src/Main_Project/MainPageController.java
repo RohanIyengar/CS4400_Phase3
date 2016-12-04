@@ -1,8 +1,13 @@
 package Main_Project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.SplitMenuButton;
+
+import java.io.IOException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
@@ -15,17 +20,17 @@ public class MainPageController {
     * */
 
     @FXML
-    private SplitMenuButton yearMP;
+    private ComboBox<String> yearMP;
 
 
     @FXML
-    private SplitMenuButton designationMP;
+    private ComboBox<String> designationMP;
 
     @FXML
-    private SplitMenuButton categoryMP;
+    private ComboBox<String> categoryMP;
 
     @FXML
-    private SplitMenuButton majorMP;
+    private ComboBox<String> majorMP;
 
 
 //    @FXML
@@ -83,4 +88,37 @@ public class MainPageController {
         MasterController.getInstance().loadMeScene();
 
     }
+    @FXML
+    private final ObservableList<String> yearList =
+            FXCollections.observableArrayList("199", "123",
+                    "24124");
+    @FXML
+    private final ObservableList<String> cat1List =
+            FXCollections.observableArrayList("Humanties", "computing",
+                    "sciences");
+    @FXML
+    private final ObservableList<String> desigList =
+            FXCollections.observableArrayList("lol", "a",
+                    "asd");
+    @FXML
+    private final ObservableList<String> majorList =
+            FXCollections.observableArrayList("CS", "BME",
+                    "ChemE");
+
+
+    public final void initialize() throws IOException {
+        yearMP.getItems().clear();
+        yearMP.getItems().addAll(cat1List);
+
+        designationMP.getItems().clear();
+        designationMP.getItems().addAll(desigList);
+
+        categoryMP.getItems().clear();
+        categoryMP.getItems().addAll(cat1List);
+
+        majorMP.getItems().clear();
+        majorMP.getItems().addAll(majorList);
+
+    }
+
 }

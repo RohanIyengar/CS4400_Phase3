@@ -77,18 +77,6 @@
                   <Font size="12.0" />
                </font>
             </Text>
-            <SplitMenuButton fx:id="category1Btn" layoutX="234.0" layoutY="306.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="172.0" text="Select">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Test" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </SplitMenuButton>
-            <SplitMenuButton fx:id="category2Btn" layoutX="234.0" layoutY="334.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="172.0" text="Select">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </SplitMenuButton>
             <Text fill="#110aeb" layoutX="414.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new category" underline="true">
                <font>
                   <Font size="11.0" />
@@ -120,34 +108,16 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <SplitMenuButton layoutX="234.0" layoutY="434.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="172.0" text="Select">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </SplitMenuButton>
             <Text layoutX="73.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Requirement:">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <SplitMenuButton layoutX="234.0" layoutY="463.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="172.0" text="Select">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </SplitMenuButton>
             <Text layoutX="18.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department Requirement:">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <SplitMenuButton layoutX="234.0" layoutY="501.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="172.0" text="Select">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </SplitMenuButton>
             <Button layoutX="172.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#setBackAdmin" text="Back">
                <effect>
                   <DropShadow />
@@ -158,14 +128,12 @@
                   <DropShadow />
                </effect>
             </Button>
-            <SplitMenuButton fx:id="projDesignation" layoutX="234.0" layoutY="365.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="172.0" text="Select">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </SplitMenuButton>
-            <ComboBox fx:id="tester" layoutX="47.0" layoutY="254.0" prefWidth="150.0" promptText="tester" />
-            <ChoiceBox fx:id="tester2" layoutX="442.0" layoutY="224.0" prefWidth="150.0" />
+            <ComboBox fx:id="category1Btn" layoutX="234.0" layoutY="311.0" prefWidth="150.0" />
+            <ComboBox fx:id="category2Btn" layoutX="234.0" layoutY="339.0" prefWidth="150.0" />
+            <ComboBox fx:id="projDesignation" layoutX="234.0" layoutY="367.0" prefWidth="150.0" />
+            <ComboBox fx:id="majorReq" layoutX="234.0" layoutY="425.0" prefWidth="150.0" />
+            <ComboBox fx:id="yearReq" layoutX="234.0" layoutY="454.0" prefWidth="150.0" />
+            <ComboBox fx:id="depReq" layoutX="234.0" layoutY="492.0" prefWidth="150.0" />
 
 
       </children>

@@ -30,14 +30,24 @@ public class AddAProjectController {
     private TextField numStudents;
 
     @FXML
-    private SplitMenuButton category1Btn;
+    private ComboBox<String> category1Btn;
 
 
     @FXML
-    private SplitMenuButton category2Btn;
+    private ComboBox<String> category2Btn;
 
     @FXML
-    private SplitMenuButton projDesignation;
+    private ComboBox<String> projDesignation;
+
+    @FXML
+    private ComboBox<String> majorReq;
+
+    @FXML
+    private ComboBox<String> yearReq;
+
+    @FXML
+    private ComboBox<String> depReq;
+
 
     @FXML
     private Text invalidProjectName;
@@ -64,11 +74,27 @@ public class AddAProjectController {
     private Button submitBtn;
 
     @FXML
-    private final ObservableList<String> testerList =
-            FXCollections.observableArrayList("Human",
-                    "Flapper", "Bonzoid", "Ugaite", "Buzzite",
-                    "Strandoid", "Pegasite", "Techoid");
+    private final ObservableList<String> cat1List =
+            FXCollections.observableArrayList("Science", "Math", "history");
 
+    @FXML
+    private final ObservableList<String> cat2List =
+            FXCollections.observableArrayList("Politics", "Psyc", "Chem");
+
+    @FXML
+    private final ObservableList<String> desigList =
+            FXCollections.observableArrayList("lol", "ok", "yah");
+
+    @FXML
+    private final ObservableList<String> majorList =
+            FXCollections.observableArrayList("CS", "BME", "ChemE");
+    @FXML
+    private final ObservableList<String> yearList =
+            FXCollections.observableArrayList("1919", "1888", "2020");
+    @FXML
+    private final ObservableList<String> depList =
+            FXCollections.observableArrayList("Humanties", "computing",
+                    "sciences");
 
     @FXML
     private void setSubmitBtn() {
@@ -87,11 +113,11 @@ public class AddAProjectController {
             invalidEmail.setVisible(false);
             invalidDescription.setVisible(true);
         }
-        else if (category1Btn.getText().equals("Select")) {
+        else if (category1Btn == null) {
             invalidDescription.setVisible(false);
             invalidCategory.setVisible(true);
         }
-        else if (projDesignation.getText().equals("Select")) {
+        else if (projDesignation == null) {
             invalidCategory.setVisible(false);
             invalidDesignation.setVisible(true);
         }
@@ -101,17 +127,29 @@ public class AddAProjectController {
 
     }
 
-    @FXML
-    private ComboBox tester;
 
-    @FXML
-    private ChoiceBox tester2;
     @FXML
     private void setBackAdmin() {
         MasterController.getInstance().loadChooseFunctionalityScene();
     }
     public final void initialize() throws IOException {
-        tester.setItems(testerList);
+        category1Btn.getItems().clear();
+        category1Btn.getItems().addAll(cat1List);
+
+        category2Btn.getItems().clear();
+        category2Btn.getItems().addAll(cat2List);
+
+        projDesignation.getItems().clear();
+        projDesignation.getItems().addAll(desigList);
+
+        majorReq.getItems().clear();
+        majorReq.getItems().addAll(majorList);
+
+        yearReq.getItems().clear();
+        yearReq.getItems().addAll(yearList);
+
+        depReq.getItems().clear();
+        depReq.getItems().addAll(depList);
     }
 
 }
