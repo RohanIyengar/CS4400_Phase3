@@ -66,7 +66,7 @@ public class Controller {
             boolean isValid = true;
             if (isValid) {
                 //TODO: CHECK IF THE USER LOG IN IS ADMIN OR NOT
-                boolean isAdmin = false;
+                boolean isAdmin = true;
                 if (isAdmin) {
                     MasterController.getInstance().loadChooseFunctionalityScene();
                 } else {
@@ -405,7 +405,7 @@ public class Controller {
     private TextField projectName;
 
     @FXML
-    private TextField advisorName;
+    private TextField advisorNameAddProj;
 
     @FXML
     private TextField advisorEmail;

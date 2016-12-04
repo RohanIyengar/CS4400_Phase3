@@ -34,7 +34,7 @@
                   <Font size="16.0" />
                </font>
             </Text>
-            <TextField fx:id="advisorName" layoutX="234.0" layoutY="127.0" prefHeight="27.0" prefWidth="193.0" />
+            <TextField fx:id="advisorNameAddProj" layoutX="234.0" layoutY="127.0" prefHeight="27.0" prefWidth="193.0" />
             <Text fx:id="invalidAdvisorName" fill="RED" layoutX="434.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Advisor name required." visible="false">
                <font>
                   <Font size="12.0" />
