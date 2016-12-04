@@ -198,11 +198,14 @@ public class MainPageController {
         );
         nameCol.setMaxWidth(200);
         nameCol.setCellFactory(cellFactory);
+
         courseCol.setCellValueFactory(
                 new PropertyValueFactory<MainPageTableEntry,String>("course")
         );
-        courseCol.setCellFactory(cellFactory);
         courseCol.setMaxWidth(200);
+        courseCol.setCellFactory(cellFactory);
+
+
         mainPageTable.getColumns().clear();
         mainPageTable.getColumns().addAll(nameCol, courseCol);
     }

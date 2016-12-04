@@ -125,7 +125,6 @@ public class AddACourseController {
         categoryCourse.getItems().clear();
         categoryCourse.getItems().addAll(cat1List);
 
-
         }
     }
 
