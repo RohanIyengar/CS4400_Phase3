@@ -448,13 +448,33 @@ public class Controller {
     private Button submitBtn;
     @FXML
     private void setSubmitBtn() {
-        invalidProjectName.setVisible(true);
-        invalidAdvisorName.setVisible(true);
-        invalidEmail.setVisible(true);
-        invalidDescription.setVisible(true);
-        invalidCategory.setVisible(true);
-        invalidDesignation.setVisible(true);
-     // TODO: Add statements to show the invalid messages
+        if(projectName == null || projectName.getText().trim().isEmpty()) {
+            invalidProjectName.setVisible(true);
+        } else if (advisorNameAddProj == null || advisorNameAddProj.getText().trim().isEmpty()) {
+            invalidProjectName.setVisible(false);
+            invalidAdvisorName.setVisible(true);
+        }
+        else if (advisorEmail == null || advisorEmail.getText().trim().isEmpty()) {
+            invalidAdvisorName.setVisible(false);
+            invalidEmail.setVisible(true);
+        }
+        else if (projDescription == null || projDescription.getText().trim().isEmpty()) {
+            invalidEmail.setVisible(false);
+            invalidDescription.setVisible(true);
+        }
+        else if (category1Btn == null) {
+            invalidDescription.setVisible(false);
+            invalidCategory.setVisible(true);
+        }
+        else if (projDesignation == null) {
+            invalidCategory.setVisible(false);
+            invalidDesignation.setVisible(true);
+        }
+        else {
+            return;
+
+        }
+
     }
 
 }
