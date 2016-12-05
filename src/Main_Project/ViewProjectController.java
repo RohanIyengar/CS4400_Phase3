@@ -22,7 +22,7 @@ public class ViewProjectController {
     private Text projectTitle;
 
     @FXML
-    private Text adminName;
+    private Text advisorName;
 
     @FXML
     private Text projectDescription;
@@ -68,10 +68,12 @@ public class ViewProjectController {
         projectTitle.setVisible(true);
 
         try {
+            System.out.println(MainPageController.tempText);
             ProjectInfo data = sContr.getProjectInfo(MainPageController.tempText);
 
-            adminName.setText(data.getAdvisorName());
-            adminName.setVisible(true);
+
+            advisorName.setText(data.getAdvisorName());
+            advisorName.setVisible(true);
 
             projectDescription.setText(data.getDescription());
             projectDescription.setVisible(true);
@@ -85,13 +87,12 @@ public class ViewProjectController {
             numberOfStudents.setText(String.valueOf(data.getStudents()));
             numberOfStudents.setVisible(true);
         } catch (SQLException e) {
-            System.out.println("Was not able to find that project on our " +
-                    "database...");
+           e.printStackTrace();
         }
-        catch (NullPointerException e) {
-            System.out.println("Was not able to find that project on our " +
-                    "database...");
-        }
+//        catch (NullPointerException e) {
+//            System.out.println("Was not able to find that project on our " +
+//                    "database...");
+//        }
     }
 
     @FXML

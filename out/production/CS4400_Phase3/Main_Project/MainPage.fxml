@@ -79,6 +79,11 @@
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
+                  <Button layoutX="82.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#setLogOut" text="Log Out">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
