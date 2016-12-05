@@ -445,6 +445,19 @@ public class SQLController {
         }
     }
 
+    public boolean checkIfApplicationExists(String sName, String pName) {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT * FROM APPLY WHERE StudentName =\'" + sName +  "\' AND " + "ProjectName=\'" + pName + "\'";
+            System.out.println(sqlQuery);
+            ResultSet res = statement.executeQuery(sqlQuery);
+            return res.next();
+        } catch(SQLException e) {
+            System.err.println("Exception in checking application table: " + e.getMessage());
+        }
+        return false;
+    }
+
     public void addApplication(String sName, String pName, java.util.Date date, String status) throws SQLException {
         try {
             Statement statement = conn.createStatement();
@@ -579,6 +592,33 @@ public class SQLController {
         }
     }
 
+    public List<PopularProject> getPopularProjects() throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            List<PopularProject> projs =new ArrayList<PopularProject>();
+            Statement statement1 = conn.createStatement();
+            String sqlQuery = "SELECT * FROM PROJECT";
+            ResultSet appSet = statement.executeQuery(sqlQuery);
+            while (appSet.next()) {
+                String pName = appSet.getString("Name");
+                String getCount = "SELECT COUNT(DISTINCT StudentName) AS NumApps FROM APPLY WHERE ProjectName = \'" + pName + "\'";
+                System.out.println(getCount);
+                ResultSet countSet = statement1.executeQuery(getCount);
+                int numApps = 0;
+                if (countSet.next()) {
+                    numApps = countSet.getInt("NumApps");
+                }
+                if (numApps > 0) {
+                    projs.add(new PopularProject(pName, numApps));
+                }
+            }
+            return projs;
+        } catch(SQLException e) {
+            System.err.println("Exception in getting application info " + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
@@ -595,7 +635,7 @@ public class SQLController {
             //controller.addAllCourses();
             //controller.addAllProjects();
             //controller.addAllApplications();
-            System.out.println(controller.getApplicationInfo("Hi"));
+            System.out.println(controller.getPopularProjects());
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
