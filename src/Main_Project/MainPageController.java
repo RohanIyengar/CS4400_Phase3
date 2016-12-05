@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
@@ -80,8 +81,30 @@ public class MainPageController {
     @FXML
     private void setApplyFilter() {
 
+        ObservableList<MainPageResult> populateTable = getPopTable();
         mainPageTable.setItems(populateTable);
-       
+    }
+
+    @FXML
+    private ObservableList getPopTable() {
+        ObservableList temp = FXCollections
+                .observableArrayList();
+        try {
+            List<MainPageResult> data =sContr.mainPageSearch(projectRadio
+                    .isSelected(),courseRadio
+                    .isSelected(), titleMP.getText(), designationMP.getSelectionModel()
+                    .getSelectedItem().toString(), majorMP.getSelectionModel()
+                    .getSelectedItem().toString(),yearMP.getSelectionModel()
+                    .getSelectedItem().toString(), categoryMP.getSelectionModel()
+                    .getSelectedItem().toString() );
+            for (MainPageResult x: data) {
+                System.out.println(x.getName());
+                temp.add(new MainPageTableEntry(x.getName(), x.getType()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+       return temp;
     }
 
     @FXML
@@ -178,6 +201,7 @@ public class MainPageController {
 
         TableColumn nameCol = new TableColumn("Name");
         TableColumn courseCol = new TableColumn("Type");
+        courseRadio.setSelected(true);
 
         mainPageTable.setEditable(false);
         Callback<TableColumn, TableCell> cellFactory =
