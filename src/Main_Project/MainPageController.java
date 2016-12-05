@@ -98,7 +98,6 @@ public class MainPageController {
         } else {
             bothRadio.setSelected(false);
         }
-
     }
 
     @FXML

@@ -46,11 +46,6 @@
                         <Font name="BebasNeue" size="17.0" />
                      </font>
                   </Text>
-                  <Text layoutX="567.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Category" underline="true">
-                     <font>
-                        <Font size="8.0" />
-                     </font>
-                  </Text>
                   <RadioButton fx:id="projectRadio" layoutX="355.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#setRadioBtn" prefHeight="57.0" prefWidth="297.0" text="Project" />
                   <RadioButton fx:id="courseRadio" layoutX="439.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#setRadioBtn" prefHeight="17.0" prefWidth="129.0" text="Course" />
                   <RadioButton fx:id="bothRadio" layoutX="517.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#setBothRadio" prefHeight="18.0" prefWidth="69.0" text="Both" />
