@@ -704,7 +704,7 @@ public class SQLController {
             //controller.addAllProjects();
             //controller.addAllApplications();
             //System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
-            System.out.println(controller.getAdminApplicationInfo("hi"))
+            System.out.println(controller.getAdminApplicationInfo("hi"));
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
