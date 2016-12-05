@@ -26,6 +26,9 @@ public class MainPageController {
     * */
 
     @FXML
+    private TextField titleMP;
+
+    @FXML
     private ComboBox<String> yearMP;
 
 
@@ -95,7 +98,6 @@ public class MainPageController {
         } else {
             bothRadio.setSelected(false);
         }
-
     }
 
     @FXML
@@ -154,17 +156,25 @@ public class MainPageController {
     public static String tempText = "";
 
     public final void initialize() throws IOException {
+
+//        titleMP.setText("Habitable Planet");
+
         yearMP.getItems().clear();
-        yearMP.getItems().addAll(cat1List);
+        yearMP.getItems().addAll(yearList);
+        yearMP.getSelectionModel().select(2);
+
 
         designationMP.getItems().clear();
         designationMP.getItems().addAll(desigList);
+        designationMP.getSelectionModel().select(1);
 
         categoryMP.getItems().clear();
         categoryMP.getItems().addAll(cat1List);
+        categoryMP.getSelectionModel().select(1);
 
         majorMP.getItems().clear();
         majorMP.getItems().addAll(majorList);
+        majorMP.getSelectionModel().select(1);
 
         TableColumn nameCol = new TableColumn("Name");
         TableColumn courseCol = new TableColumn("Type");

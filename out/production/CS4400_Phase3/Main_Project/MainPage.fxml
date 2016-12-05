@@ -20,7 +20,7 @@
                         <Font size="28.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="108.0" layoutY="63.0" prefHeight="27.0" prefWidth="215.0" />
+                  <TextField fx:id="titleMP" layoutX="108.0" layoutY="63.0" prefHeight="27.0" prefWidth="215.0" />
                   <Text layoutX="11.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="62.12890625">
                      <font>
                         <Font name="BebasNeue" size="17.0" />
@@ -44,11 +44,6 @@
                   <Text layoutX="332.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category">
                      <font>
                         <Font name="BebasNeue" size="17.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="567.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Category" underline="true">
-                     <font>
-                        <Font size="8.0" />
                      </font>
                   </Text>
                   <RadioButton fx:id="projectRadio" layoutX="355.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#setRadioBtn" prefHeight="57.0" prefWidth="297.0" text="Project" />
