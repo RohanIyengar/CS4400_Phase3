@@ -560,23 +560,42 @@ public class SQLController {
         }
     }
 
+    public List<ShortApplicationInfo> getApplicationInfo(String username) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            List<ShortApplicationInfo> apps =new ArrayList<ShortApplicationInfo>();
+            String sqlQuery = "SELECT Date, ProjectName, Status FROM APPLY WHERE StudentName =\'" + username + "\'";
+            ResultSet appSet = statement.executeQuery(sqlQuery);
+            while (appSet.next()) {
+                String date = appSet.getString("Date");
+                String pName = appSet.getString("ProjectName");
+                String status = appSet.getString("Status");
+                apps.add(new ShortApplicationInfo(date, pName, status));
+            }
+            return apps;
+        } catch(SQLException e) {
+            System.err.println("Exception in getting application info " + e.getMessage());
+            throw e;
+        }
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
+//        try {
+//            controller.addAllDepartments();
+//            controller.addAllCategories();
+//            controller.addAllDesignations();
+//            controller.addAllMajors();
+//            controller.addAllUsers();
+//        } catch(SQLException e) {
+//            System.err.println("error adding departments to database");
+//        }
         try {
-            controller.addAllDepartments();
-            controller.addAllCategories();
-            controller.addAllDesignations();
-            controller.addAllMajors();
-            controller.addAllUsers();
-        } catch(SQLException e) {
-            System.err.println("error adding departments to database");
-        }
-        try {
-            controller.addAllCourses();
-            controller.addAllProjects();
-            controller.addAllApplications();
-            System.out.println(controller.getProjectInfo("Study Abroad Farming Research"));
+            //controller.addAllCourses();
+            //controller.addAllProjects();
+            //controller.addAllApplications();
+            System.out.println(controller.getApplicationInfo("Hi"));
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
