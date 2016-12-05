@@ -33,7 +33,7 @@ SQLController sContr = new SQLController();
 
     @FXML
     private void loadMyApps() {
-        System.out.println("Came here1");
+        
         ObservableList<MyAppEntry> populateTable = getPopTable();
         myAppList.setItems(populateTable);
     }
@@ -41,7 +41,7 @@ SQLController sContr = new SQLController();
 
     @FXML
     private ObservableList getPopTable() {
-        System.out.println("Came here2");
+
         ObservableList<MyAppEntry> temp = FXCollections
                 .observableArrayList();
         try {
