@@ -5,16 +5,18 @@ import Main_Project.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ModifiableObservableListBase;
 import javafx.collections.ObservableList;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Rohan on 12/3/2016.
  */
 public class SQLController {
     private Connection conn;
-    private String hi;
 
     public SQLController() {
         conn = null;
@@ -443,11 +445,13 @@ public class SQLController {
         }
     }
 
-    public void addApplication(String pName, String sName, Date date, String status) throws SQLException {
+    public void addApplication(String sName, String pName, java.util.Date date, String status) throws SQLException {
         try {
             Statement statement = conn.createStatement();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String realDate = formatter.format(date);
             String sqlApp = "INSERT INTO APPLY (ProjectName, StudentName, Date, Status) " +
-                    "VALUES (\'" + pName + "\',\'" + sName + "\',TO_DATE(\'" + date + "\'),\'" + status + "\')";
+                    "VALUES (\'" + pName + "\',\'" + sName + "\',\'" + realDate + "\',\'" + status + "\')";
             statement.executeUpdate(sqlApp);
             System.out.println("Application for: (" + pName + " from:" + sName + ") added successfully");
         } catch (SQLException e) {
@@ -455,13 +459,17 @@ public class SQLController {
         }
     }
 
-    public void addAllApplications() throws SQLException {
+    public void addAllApplications() throws SQLException, ParseException {
         try {
-            addApplication("Hi", "Creating Sustainable Gardens", new Date(2016, 05, 14), "Pending");
-            addApplication("Hi", "Georgia Tech Waste Audit", new Date(2016, 07, 25), "Accepted");
-            addApplication("Hi", "Georgia Tech Poetry Competition", new Date(2016, 10, 14), "Denied");
-            addApplication("Joe", "Football and Community", new Date(2016, 10, 5), "Accepted");
-            addApplication("Joe", "Bug Tracking System", new Date(2015, 03, 25), "Pending");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            addApplication("Hi", "Creating Sustainable Gardens", formatter.parse("2016-05-14"), "Pending");
+            addApplication("Hi", "Georgia Tech Waste Audit", formatter.parse("2016-03-12"), "Accepted");
+            addApplication("Hi", "Georgia Tech Poetry Competition", formatter.parse("2016-10-14"), "Denied");
+            addApplication("Joe", "Football and Community", formatter.parse("2016-01-16"), "Accepted");
+            addApplication("Joe", "Bug Tracking System", formatter.parse("2016-03-25"), "Pending");
+            addApplication("Kim", "The Essence of Napping", formatter.parse("2016-06-20"), "Pending");
+            addApplication("Kim", "Excel Current Events", formatter.parse("2015-02-21"), "Denied");
+            addApplication("Sloan", "Epic Intentions", formatter.parse("2016-07-26"), "Denied");
         } catch (SQLException e) {
            throw e;
         }
@@ -555,20 +563,21 @@ public class SQLController {
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
-//        try {
-//            controller.addAllDepartments();
-//            controller.addAllCategories();
-//            controller.addAllDesignations();
-//            controller.addAllMajors();
-//            controller.addAllUsers();
-//        } catch(SQLException e) {
-//            System.err.println("error adding departments to database");
-//        }
         try {
-            //controller.addAllCourses();
-            //controller.addAllProjects();
-            System.out.println(controller.getProjectInfo("Study Abroad Farming Research"));
+            controller.addAllDepartments();
+            controller.addAllCategories();
+            controller.addAllDesignations();
+            controller.addAllMajors();
+            controller.addAllUsers();
         } catch(SQLException e) {
+            System.err.println("error adding departments to database");
+        }
+        try {
+            controller.addAllCourses();
+            controller.addAllProjects();
+            controller.addAllApplications();
+            System.out.println(controller.getProjectInfo("Study Abroad Farming Research"));
+        } catch(Exception e) {
             System.err.println("Error getting project");
         }
 //        try {

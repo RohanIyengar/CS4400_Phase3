@@ -271,7 +271,7 @@ public class SQLTableCreator {
             String sqlQuery = "CREATE TABLE APPLY" +
                     "(ProjectName VARCHAR(100) NOT NULL," +
                     "StudentName VARCHAR(15) NOT NULL," +
-                    "Date DATE," +
+                    "Date VARCHAR(20) NOT NULL," +
                     "Status	VARCHAR(20)	NOT NULL," +
                     "PRIMARY KEY (ProjectName, StudentName)," +
                     "FOREIGN KEY (ProjectName) REFERENCES PROJECT(Name)," +
