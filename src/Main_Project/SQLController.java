@@ -599,6 +599,7 @@ public class SQLController {
             Statement statement1 = conn.createStatement();
             String sqlQuery = "SELECT * FROM PROJECT";
             ResultSet appSet = statement.executeQuery(sqlQuery);
+            int count = 0;
             while (appSet.next()) {
                 String pName = appSet.getString("Name");
                 String getCount = "SELECT COUNT(DISTINCT StudentName) AS NumApps FROM APPLY WHERE ProjectName = \'" + pName + "\'";
@@ -608,8 +609,9 @@ public class SQLController {
                 if (countSet.next()) {
                     numApps = countSet.getInt("NumApps");
                 }
-                if (numApps > 0) {
+                if (numApps > 0 && count <= 10) {
                     projs.add(new PopularProject(pName, numApps));
+                    count++;
                 }
             }
             return projs;
