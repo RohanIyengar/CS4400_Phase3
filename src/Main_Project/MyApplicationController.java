@@ -33,7 +33,7 @@ SQLController sContr = new SQLController();
 
     @FXML
     private void loadMyApps() {
-        
+
         ObservableList<MyAppEntry> populateTable = getPopTable();
         myAppList.setItems(populateTable);
     }
