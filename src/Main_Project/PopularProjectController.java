@@ -3,44 +3,51 @@ package Main_Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.event.EventHandler;
-import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.scene.input.MouseEvent;
 
 public class PopularProjectController {
 
+    SQLController sContr = new SQLController();
     @FXML
     private TableView popList;
 
 
 
-    @FXML
-    private final ObservableList<PopularTableEntry> populateTable =
-            FXCollections.observableArrayList(
-                    new PopularTableEntry("Project1",
-                            "10"),
-                    new PopularTableEntry("Project2",
-                            "23"),
-                    new PopularTableEntry("Project3",
-                            "42"),
-                    new PopularTableEntry("Project4",
-                            "14")
-            );
 
     @FXML
     private void setLoadPopProjects() {
+
+        ObservableList<MyAppEntry> populateTable = getPopTable();
         popList.setItems(populateTable);
+
     }
 
+    @FXML
+    private ObservableList getPopTable() {
 
+        ObservableList temp = FXCollections
+                .observableArrayList();
+        try {
+            List<PopularProject> data = sContr.getPopularProjects();
+            for(PopularProject x: data){
+                temp.add(new PopularTableEntry(x.getProjectName(), String
+                        .valueOf(x.getApps())));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong in getting your " +
+                    "applications");
+        }
+        return temp;
+    }
 
     @FXML
     private void setBackAdmin() {
