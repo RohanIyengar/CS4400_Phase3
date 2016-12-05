@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
@@ -20,7 +21,7 @@ import javafx.scene.input.MouseEvent;
  * Created by AshikaGanesh on 12/3/16.
  */
 public class MyApplicationController {
-
+SQLController sContr = new SQLController();
     /* ===============================================================
                             MY APPLICATION SCREEN FUNCTIONS
       ===============================================================
@@ -32,24 +33,33 @@ public class MyApplicationController {
 
     @FXML
     private void loadMyApps() {
+        System.out.println("Came here1");
+        ObservableList<MyAppEntry> populateTable = getPopTable();
         myAppList.setItems(populateTable);
     }
 
+
     @FXML
-    private final ObservableList<MyAppEntry> populateTable =
-            FXCollections.observableArrayList(
-                    new MyAppEntry("12/12",
-                            "Project 1", "pending"),
-                    new MyAppEntry("12/12",
-                            "Project 1", "pending"),
-                    new MyAppEntry("12/12",
-                            "Project 1", "pending"),
-                    new MyAppEntry("12/12",
-                            "Project 1", "pending")
-            );
+    private ObservableList getPopTable() {
+        System.out.println("Came here2");
+        ObservableList<MyAppEntry> temp = FXCollections
+                .observableArrayList();
+        try {
+            List<ShortApplicationInfo> data =  sContr.getApplicationInfo(MasterController.getUsername());
+            for(ShortApplicationInfo x: data){
+                System.out.println(x.getDate());
+                System.out.println(x.getpName());
+                System.out.println(x.getStatus());
+                temp.add(new MyAppEntry(x.getDate(), x.getpName(), x
+                        .getStatus()));
+            }
 
-
-
+        } catch (SQLException e) {
+            System.out.println("Something went wrong in getting your " +
+                    "applications");
+        }
+        return temp;
+    }
 
     @FXML
     private void setBackMyApplication() {
