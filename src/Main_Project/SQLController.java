@@ -592,6 +592,25 @@ public class SQLController {
         }
     }
 
+    public List<AdminApplication> getAdminApplicationInfo(String username) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            List<AdminApplication> app = new ArrayList<AdminApplication>();
+            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY, User WHERE Apply.StudentName =\'" + username + "\'";
+            ResultSet appSet = statement.executeQuery(sqlQuery);
+            while (appSet.next()) {
+                String pName = appSet.getString("ProjectName");
+                String status = appSet.getString("Status");
+                String appMajor = appSet.getString("ApplicantMajor");
+                String appYear = appSet.getString("ApplicantYear");
+            }
+            return app;
+        } catch(SQLException e) {
+            System.err.println("Exception in getting application info " + e.getMessage());
+            throw e;
+        }
+    }
+
     public List<PopularProject> getPopularProjects() throws SQLException {
         try {
             Statement statement = conn.createStatement();
