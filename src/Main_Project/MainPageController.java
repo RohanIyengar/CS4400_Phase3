@@ -146,6 +146,10 @@ public class MainPageController {
         return toRet;
     }
 
+    @FXML
+    private void setLogOut() {
+        MasterController.getInstance().loadLoginScene();
+    }
     public static String tempText = "";
 
     public final void initialize() throws IOException {
