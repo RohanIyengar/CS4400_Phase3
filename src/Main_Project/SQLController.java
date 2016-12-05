@@ -596,13 +596,14 @@ public class SQLController {
         try {
             Statement statement = conn.createStatement();
             List<AdminApplication> app = new ArrayList<AdminApplication>();
-            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY, User WHERE Apply.StudentName =\'" + username + "\'";
+            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY AS A, User AS U WHERE A.StudentName = U." ;
             ResultSet appSet = statement.executeQuery(sqlQuery);
             while (appSet.next()) {
                 String pName = appSet.getString("ProjectName");
                 String status = appSet.getString("Status");
                 String appMajor = appSet.getString("ApplicantMajor");
                 String appYear = appSet.getString("ApplicantYear");
+                app.add(new AdminApplication(appMajor, appYear, pName, status));
             }
             return app;
         } catch(SQLException e) {
@@ -649,7 +650,7 @@ public class SQLController {
                 Statement statement1 = conn.createStatement();
                 String sqlQuery = "SELECT DISTINCT Name, CategoryName, DesignationName FROM COURSE AS A, COURSE_IS_CATEGORY AS B WHERE A.Name = B.CourseName ";
                 String append = " AND";
-                if (title != null && title != "") {
+                if (title != null && title != "" && title.length() > 0) {
                     sqlQuery += append + " A.Name = \'" + title + "\'";
                     append = " AND";
                 }
@@ -702,7 +703,8 @@ public class SQLController {
             //controller.addAllCourses();
             //controller.addAllProjects();
             //controller.addAllApplications();
-            System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
+            //System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
+            System.out.println(controller.getAdminApplicationInfo("hi"))
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
