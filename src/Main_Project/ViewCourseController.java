@@ -79,20 +79,7 @@ public class ViewCourseController {
             numberOfStudentsCourse.setVisible(true);
         }
         catch (NullPointerException e) {
-            courseName.setText("Can't find on database");
-            courseName.setVisible(true);
-
-            instructorName.setText("Can't find on database");
-            instructorName.setVisible(true);
-
-            designationNameCourse.setText("Can't find on database");
-            designationNameCourse.setVisible(true);
-
-            categoryName.setText(String.valueOf("Can't find on database"));
-            categoryName.setVisible(true);
-
-            numberOfStudentsCourse.setText(String.valueOf("Can't find on database"));
-            numberOfStudentsCourse.setVisible(true);
+           System.out.println("Null Pointer.");
         }
 
 

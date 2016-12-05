@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
@@ -18,7 +19,7 @@ import javafx.scene.input.MouseEvent;
  * Created by AshikaGanesh on 12/3/16.
  */
 public class ApplicationController {
-
+    SQLController sCont = new SQLController();
     @FXML
     private Button rejectBtn;
 
@@ -43,25 +44,29 @@ public class ApplicationController {
     }
 
     @FXML
-    private final ObservableList<AppsTableEntry> populateTable =
-            FXCollections.observableArrayList(
-                    new AppsTableEntry("Project1",
-                            "Major1", "Freshman", "pending"),
-                    new AppsTableEntry("Project2",
-                            "Major2", "Freshman", "pending"),
-                    new AppsTableEntry("Project3",
-                            "Major3", "Freshman", "accepted"),
-                    new AppsTableEntry("Project4",
-                            "Major4", "Freshman", "accepted")
-            );
+    private final ObservableList<AppsTableEntry> populateTable = getPopTable();
 
     @FXML
     private Button loadBtn;
 
     @FXML
     private void setLoadBtn() {
-//        apps.getItems().clear();
         apps.setItems(populateTable);
+    }
+
+    @FXML
+    private ObservableList<AppsTableEntry> getPopTable() {
+        ObservableList toRet = FXCollections.observableArrayList();
+        try {
+            List<AdminApplication> data = sCont.getAdminApplicationInfo();
+            for(AdminApplication x: data){
+                toRet.add(new AppsTableEntry(x.getpName(),x.getAppMajor(),x
+                        .getAppYear(), x.getStatus()));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
     }
 
     public final void initialize() throws IOException {
@@ -100,9 +105,15 @@ public class ApplicationController {
                                             .equals("pending")) {
                                         acceptBtn.setVisible(true);
                                         rejectBtn.setVisible(true);
+                                    } else if (populateTable.get(index)
+                                            .getStatuss()
+                                                .equals("Pending")) {
+                                        acceptBtn.setVisible(true);
+                                        rejectBtn.setVisible(true);
                                     } else {
-                                        System.out.println("This project has " +
-                                                "been accepted already.");
+                                        System.out.println("This project  " +
+                                                "is completed is organization" +
+                                                ".");
                                         acceptBtn.setVisible(false);
                                         rejectBtn.setVisible(false);
                                     }
