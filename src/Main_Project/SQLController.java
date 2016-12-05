@@ -394,7 +394,7 @@ public class SQLController {
             addProject("Design of mHealth Tools for HIV Outreach Workers in Gujarat (India)", "Neha Kumar", "nkumar12@gatech.edu", "This project allows students to design tools that workerse in rural parts of India can use to combat HIV",
                     "Community", 10, "International Affairs students only", "COC students only", null, "technology for social good");
             addProject("Engineers for a Sustainable World Waste-Derived Nutrient System", "Nicole Kennard", "nkennard5@gatech.edu", "This project allows engineers to analyze how to fix depreciated soil and reinvigorite fields in these conditions",
-                    "Sustainable Communities", 20, "Material Science and Engineering only", null, null, "technology for social good", "sustainable communities");
+                    "Sustainable Communities", 20, "Materials Science and Engineering only", null, null, "technology for social good", "sustainable communities");
             addProject("Excel Collaborative Community Garden", "Marnie Williams", "mwilliams@gatech.edu", "A course on creating technology for a sustainable garden",
                     "Sustainable Communities", 30, "None", null, null, "urban development", "sustainable communities");
             addProject("Georgia Tech Waste Audit","Anne Rogers","arogers9@gatech.edu", "Course on tracking and auditing the waste at Georgia Tech through statistical methods",
@@ -669,7 +669,6 @@ public class SQLController {
         if (course) {
             try {
                 Statement statement = conn.createStatement();
-                Statement statement1 = conn.createStatement();
                 String sqlQuery = "SELECT DISTINCT Name, CategoryName, DesignationName FROM COURSE AS A, COURSE_IS_CATEGORY AS B WHERE A.Name = B.CourseName ";
                 String append = " AND";
                 if (title != null && title != "" && title.length() > 0) {
@@ -689,21 +688,85 @@ public class SQLController {
                 ResultSet crsSet = statement.executeQuery(sqlQuery);
                 while (crsSet.next()) {
                     String cName = crsSet.getString("Name");
-                    String cat = crsSet.getString("CategoryName");
-                    System.out.println("Name: " + cName + " Category: " + cat);
-                    System.out.println(cat + " " + category);
-                    if (cat.equals(category)) {
-                        results.add(new MainPageResult(cName, "Course"));
-                    }
+                    //String cat = crsSet.getString("CategoryName");
+                    //System.out.println("Name: " + cName + " Category: " + cat);
+                    //System.out.println(cat + " " + category);
+                    //if (true && cat.equals(category)) {
+                    //    results.add(new MainPageResult(cName, "Course"));
+                    //}
+                    results.add(new MainPageResult(cName, "Course"));
                 }
             } catch(SQLException e) {
-                System.err.println("Exception in getting application info " + e.getMessage());
+                System.err.println("Exception in getting course info " + e.getMessage());
                 throw e;
             }
         }
 
         if (project) {
+            try {
+                Statement statement1 = conn.createStatement();
+                String sqlProject = "SELECT DISTINCT A.Name, CategoryName FROM PROJECT AS A, PROJECT_IS_CATEGORY AS B, PROJECT_REQUIREMENT " +
+                        "AS C WHERE A.Name = B.ProjectName AND A.Name = C.Name";
+                String append = " AND";
+                if (title != null && title != "" && title.length() > 0) {
+                    sqlProject += append + " A.Name = \'" + title + "\'";
+                    append = " AND";
+                }
+                if (desig != null) {
+                    sqlProject+= (append + " A.DesignationName = \'" + desig + "\'");
+                    append = " AND";
+                }
+                if (category != null) {
+                    sqlProject+= (append + " B.CategoryName = \'" + category + "\'");
+                    append = " AND";
+                }
+                String sqlDept =  "";
+                if (major != null) {
+                    Statement deptNameConn = conn.createStatement();
+                    String sqlDeptQuery = "SELECT DeptName FROM MAJOR WHERE Name = \'" + major + "\'";
+                    ResultSet dept = deptNameConn.executeQuery(sqlDeptQuery);
+                    dept.next();
+                    sqlDept = dept.getString("DeptName");
+                }
+                System.out.println("Department: " + sqlDept);
+                System.out.println(sqlProject);
+                ResultSet res = statement1.executeQuery(sqlProject);
+                while (res.next()) {
+                    String pName = res.getString("Name");
+                    Statement statement2 = conn.createStatement();
+                    Statement statement3 = conn.createStatement();
+                    String reqQuery = "SELECT Requirement FROM PROJECT AS A, PROJECT_REQUIREMENT AS B WHERE A.Name = \'" + pName + "\'";
+                    boolean majorReq = major == null;
+                    boolean yearReq = year == null;
+                    ResultSet reqs = statement3.executeQuery(reqQuery);
+                    while (reqs.next()) {
+                        String currReq = reqs.getString("Requirement").toLowerCase();
+                        if (currReq.equals("none")) {
+                            majorReq = true;
+                            yearReq = true;
+                        } else if (!majorReq && (currReq.contains(major.toLowerCase()) || currReq.contains(sqlDept.toLowerCase()))) {
+                            majorReq = true;
+                        } else if (!yearReq && (currReq.contains(year.toLowerCase()))) {
+                            yearReq = true;
+                        } else if (!majorReq && currReq.contains("cs students")) {
+                            if (major.equals("Computer Science")) {
+                                majorReq = true;
+                            }
+                        } else if (!majorReq && currReq.contains("coc students")) {
+                            if (sqlDept.equals("College of Computing")) {
+                                majorReq = true;
+                            }
+                        }
+                    }
+                    if (majorReq && yearReq) {
+                        results.add(new MainPageResult(pName, "Course"));
+                    }
+                }
 
+            } catch(SQLException e) {
+                System.err.println("Exception in getting project info " + e.getMessage());
+                throw e;
+            }
         }
 
         return results;
@@ -725,9 +788,9 @@ public class SQLController {
             //controller.addAllCourses();
             //controller.addAllProjects();
             //controller.addAllApplications();
-            //System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
-            System.out.println(controller.getAdminApplicationInfo());
-            controller.acceptApplication("Hi", "Georgia Tech Waste Audit");
+            System.out.println(controller.mainPageSearch(true, false, "Know Your Water Project", "Sustainable Communities", "Computer Science", "Freshman", "crowd sourced"));
+            //System.out.println(controller.getAdminApplicationInfo());
+            //controller.acceptApplication("Hi", "Georgia Tech Waste Audit");
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
