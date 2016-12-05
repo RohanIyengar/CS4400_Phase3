@@ -596,13 +596,13 @@ public class SQLController {
         try {
             Statement statement = conn.createStatement();
             List<AdminApplication> app = new ArrayList<AdminApplication>();
-            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY AS A, User AS U WHERE A.StudentName = U." ;
+            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY AS A, USER AS U WHERE A.StudentName = U.Username" ;
             ResultSet appSet = statement.executeQuery(sqlQuery);
             while (appSet.next()) {
                 String pName = appSet.getString("ProjectName");
                 String status = appSet.getString("Status");
-                String appMajor = appSet.getString("ApplicantMajor");
-                String appYear = appSet.getString("ApplicantYear");
+                String appMajor = appSet.getString("Major");
+                String appYear = appSet.getString("Year");
                 app.add(new AdminApplication(appMajor, appYear, pName, status));
             }
             return app;
@@ -704,7 +704,7 @@ public class SQLController {
             //controller.addAllProjects();
             //controller.addAllApplications();
             //System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
-            System.out.println(controller.getAdminApplicationInfo("hi"))
+            System.out.println(controller.getAdminApplicationInfo("hi"));
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
