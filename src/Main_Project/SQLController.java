@@ -592,11 +592,11 @@ public class SQLController {
         }
     }
 
-    public List<AdminApplication> getAdminApplicationInfo(String username) throws SQLException {
+    public List<AdminApplication> getAdminApplicationInfo() throws SQLException {
         try {
             Statement statement = conn.createStatement();
             List<AdminApplication> app = new ArrayList<AdminApplication>();
-            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY AS A, USER AS U WHERE A.StudentName = U.Username" ;
+            String sqlQuery = "SELECT ProjectName, Major, Year, Status FROM APPLY AS A, USER AS U WHERE A.StudentName = U.Username";
             ResultSet appSet = statement.executeQuery(sqlQuery);
             while (appSet.next()) {
                 String pName = appSet.getString("ProjectName");
@@ -608,6 +608,28 @@ public class SQLController {
             return app;
         } catch(SQLException e) {
             System.err.println("Exception in getting application info " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void acceptApplication(String sName, String pName) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "UPDATE APPLY SET Status = \'Accepted\' WHERE ProjectName = \'" + pName + "\'" + "AND StudentName = \'" + sName + "\'";
+            statement.executeUpdate(sqlQuery);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting updating application: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void rejectApplication(String sName, String pName) throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "UPDATE APPLY SET Status = \'Denied\' WHERE ProjectName = \'" + pName + "\'" + "AND StudentName = \'" + sName + "\'";
+            statement.executeUpdate(sqlQuery);
+        } catch(SQLException e) {
+            System.err.println("Exception in getting updating application: " + e.getMessage());
             throw e;
         }
     }
@@ -704,7 +726,8 @@ public class SQLController {
             //controller.addAllProjects();
             //controller.addAllApplications();
             //System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
-            System.out.println(controller.getAdminApplicationInfo("hi"));
+            System.out.println(controller.getAdminApplicationInfo());
+            controller.acceptApplication("Hi", "Georgia Tech Waste Audit");
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
