@@ -78,6 +78,7 @@ public class MainPageController {
     private void setApplyFilter() {
 
         mainPageTable.setItems(populateTable);
+       
     }
 
     @FXML

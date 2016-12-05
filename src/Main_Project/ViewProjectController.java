@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
@@ -98,9 +99,17 @@ public class ViewProjectController {
     @FXML
     private Button clickToViewBtn;
 
+
     @FXML
     private void setApply() {
-        Boolean requirementsMet = false;
+        Date d = new Date();
+        try {
+            sContr.addApplication(MasterController.getUsername(), projectTitle
+                    .getText(), d, "pending");
+        } catch (SQLException e) {
+            System.out.println("Duplicate inserted.");
+        }
+        Boolean requirementsMet = true;
         if(!requirementsMet) {
             cannotApplyMsg.setVisible(true);
         }
