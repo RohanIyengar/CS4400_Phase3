@@ -63,25 +63,14 @@ public class MainPageController {
 
     }
 
+
     @FXML
-    private final ObservableList<MainPageTableEntry> populateTable =
-            FXCollections.observableArrayList(
-     new MainPageTableEntry("Habitable Planet", "Course"),
-     new MainPageTableEntry("Bug Tracking System", "Project"),
-    new MainPageTableEntry("Study Abroad Farming Research", "Project"),
-    new MainPageTableEntry("Urban Forest", "Course")
-
-            );
-
-//    @FXML
-//    private void popTable() {
-//
-//    }
-
+    ObservableList<MainPageResult> populateTable =FXCollections
+            .observableArrayList();
     @FXML
     private void setApplyFilter() {
 
-        ObservableList<MainPageResult> populateTable = getPopTable();
+        populateTable = getPopTable();
         mainPageTable.setItems(populateTable);
     }
 
@@ -229,15 +218,20 @@ public class MainPageController {
 
                                     System.out.println(c.getText());
                                     int index = c.getTableRow().getIndex();
-                                    tempText = populateTable.get(index)
-                                            .getName();
+                                    System.out.println("Index: " + index);
+//                                    tempText = populateTable.get(index)
+//                                            .getName();
+                                    tempText = c.getText();
 
-                                    if(populateTable.get(index).getCourse()
-                                            .equals("Course")){
+                                    System.out.println("temptext: " + tempText);
+//                                    populateTable.get(index).getType()
+//                                            .equals("Course")
+                                    Boolean isCourse = true;
+                                    if(isCourse && !tempText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
                                     } else {
-                                        MasterController.getInstance()
-                                                .loadViewProjectScene();
+//                                        MasterController.getInstance()
+//                                                .loadViewProjectScene();
                                     }
 
                                 }
