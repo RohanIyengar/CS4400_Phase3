@@ -621,6 +621,52 @@ public class SQLController {
         }
     }
 
+    public List<MainPageResult> mainPageSearch(boolean project, boolean course, String title, String desig,
+                                                String major, String year, String category) throws SQLException {
+        List<MainPageResult> results = new ArrayList<MainPageResult>();
+        if (course) {
+            try {
+                Statement statement = conn.createStatement();
+                Statement statement1 = conn.createStatement();
+                String sqlQuery = "SELECT DISTINCT Name, CategoryName, DesignationName FROM COURSE AS A, COURSE_IS_CATEGORY AS B WHERE A.Name = B.CourseName ";
+                String append = " AND";
+                if (title != null && title != "") {
+                    sqlQuery += append + " A.Name = \'" + title + "\'";
+                    append = " AND";
+                }
+                if (desig != null) {
+                    sqlQuery+= (append + " A.DesignationName = \'" + desig + "\'");
+                    append = " AND";
+                }
+                if (category != null) {
+                    sqlQuery+= (append + " B.CategoryName = \'" + category + "\'");
+                    append = " AND";
+                }
+
+                System.out.println(sqlQuery);
+                ResultSet crsSet = statement.executeQuery(sqlQuery);
+                while (crsSet.next()) {
+                    String cName = crsSet.getString("Name");
+                    String cat = crsSet.getString("CategoryName");
+                    System.out.println("Name: " + cName + " Category: " + cat);
+                    System.out.println(cat + " " + category);
+                    if (cat.equals(category)) {
+                        results.add(new MainPageResult(cName, "Course"));
+                    }
+                }
+            } catch(SQLException e) {
+                System.err.println("Exception in getting application info " + e.getMessage());
+                throw e;
+            }
+        }
+
+        if (project) {
+
+        }
+
+        return results;
+    }
+
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
@@ -637,7 +683,7 @@ public class SQLController {
             //controller.addAllCourses();
             //controller.addAllProjects();
             //controller.addAllApplications();
-            System.out.println(controller.getPopularProjects());
+            System.out.println(controller.mainPageSearch(false, true, "", "Community", "CS", "Freshman", "computing for good"));
         } catch(Exception e) {
             System.err.println("Error getting project");
         }
