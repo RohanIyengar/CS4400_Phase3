@@ -62,12 +62,17 @@ public class MainPageController {
     @FXML
     private final ObservableList<MainPageTableEntry> populateTable =
             FXCollections.observableArrayList(
-     new MainPageTableEntry("Bio Degradable Compost", "Course"),
-     new MainPageTableEntry("Animal Life Cycle", "Project"),
-    new MainPageTableEntry("Networking 2", "Course"),
+     new MainPageTableEntry("Habitable Planet", "Course"),
+     new MainPageTableEntry("Bug Tracking System", "Project"),
+    new MainPageTableEntry("Study Abroad Farming Research", "Project"),
     new MainPageTableEntry("Urban Forest", "Course")
 
             );
+
+//    @FXML
+//    private void popTable() {
+//
+//    }
 
     @FXML
     private void setApplyFilter() {
