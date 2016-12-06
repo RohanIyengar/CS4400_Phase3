@@ -613,6 +613,10 @@ public class SQLController {
         }
     }
 
+//    public List<DetailedApplicationInfo> getDetailedApplicationInfo() {
+//
+//    }
+
     public List<AdminApplication> getAdminApplicationInfo() throws SQLException {
         try {
             Statement statement = conn.createStatement();
