@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.event.EventHandler;
 import javafx.scene.text.Text;
@@ -23,27 +24,51 @@ public class ApplicationReportController {
                             ADMIN VIEW: APPLICATION REPORT SCREEN FUNCTIONS
        ===============================================================
     * */
-
-    @FXML
-    private void loadAppReport() {
-        appList.setItems(populateTable);
-    }
-
+SQLController sContr = new SQLController();
     @FXML
     private TableView appList;
 
     @FXML
-    private final ObservableList<AppReportEntry> populateTable =
-            FXCollections.observableArrayList(
-                    new AppReportEntry("Project1",
-                            "10","72%","CS/MATH"),
-                    new AppReportEntry("Project1",
-                            "10","72%","CS/MATH"),
-                    new AppReportEntry("Project1",
-                            "10","72%","CS/MATH"),
-                    new AppReportEntry("Project1",
-                            "10","72%","CS/MATH")
-            );
+    private void loadAppReport()
+    {
+        ObservableList<MyAppEntry> populateTable = getPopTable();
+        appList.setItems(populateTable);
+    }
+
+    @FXML
+    private ObservableList getPopTable() {
+
+        ObservableList temp = FXCollections
+                .observableArrayList();
+        try {
+            List<DetailedApplicationInfo> data = sContr
+                    .getDetailedApplicationInfo();
+            for(DetailedApplicationInfo x: data){
+                temp.add(new AppReportEntry(x.getProject(), String.valueOf(x
+                        .getApplications()), Double.toString(x.getAcceptRate
+                        ()), x
+                        .getTopThree()));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong in getting your " +
+                    "applications");
+        }
+        return temp;
+    }
+
+//    @FXML
+//    private final ObservableList<AppReportEntry> populateTable =
+//            FXCollections.observableArrayList(
+//                    new AppReportEntry("Project1",
+//                            "10","72%","CS/MATH"),
+//                    new AppReportEntry("Project1",
+//                            "10","72%","CS/MATH"),
+//                    new AppReportEntry("Project1",
+//                            "10","72%","CS/MATH"),
+//                    new AppReportEntry("Project1",
+//                            "10","72%","CS/MATH")
+//            );
 
 
 

@@ -40,7 +40,7 @@ public class ApplicationController {
                                 .getYear(), populateTable.get(index).getStatuss()),
                         populateTable
                         .get(index).getProject());
-              
+
                 System.out.println("Okay, accepting this project!");
             }else {
                 System.out.println("Did not double click anything on table " +
