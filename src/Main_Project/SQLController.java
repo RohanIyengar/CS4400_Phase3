@@ -650,7 +650,7 @@ public class SQLController {
                     }
                 }
                 if (numApps > 0) {
-                    projs.add(new DetailedApplicationInfo(pName, numApps, (accept / numApps), topThree));
+                    projs.add(new DetailedApplicationInfo(pName, numApps, (accept / numApps) * 100.0, topThree));
                     count++;
                 }
             }
