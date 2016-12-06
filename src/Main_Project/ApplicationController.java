@@ -33,8 +33,14 @@ public class ApplicationController {
     private void setAcceptBtn() {
         System.out.println("Okay, accepting this project!");
         try {
-            sCont.acceptApplication(MasterController.getUsername(),populateTable
-                    .get(index).getProject());
+            if(index != -1)  {
+                sCont.acceptApplication(MasterController.getUsername(),populateTable
+                        .get(index).getProject());
+            }else {
+                System.out.println("Did not double click anything on table " +
+                        "yet..");
+            }
+
         } catch (SQLException e) {
             System.out.println("Did not accept this project.");
         }
@@ -81,7 +87,7 @@ public class ApplicationController {
         return toRet;
     }
 
-    static int index = 0;
+    static int index = -1;
     public final void initialize() throws IOException {
 
         final TableColumn projCol = new TableColumn("Project");
@@ -131,7 +137,6 @@ public class ApplicationController {
                                         acceptBtn.setVisible(false);
                                         rejectBtn.setVisible(false);
                                     }
-
 
                                 }
                             }
