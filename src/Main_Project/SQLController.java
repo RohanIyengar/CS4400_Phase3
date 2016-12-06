@@ -613,9 +613,53 @@ public class SQLController {
         }
     }
 
-//    public List<DetailedApplicationInfo> getDetailedApplicationInfo() {
-//
-//    }
+    public List<DetailedApplicationInfo> getDetailedApplicationInfo() throws SQLException {
+        try {
+            Statement statement = conn.createStatement();
+            List<DetailedApplicationInfo> projs = new ArrayList<DetailedApplicationInfo>();
+            Statement statement1 = conn.createStatement();
+            String sqlQuery = "SELECT * FROM PROJECT";
+            ResultSet appSet = statement.executeQuery(sqlQuery);
+            int count = 0;
+            while (appSet.next()) {
+                String pName = appSet.getString("Name");
+                String getCount = "SELECT COUNT(DISTINCT StudentName) AS NumApps FROM APPLY WHERE ProjectName = \'" + pName + "\'";
+                String getAccept = "SELECT COUNT(DISTINCT StudentName) AS NumApps FROM APPLY WHERE ProjectName = \'" + pName + "\' AND STATUS = 'Accepted'";
+                String getMajors = "SELECT B.Major FROM APPLY AS A LEFT JOIN USER AS B ON A.StudentName = B.Username WHERE A.ProjectName = \'" + pName + "\' GROUP BY B.Major ORDER BY COUNT(*) DESC LIMIT 3";
+                System.out.println(getCount);
+                System.out.println(getAccept);
+                System.out.println(getMajors);
+                ResultSet countSet = statement1.executeQuery(getCount);
+                Statement statement2 = conn.createStatement();
+                ResultSet acceptSet = statement2.executeQuery(getAccept);
+                Statement statement3 = conn.createStatement();
+                ResultSet majorSet = statement3.executeQuery(getMajors);
+                int numApps = 0;
+                double accept = 0;
+                String topThree = "";
+                if (countSet.next()) {
+                    numApps = countSet.getInt("NumApps");
+                    if (acceptSet.next()) {
+                        accept = (double) acceptSet.getInt("NumApps");
+                    }
+                    String temp = "";
+                    while (majorSet.next()) {
+                        topThree+=temp;
+                        topThree+=majorSet.getString("Major");
+                        temp = ", ";
+                    }
+                }
+                if (numApps > 0) {
+                    projs.add(new DetailedApplicationInfo(pName, numApps, (accept / numApps), topThree));
+                    count++;
+                }
+            }
+            return projs;
+        } catch(SQLException e) {
+            System.err.println("Exception in getting application info " + e.getMessage());
+            throw e;
+        }
+    }
 
     public List<AdminApplication> getAdminApplicationInfo() throws SQLException {
         try {
@@ -809,9 +853,9 @@ public class SQLController {
             //controller.addAllProjects();
             //controller.addAllApplications();
             //System.out.println(controller.mainPageSearch(true, false, "", "Sustainable Communities", null, "senior", "collaborative action"));
-            controller.rejectApplication("Hi", "Creating Sustainable Gardens");
-            System.out.println(controller.getAdminApplicationInfo());
-            System.out.println(controller.getUsername("Creating Sustainable Gardens", "Undecided", "Senior", "Denied"));
+            //controller.rejectApplication("Hi", "Creating Sustainable Gardens");
+            System.out.println(controller.getDetailedApplicationInfo());
+            //System.out.println(controller.getUsername("Creating Sustainable Gardens", "Undecided", "Senior", "Denied"));
             //System.out.println(controller.getAdminApplicationInfo());
             //controller.acceptApplication("Hi", "Georgia Tech Waste Audit");
         } catch(Exception e) {
