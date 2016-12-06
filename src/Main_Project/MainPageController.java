@@ -81,7 +81,7 @@ public class MainPageController {
         try {
             boolean projSel = projectRadio.isSelected();
             boolean corSel = courseRadio.isSelected();
-            
+
             if(bothRadio.isSelected()) {
                  projectRadio.setSelected(true);
                 courseRadio.setSelected(true);
@@ -242,8 +242,7 @@ public class MainPageController {
                                             () || bothRadio.isSelected();
                                     if(isCourse && !tempText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
-                                    } else if(tempText.equals("Project") &&
-                                            isProject){
+                                    } else (){ 
                                         MasterController.getInstance()
                                                 .loadViewProjectScene();
                                     }
