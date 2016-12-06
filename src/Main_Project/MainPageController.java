@@ -79,6 +79,13 @@ public class MainPageController {
         ObservableList temp = FXCollections
                 .observableArrayList();
         try {
+            boolean projSel = projectRadio.isSelected();
+            boolean corSel = courseRadio.isSelected();
+            
+            if(bothRadio.isSelected()) {
+                 projectRadio.setSelected(true);
+                courseRadio.setSelected(true);
+            }
             List<MainPageResult> data =sContr.mainPageSearch(projectRadio
                     .isSelected(),courseRadio
                     .isSelected(), titleMP.getText(), designationMP.getSelectionModel()
