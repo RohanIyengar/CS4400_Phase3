@@ -32,10 +32,22 @@ public class ApplicationController {
     @FXML
     private void setAcceptBtn() {
         System.out.println("Okay, accepting this project!");
+        try {
+            sCont.acceptApplication(MasterController.getUsername(),populateTable
+                    .get(index).getProject());
+        } catch (SQLException e) {
+            System.out.println("Did not accept this project.");
+        }
     }
 
     @FXML
     private void setRejectBtn() {
+        try {
+            sCont.rejectApplication(MasterController.getUsername(),populateTable
+                    .get(index).getProject());
+        } catch (SQLException e) {
+            System.out.println("Did not accept this project.");
+        }
         System.out.println("Okay, denying this project.");
     }
     @FXML
@@ -69,6 +81,7 @@ public class ApplicationController {
         return toRet;
     }
 
+    static int index = 0;
     public final void initialize() throws IOException {
 
         final TableColumn projCol = new TableColumn("Project");
@@ -100,7 +113,8 @@ public class ApplicationController {
                                 if (event.getClickCount() > 1) {
                                     TableCell c = (TableCell) event.getSource();
 //                                    System.out.println(c.getText());
-                                    int index = c.getTableRow().getIndex();
+                                    index = c.getTableRow()
+                                            .getIndex();
                                     if (populateTable.get(index).getStatuss()
                                             .equals("pending")) {
                                         acceptBtn.setVisible(true);
