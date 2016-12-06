@@ -23,9 +23,12 @@ public class SQLController {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             System.out.println("Starting connection");
-            conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_54",
-                    "cs4400_Team_54",
-                    "EMO7L7Dn");
+            //conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_54",
+            //        "cs4400_Team_54",
+            //        "EMO7L7Dn");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test",
+                    "rohan",
+                    "rohan");
             if(!conn.isClosed())
                 System.out.println("Successfully connected to " +
                         "MySQL server using TCP/IP...");
@@ -122,7 +125,7 @@ public class SQLController {
             addUser("Lo", "Lo", "lo@gatech.edu", "Freshman", "Industrial Design", "User");
             addUser("Go", "Go", "go@gatech.edu", "Freshman", "Business Administration", "User");
             addUser("Jim", "Jim", "jim@gatech.edu", "Sophomore", "Biomedical Engineering", "User");
-            addUser("Kim", "Kim", "kim@gatech.edu", "Sophomore", "Mechanical", "User");
+            addUser("Kim", "Kim", "kim@gatech.edu", "Sophomore", "Mechanical Engineering", "User");
             addUser("Lim", "Lim", "lim@gatech.edu", "Sophomore", "Undecided", "User");
             addUser("Mim", "Mim", "mim@gatech.edu", "Sophomore", "Computer Science", "User");
             addUser("Pim", "Pim", "pim@gatech.edu", "Sophomore", "Computational Media", "User");
@@ -272,6 +275,7 @@ public class SQLController {
             queries.add("INSERT INTO MAJOR " + "VALUES ('Materials Science and Engineering', 'College of Engineering')");
             queries.add("INSERT INTO MAJOR " + "VALUES ('Mechanical Engineering', 'College of Engineering')");
             queries.add("INSERT INTO MAJOR " + "VALUES ('Nuclear and Radiological Engineering', 'College of Engineering')");
+            queries.add("INSERT INTO MAJOR " + "VALUES ('Undecided', 'College of Engineering')");
             queries.add("INSERT INTO MAJOR " + "VALUES ('Applied Mathematics', 'College of Sciences')");
             queries.add("INSERT INTO MAJOR " + "VALUES ('Applied Physics', 'College of Sciences')");
             queries.add("INSERT INTO MAJOR " + "VALUES ('Biochemistry', 'College of Sciences')");
@@ -384,15 +388,15 @@ public class SQLController {
             addProject("ESW Hydroponics/Urban Farming Project", "Nicole Kinnard", "nkinnard12@gatech.edu", "The Hydroponics/Urban Farming Project experiments with different ways to grow produce in urban areas using limited space and water resources. We investigate both soil-based and hydroponic methods of growing in order to find the most efficient, economically viable, and environmentally sustainable way to grow produce in Atlanta.",
                     "Sustainable Communities", 7, null, "Junior students only", null, "urban development","sustainable communities");
             addProject("Excel Current Events","Ashley Bidlack", "abidlack313@gatech.edu","Excel Current Events is a participation (not for credit) course for degree-seeking students who are interested in developing their communication skills in conversations with adults with intellectual and developmental disabilities.",
-                    "Community", 15, "COC students only", "senior students only", null , "computing for good", "doing good for your neighborhood", "reciprocal teaching and learning", "technology for social good");
+                    "Community", 15, "College of Computing students only", "senior students only", null , "computing for good", "doing good for your neighborhood", "reciprocal teaching and learning", "technology for social good");
             addProject("Shakespeare in Prison Project", "Sarah Higinbotham", "shiginbotham4@gatech.edu", "As the world celebrates the 400th anniversary of Shakespeare’s death in 2016, Georgia Tech students will travel to a high-security men’s prison outside Atlanta to discuss Shakespeare with incarcerated students.",
                     "Community",20, "College of Design students only", null, null, "urban development","sustainable communities");
             addProject("Know Your Water Project", "Neha Kumar", "nkumar12@gatech.edu", "This project will allow students to be part of a large, crowd-sourced study – at little cost to themselves – to contribute to a knowledge bank of how different communities treat and track their water quality. If you are interested in participating in this study, please let us know.",
-                    "Sustainable Communities", 10, "CS students only","senior students only", null, "sustainable communities", "crowd sourced");
+                    "Sustainable Communities", 10, "Computer Science students only","senior students only", null, "sustainable communities", "crowd-sourced");
             addProject("Epic Intentions", "Yeji Lee", "ylee31@gatech.edu", "Epic Intentions connects an interdisciplinary team of students with a local nonprofit to apply technical skills for social and civic good to help make the nonprofits make a greater impact in the community.",
                     "Community", 20, "None", null, null,"doing good for your neighborhood", "collaborative action");
             addProject("Design of mHealth Tools for HIV Outreach Workers in Gujarat (India)", "Neha Kumar", "nkumar12@gatech.edu", "This project allows students to design tools that workerse in rural parts of India can use to combat HIV",
-                    "Community", 10, "International Affairs students only", "COC students only", null, "technology for social good");
+                    "Community", 10, "International Affairs students only", "College of Computing students only", null, "technology for social good");
             addProject("Engineers for a Sustainable World Waste-Derived Nutrient System", "Nicole Kennard", "nkennard5@gatech.edu", "This project allows engineers to analyze how to fix depreciated soil and reinvigorite fields in these conditions",
                     "Sustainable Communities", 20, "Materials Science and Engineering only", null, null, "technology for social good", "sustainable communities");
             addProject("Excel Collaborative Community Garden", "Marnie Williams", "mwilliams@gatech.edu", "A course on creating technology for a sustainable garden",
@@ -400,21 +404,21 @@ public class SQLController {
             addProject("Georgia Tech Waste Audit","Anne Rogers","arogers9@gatech.edu", "Course on tracking and auditing the waste at Georgia Tech through statistical methods",
                     "Sustainable Communities", 10, "None", null, null, "urban development","sustainable communities");
             addProject("Georgia Tech Poetry Competition", "Some Teacher", "steacher@gatech.edu", "Students will create and present poetry to their peers",
-                    "Community", 5, null, "freshman students only", null, "crowd sourced");
+                    "Community", 5, null, "freshman students only", null, "crowd-sourced");
             addProject("Designing Sustainable Power Grids", "Taylor John", "tjohn1@gatech.edu", "Students will design and create power grids to replace existing architecture in the United States",
-                    "Sustainable Communities", 10, "EE students only", "senior students only", null, "urban development", "sustainable communities", "collaborative action");
+                    "Sustainable Communities", 10, "Electrical Engineering students only", "senior students only", null, "urban development", "sustainable communities", "collaborative action");
             addProject("Creating Sustainable Gardens", "Ashley Patterson","apatterson@gatech.edu", "Students will learn which plants make a sustainable garden, focusing on urban communities",
                     "Sustainable Communities", 50, "None", null, null, "urban development", "sustainable communities");
             addProject("Bug Tracking System", "Tom Harrison", "tharrison@gatech.edu", "Students will design automated processes to track bugs and other issues in codes",
                     "Community", 40, "senior students only", null, null, "collaborative action", "computing for good");
             addProject("Dynamic Programming to Optimize Sustainable Wearables", "Tom Connelly", "tconnelly", "Students will learn how to implement dynamic programming algorithms to breakthrough the wearable market",
-                    "Sustainable Communities", 20, "CS students only", "senior students only", null, "computing for good");
+                    "Sustainable Communities", 20, "Computer Science students only", "senior students only", null, "computing for good");
             addProject("Community Dance Lessons", "Diane Shin", "dshin4@gatech.edu", "Students will take community dance lessons and learn about different cultures through types of dance",
                     "Community", 20, "freshmen students only", "sophomore students only", null, "collaborative action");
             addProject("Study Abroad Farming Research", "Best Professor", "bprofessor1@gatech.edu", "Students will travel to South America, Europe, and Asia to research different methods of farming and how they could be improved to create a more sustainable community",
-                    "Sustainable Communities", 35, "junior students only", "senior students only", null, "reciprocal teaching and learning", "collaborative action", "crowd sourced");
+                    "Sustainable Communities", 35, "junior students only", "senior students only", null, "reciprocal teaching and learning", "collaborative action", "crowd-sourced");
             addProject("The Design of Mobile Control Car Security System", "Haley Cruz", "hcruz19@gatech.edu", "Students will design a security system for cars that can be controlled by mobile phones and allows effective two-way communications between the alarm system and the car owner",
-                    "Community", 15, "ME students only", "senior students only", null, "computing for good", "collaborative action");
+                    "Community", 15, "Mechanical Engineering students only", "senior students only", null, "computing for good", "collaborative action");
             addProject("Football and Community", "Phil Simms", "psimms@gatech.edu", "Students will interact with a professional NFL commentator and write a paper on how football creates community",
                     "Community", 100, "freshman students only", "sophomore students only", null, "collaborative action");
             addProject("The Essence of Napping", "Last Teacher", "lteacher9@gatech.edu", "Students will learn how napping builds community",
@@ -503,7 +507,7 @@ public class SQLController {
             addCourse("Technologies of Representation", "LMC 3414", "Lauren Klein", 50, "Community", "collaborative action", "crowd-sourced");
             addCourse("Community Historians & Westside Speaks", "LMC 4699", "Christopher LeDantec", 45, "sustainable communities", "technology for social good");
             addCourse("Semester in the City: Engaging Westside Communitites", "HTS 2803", "Todd Michney", 100, "Community", "urban development", "sustainable communities");
-            addCourse("Spanish Service Learning", "SPAN 4150", "Juan Carlos Rodrigeuz", 25, "Community", "recipricol teaching and learning");
+            addCourse("Spanish Service Learning", "SPAN 4150", "Juan Carlos Rodrigeuz", 25, "Community", "reciprocal teaching and learning");
             addCourse("Sustainable Business Projects", "MGT 4803", "Jay Cranman", 45, "Sustainable Communities", "sustainable communities", "technology for social good");
             addCourse("Construction Management and Megaprojects", "CEE 4803", "Baabak Ashuri", 70, "Community","urban development", "sustainable Communities");
             addCourse("Sustainable Aquaponic Systems: The Food, Energy, Water Nexus", "CEE 4699", "Steven Van Ginkel", 40, "Sustainable Communities", "doing good for your neighborhood", "adaptive learning");
@@ -705,7 +709,7 @@ public class SQLController {
         if (project) {
             try {
                 Statement statement1 = conn.createStatement();
-                String sqlProject = "SELECT DISTINCT A.Name, CategoryName FROM PROJECT AS A, PROJECT_IS_CATEGORY AS B, PROJECT_REQUIREMENT " +
+                String sqlProject = "SELECT DISTINCT A.Name FROM PROJECT AS A, PROJECT_IS_CATEGORY AS B, PROJECT_REQUIREMENT " +
                         "AS C WHERE A.Name = B.ProjectName AND A.Name = C.Name";
                 String append = " AND";
                 if (title != null && title != "" && title.length() > 0) {
@@ -723,24 +727,27 @@ public class SQLController {
                 String sqlDept =  "";
                 if (major != null) {
                     Statement deptNameConn = conn.createStatement();
-                    String sqlDeptQuery = "SELECT DeptName FROM MAJOR WHERE Name = \'" + major + "\'";
+                    String sqlDeptQuery = "SELECT DISTINCT DeptName FROM MAJOR WHERE Name = \'" + major + "\'";
                     ResultSet dept = deptNameConn.executeQuery(sqlDeptQuery);
                     dept.next();
                     sqlDept = dept.getString("DeptName");
                 }
+                //System.out.println("Project " + );
                 System.out.println("Department: " + sqlDept);
                 System.out.println(sqlProject);
                 ResultSet res = statement1.executeQuery(sqlProject);
                 while (res.next()) {
                     String pName = res.getString("Name");
+                    System.out.println("Project " + pName);
                     Statement statement2 = conn.createStatement();
                     Statement statement3 = conn.createStatement();
-                    String reqQuery = "SELECT Requirement FROM PROJECT AS A, PROJECT_REQUIREMENT AS B WHERE A.Name = \'" + pName + "\'";
+                    String reqQuery = "SELECT Requirement FROM PROJECT AS A, PROJECT_REQUIREMENT AS B WHERE A.Name = \'" + pName + "\' AND B.Name = \'" + pName + "\'";
                     boolean majorReq = major == null;
                     boolean yearReq = year == null;
                     ResultSet reqs = statement3.executeQuery(reqQuery);
                     while (reqs.next()) {
                         String currReq = reqs.getString("Requirement").toLowerCase();
+                        System.out.println("Requirement " + currReq);
                         if (currReq.equals("none")) {
                             majorReq = true;
                             yearReq = true;
@@ -748,18 +755,10 @@ public class SQLController {
                             majorReq = true;
                         } else if (!yearReq && (currReq.contains(year.toLowerCase()))) {
                             yearReq = true;
-                        } else if (!majorReq && currReq.contains("cs students")) {
-                            if (major.equals("Computer Science")) {
-                                majorReq = true;
-                            }
-                        } else if (!majorReq && currReq.contains("coc students")) {
-                            if (sqlDept.equals("College of Computing")) {
-                                majorReq = true;
-                            }
                         }
                     }
-                    if (majorReq && yearReq) {
-                        results.add(new MainPageResult(pName, "Course"));
+                    if (majorReq || yearReq) {
+                        results.add(new MainPageResult(pName, "Project"));
                     }
                 }
 
@@ -788,7 +787,7 @@ public class SQLController {
             //controller.addAllCourses();
             //controller.addAllProjects();
             //controller.addAllApplications();
-            System.out.println(controller.mainPageSearch(true, false, "Know Your Water Project", "Sustainable Communities", "Computer Science", "Freshman", "crowd sourced"));
+            System.out.println(controller.mainPageSearch(true, false, "", "Sustainable Communities", null, "senior", "collaborative action"));
             //System.out.println(controller.getAdminApplicationInfo());
             //controller.acceptApplication("Hi", "Georgia Tech Waste Audit");
         } catch(Exception e) {

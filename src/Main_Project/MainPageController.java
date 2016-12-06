@@ -226,12 +226,14 @@ public class MainPageController {
                                     System.out.println("temptext: " + tempText);
 //                                    populateTable.get(index).getType()
 //                                            .equals("Course")
-                                    Boolean isCourse = true;
+                                    boolean isCourse = populateTable.get(index).getType()
+                                            .equals("Course");
+                                    //Boolean isCourse = true;
                                     if(isCourse && !tempText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
                                     } else {
-//                                        MasterController.getInstance()
-//                                                .loadViewProjectScene();
+                                        MasterController.getInstance()
+                                                .loadViewProjectScene();
                                     }
 
                                 }

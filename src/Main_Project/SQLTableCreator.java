@@ -17,9 +17,12 @@ public class SQLTableCreator {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             System.out.println("Starting connection");
-            conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_54",
-                    "cs4400_Team_54",
-                    "EMO7L7Dn");
+            //conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_54",
+             //       "cs4400_Team_54",
+             //       "EMO7L7Dn");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test",
+                    "rohan",
+                    "rohan");
             if(!conn.isClosed())
                 System.out.println("Successfully connected to " +
                         "MySQL server using TCP/IP...");
