@@ -31,16 +31,16 @@ public class ApplicationController {
 
     @FXML
     private void setAcceptBtn() {
-        System.out.println("Okay, accepting this project!");
         try {
             if(index != -1)  {
+                System.out.println(MasterController.getUsername() + " " + populateTable.get(index).getProject());
                 sCont.acceptApplication(MasterController.getUsername(),populateTable
                         .get(index).getProject());
+                System.out.println("Okay, accepting this project!");
             }else {
                 System.out.println("Did not double click anything on table " +
                         "yet..");
             }
-
         } catch (SQLException e) {
             System.out.println("Did not accept this project.");
         }
@@ -69,7 +69,8 @@ public class ApplicationController {
 
     @FXML
     private void setLoadBtn() {
-        apps.setItems(populateTable);
+        apps.getItems().clear();
+        apps.setItems(getPopTable());
     }
 
     @FXML
@@ -90,6 +91,8 @@ public class ApplicationController {
     static int index = -1;
     public final void initialize() throws IOException {
 
+        rejectBtn.setVisible(false);
+        acceptBtn.setVisible(false);
         final TableColumn projCol = new TableColumn("Project");
         TableColumn majorCol = new TableColumn("Applicant Major");
         TableColumn yearCol = new TableColumn("Applicant Year");
