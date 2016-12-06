@@ -31,7 +31,7 @@ SQLController sContr = new SQLController();
     @FXML
     private void loadAppReport()
     {
-        ObservableList<MyAppEntry> populateTable = getPopTable();
+        ObservableList<AppReportEntry> populateTable = getPopTable();
         appList.setItems(populateTable);
     }
 
@@ -88,7 +88,7 @@ SQLController sContr = new SQLController();
         Callback<TableColumn, TableCell> cellFactory =
                 new Callback<TableColumn, TableCell>() {
                     public TableCell call(TableColumn p) {
-                        TableCell cell = new TableCell<AppsTableEntry, String>() {
+                        TableCell cell = new TableCell<AppReportEntry, String>() {
                             @Override
                             public void updateItem(String item, boolean empty) {
                                 super.updateItem(item, empty);
@@ -115,13 +115,13 @@ SQLController sContr = new SQLController();
                     }
                 };
         projCol.setCellValueFactory(
-                new PropertyValueFactory<AppsTableEntry,String>("project")
+                new PropertyValueFactory<AppReportEntry,String>("project")
         );
         projCol.setMaxWidth(200);
         projCol.setCellFactory(cellFactory);
 
         numCol.setCellValueFactory(
-                new PropertyValueFactory<AppsTableEntry,String>
+                new PropertyValueFactory<AppReportEntry,String>
                         ("number")
         );
         numCol.setCellFactory(cellFactory);
@@ -129,14 +129,14 @@ SQLController sContr = new SQLController();
 
 
         rateCol.setCellValueFactory(
-                new PropertyValueFactory<AppsTableEntry,String>
+                new PropertyValueFactory<AppReportEntry,String>
                         ("rate")
         );
         rateCol.setCellFactory(cellFactory);
         rateCol.setMaxWidth(200);
 
         topCol.setCellValueFactory(
-                new PropertyValueFactory<AppsTableEntry,String>
+                new PropertyValueFactory<AppReportEntry,String>
                         ("top")
         );
         topCol.setCellFactory(cellFactory);
