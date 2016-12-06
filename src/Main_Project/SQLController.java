@@ -93,6 +93,23 @@ public class SQLController {
         }
     }
 
+    public String getUsername(String project, String major, String year, String status) throws SQLException{
+        try {
+            Statement statement1 = conn.createStatement();
+            String sqlQuery = "SELECT DISTINCT A.Username FROM USER AS A, APPLY AS B " +
+                    "WHERE B.ProjectName = \'" + project + "\' AND A.Major = \'" + major + "\' AND A.Year = \'" + year + "\' AND B.Status = '" + status + "\'";
+            System.out.println(sqlQuery);
+            ResultSet res = statement1.executeQuery(sqlQuery);
+            if (!res.next()) {
+                throw new SQLDataException("Bad Data");
+            }
+            return res.getString("Username");
+        } catch(SQLException e) {
+            System.out.println("Error getting unique user" + e);
+            throw e;
+        }
+    }
+
     public void addUser(String username, String password, String email, String year, String major, String userType) throws SQLException {
         try {
             Statement statement = conn.createStatement();
@@ -787,7 +804,10 @@ public class SQLController {
             //controller.addAllCourses();
             //controller.addAllProjects();
             //controller.addAllApplications();
-            System.out.println(controller.mainPageSearch(true, false, "", "Sustainable Communities", null, "senior", "collaborative action"));
+            //System.out.println(controller.mainPageSearch(true, false, "", "Sustainable Communities", null, "senior", "collaborative action"));
+            controller.rejectApplication("Hi", "Creating Sustainable Gardens");
+            System.out.println(controller.getAdminApplicationInfo());
+            System.out.println(controller.getUsername("Creating Sustainable Gardens", "Undecided", "Senior", "Denied"));
             //System.out.println(controller.getAdminApplicationInfo());
             //controller.acceptApplication("Hi", "Georgia Tech Waste Audit");
         } catch(Exception e) {
