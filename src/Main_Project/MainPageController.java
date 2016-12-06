@@ -229,22 +229,14 @@ public class MainPageController {
 //                                    tempText = populateTable.get(index)
 //                                            .getName();
 //                                    tempText = c.getText();
-                                    tempText = populateTable.get(index)
-                                            .getType();
+                                    tempText = populateTable.get(index).getName();
 
                                     System.out.println("temptext: " + tempText);
-//                                    populateTable.get(index).getType()
-//                                            .equals("Course")
-//                                    boolean isCourse = populateTable.get(index).getType()
-//                                            .equals("Course");
 
-                                    Boolean isCourse = courseRadio.isSelected
-                                            () || bothRadio.isSelected();
+                                    String anotherText = populateTable.get
+                                            (index).getType();
 
-                                    Boolean isProject = projectRadio.isSelected
-                                            () || bothRadio.isSelected();
-
-                                    if(isCourse && tempText.equals("Course")){
+                                    if(anotherText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
                                     } else {
                                         MasterController.getInstance()
