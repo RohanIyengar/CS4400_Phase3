@@ -226,9 +226,11 @@ public class MainPageController {
                                     System.out.println("temptext: " + tempText);
 //                                    populateTable.get(index).getType()
 //                                            .equals("Course")
-                                    boolean isCourse = populateTable.get(index).getType()
-                                            .equals("Course");
-                                    //Boolean isCourse = true;
+//                                    boolean isCourse = populateTable.get(index).getType()
+//                                            .equals("Course");
+
+                                    Boolean isCourse = courseRadio.isSelected
+                                            () || bothRadio.isSelected();
                                     if(isCourse && !tempText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
                                     } else {
