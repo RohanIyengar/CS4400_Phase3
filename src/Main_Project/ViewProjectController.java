@@ -105,7 +105,7 @@ public class ViewProjectController {
         Date d = new Date();
         try {
             sContr.addApplication(MasterController.getUsername(), projectTitle
-                    .getText(), d, "pending");
+                    .getText(), d, "Pending");
 
         } catch (SQLException e) {
             System.out.println("Duplicate inserted.");
