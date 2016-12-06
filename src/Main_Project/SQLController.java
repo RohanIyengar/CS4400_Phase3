@@ -23,12 +23,12 @@ public class SQLController {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             System.out.println("Starting connection");
-            //conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_54",
-            //        "cs4400_Team_54",
-            //        "EMO7L7Dn");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/test",
-                    "rohan",
-                    "rohan");
+            conn = DriverManager.getConnection("jdbc:mysql://academic-mysql.cc.gatech.edu/cs4400_Team_54",
+                    "cs4400_Team_54",
+                    "EMO7L7Dn");
+//            conn = DriverManager.getConnection("jdbc:mysql://localhost/test",
+//                    "rohan",
+//                    "rohan");
             if(!conn.isClosed())
                 System.out.println("Successfully connected to " +
                         "MySQL server using TCP/IP...");
@@ -839,19 +839,19 @@ public class SQLController {
     public static void main(String[] args) {
         SQLController controller = new SQLController();
         System.out.println(controller.checkIfUserExists("Hi"));
-//        try {
-//            controller.addAllDepartments();
-//            controller.addAllCategories();
-//            controller.addAllDesignations();
-//            controller.addAllMajors();
-//            controller.addAllUsers();
-//        } catch(SQLException e) {
-//            System.err.println("error adding departments to database");
-//        }
         try {
-            //controller.addAllCourses();
-            //controller.addAllProjects();
-            //controller.addAllApplications();
+            controller.addAllDepartments();
+            controller.addAllCategories();
+            controller.addAllDesignations();
+            controller.addAllMajors();
+            controller.addAllUsers();
+            controller.addAllCourses();
+            controller.addAllProjects();
+            controller.addAllApplications();
+        } catch(Exception e) {
+            System.err.println("error adding departments to database");
+        }
+        try {
             //System.out.println(controller.mainPageSearch(true, false, "", "Sustainable Communities", null, "senior", "collaborative action"));
             //controller.rejectApplication("Hi", "Creating Sustainable Gardens");
             System.out.println(controller.getDetailedApplicationInfo());

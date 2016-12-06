@@ -54,7 +54,10 @@ public class ApplicationController {
     @FXML
     private void setRejectBtn() {
         try {
-            sCont.rejectApplication(MasterController.getUsername(),populateTable
+            sCont.rejectApplication(sCont.getUsername(populateTable.get
+                    (index).getProject(), populateTable.get
+                    (index).getMajor(), populateTable.get(index)
+                    .getYear(), populateTable.get(index).getStatuss()), populateTable
                     .get(index).getProject());
         } catch (SQLException e) {
             System.out.println("Did not accept this project.");

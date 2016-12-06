@@ -56,11 +56,6 @@
                   <Font size="12.0" />
                </font>
             </Text>
-            <Text fill="#110aeb" layoutX="439.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a new category" underline="true">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </Text>
             <Text layoutX="129.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Designation:">
                <font>
                   <Font size="16.0" />
