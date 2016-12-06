@@ -231,9 +231,12 @@ public class MainPageController {
 
                                     Boolean isCourse = courseRadio.isSelected
                                             () || bothRadio.isSelected();
+                                    Boolean isProject = projectRadio.isSelected
+                                            () || bothRadio.isSelected();
                                     if(isCourse && !tempText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
-                                    } else {
+                                    } else if(tempText.equals("Project") &&
+                                            isProject){
                                         MasterController.getInstance()
                                                 .loadViewProjectScene();
                                     }
