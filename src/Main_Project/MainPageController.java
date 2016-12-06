@@ -65,7 +65,7 @@ public class MainPageController {
 
 
     @FXML
-    ObservableList<MainPageResult> populateTable =FXCollections
+    ObservableList<MainPageTableEntry> populateTable =FXCollections
             .observableArrayList();
     @FXML
     private void setApplyFilter() {
@@ -229,12 +229,12 @@ public class MainPageController {
 //                                    tempText = populateTable.get(index)
 //                                            .getName();
 //                                    tempText = c.getText();
-                                    tempText = populateTable.get(index).getName();
-
+                                    tempText = c.getText();
+//                                    tempText must be project name
                                     System.out.println("temptext: " + tempText);
 
                                     String anotherText = populateTable.get
-                                            (index).getType();
+                                            (index).getCourse();
 
                                     if(anotherText.equals("Course")){
                                         MasterController.getInstance().loadViewCourseScene();
