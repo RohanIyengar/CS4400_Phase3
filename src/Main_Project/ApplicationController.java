@@ -34,8 +34,13 @@ public class ApplicationController {
         try {
             if(index != -1)  {
                 System.out.println(MasterController.getUsername() + " " + populateTable.get(index).getProject());
-                sCont.acceptApplication(MasterController.getUsername(),populateTable
+                sCont.acceptApplication(sCont.getUsername(populateTable.get
+                                (index).getProject(), populateTable.get
+                                (index).getMajor(), populateTable.get(index)
+                                .getYear(), populateTable.get(index).getStatuss()),
+                        populateTable
                         .get(index).getProject());
+              
                 System.out.println("Okay, accepting this project!");
             }else {
                 System.out.println("Did not double click anything on table " +
