@@ -10,11 +10,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
 public class AddACourseController {
+    SQLController sContr = new SQLController();
+
     @FXML
     private void setBackAdmin() {
         MasterController.getInstance().loadChooseFunctionalityScene();
@@ -60,8 +63,6 @@ public class AddACourseController {
     @FXML
     private Text invalidStudentsAddCourse;
 
-    @FXML
-    private Button submitBtn;
 
     @FXML
     private void setSubmitBtn() {
@@ -77,26 +78,64 @@ public class AddACourseController {
         } else if (estimatedNumberofStudents == null || estimatedNumberofStudents.getText().trim().isEmpty()) {
             invalidInstructorName.setVisible(false);
             invalidStudentsAddCourse.setVisible(true);
-        } else if (designationCourse == null) {
-            invalidStudentsAddCourse.setVisible(false);
-            invalidDesignationCourse.setVisible(true);
-        } else if (categoryCourse == null) {
-            invalidDesignationCourse.setVisible(false);
-            invalidCategoryCourse.setVisible(true);
-        } else {
-            return;
+        }
+//        else if (designationCourse.getSelectionModel().getSelectedIndex()
+//                == -1) {
+//            invalidStudentsAddCourse.setVisible(false);
+//            invalidDesignationCourse.setVisible(true);
+//        } else if (categoryCourse.getSelectionModel().getSelectedIndex()
+//                == -1) {
+//            invalidDesignationCourse.setVisible(false);
+//            invalidCategoryCourse.setVisible(true);
+//        }
+        else {
+
+
+            try {
+                System.out.println("do i reach here");
+
+                sContr.addCourse(courseNameAddCourse.getText(),
+                        courseNumberAddCourse.getText(),
+                        instructorCourse.getText(),
+                        Integer.parseInt(estimatedNumberofStudents
+                                .getText()),
+                        designationCourse.getSelectionModel().getSelectedItem(),
+                        categoryCourse.getSelectionModel().getSelectedItem());
+            } catch (SQLException e) {
+                System.out.println("Could not add course.");
+            }
+//            catch (NullPointerException e) {
+//                System.out.println("Could not add course.");
+//            }
         }
     }
 
         @FXML
-        private final ObservableList<String> desigList =
-                FXCollections.observableArrayList("CS", "BME",
-                        "ChemE");
+        private final ObservableList<String> desigList =getdesigList();
 
     @FXML
-    private final ObservableList<String> cat1List =
-            FXCollections.observableArrayList("CS", "BME",
-                    "ChemE");
+    private final ObservableList<String> cat1List =getcatList();
+
+    @FXML
+    public ObservableList<String> getcatList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllCategories();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
+    @FXML
+    public ObservableList<String> getdesigList() {
+        ObservableList<String> toRet = FXCollections.observableArrayList();
+        try {
+            toRet = sContr.getAllDesignations();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toRet;
+    }
 
     public final void initialize() throws IOException {
         designationCourse.getItems().clear();
@@ -104,7 +143,6 @@ public class AddACourseController {
 
         categoryCourse.getItems().clear();
         categoryCourse.getItems().addAll(cat1List);
-
 
         }
     }

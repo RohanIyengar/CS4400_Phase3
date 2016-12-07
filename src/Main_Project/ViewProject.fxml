@@ -11,9 +11,9 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main_Project.ViewProjectController">
   <children>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="395.0" prefWidth="639.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="640.0">
          <children>
-            <Text fx:id="projectTitle" fill="#c9aa2e" layoutX="222.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Title">
+            <Text fx:id="projectTitle" fill="#c9aa2e" layoutX="222.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Title" visible="false">
                <font>
                   <Font size="28.0" />
                </font>
@@ -33,12 +33,17 @@
             <Text layoutX="44.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requirements:" />
             <Text layoutX="45.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
             <Text layoutX="47.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estimated Number of Students:" />
-            <Text fx:id="advisorName" layoutX="110.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="advisorName" />
-            <Text fx:id="projectDescription" layoutX="69.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="projectDescription" wrappingWidth="413.21875" />
-            <Text fx:id="designationName" layoutX="133.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="designationName" />
-            <Text fx:id="requirementsName" layoutX="150.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="requirementsName" />
-            <Text fx:id="numberOfStudents" layoutX="247.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numberOfStudents" />
+            <Text fx:id="advisorName" layoutX="110.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="advisorName" visible="false" />
+            <Text fx:id="projectDescription" layoutX="69.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="projectDescription" visible="false" wrappingWidth="413.21875" />
+            <Text fx:id="designationName" layoutX="133.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="designationName" visible="false" />
+            <Text fx:id="requirementsName" layoutX="150.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="requirementsName" visible="false" />
+            <Text fx:id="numberOfStudents" layoutX="247.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="numberOfStudents" visible="false" />
             <Text fx:id="cannotApplyMsg" fill="RED" layoutX="173.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cannot Apply. Doesn't Meet Requirements." visible="false" />
+            <Button fx:id="clickToViewBtn" layoutX="11.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#clickToView" prefHeight="33.0" prefWidth="180.0" text="CLICK TO VIEW PROJECT">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
   </children>

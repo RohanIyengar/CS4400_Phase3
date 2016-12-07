@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
 
-import java.lang.Object;
 
 public class MasterController implements Serializable {
 
@@ -46,16 +45,18 @@ public class MasterController implements Serializable {
     private final static MasterController masterController
             = new MasterController();
 
-    /**
-     * Returns the single instance of MasterController within the entire scope of
-     * the project.
-     *
-     * @return MasterController
-     */
     public static MasterController getInstance() {
         return masterController;
     }
 
+    private static String curUser = "";
+
+    public static void setUsername(String t) {
+        curUser = t;}
+
+    public static String getUsername() {
+        return curUser;
+    }
 
     private MasterController() {
         Parent root;
@@ -147,6 +148,7 @@ public class MasterController implements Serializable {
         stage.setScene(newStudentRegistrationScene);
     }
 
+
     public final void loadViewProjectScene() {
         stage.setScene(viewProjectScene);
     }
@@ -192,6 +194,7 @@ public class MasterController implements Serializable {
     public final void setStage(final Stage stage) {
         this.stage = stage;
     }
+
 
 
 }

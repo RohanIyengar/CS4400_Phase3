@@ -23,7 +23,17 @@
                   <DropShadow />
                </effect>
             </Button>
-            <ListView layoutX="73.0" layoutY="86.0" prefHeight="200.0" prefWidth="495.0" />
+            <TableView fx:id="appList" layoutX="129.0" layoutY="83.0" prefHeight="200.0" prefWidth="427.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <Button layoutX="256.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#loadAppReport" text="Load Application Reports">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
   </children>

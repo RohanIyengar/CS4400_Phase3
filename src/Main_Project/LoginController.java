@@ -9,12 +9,32 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Created by AshikaGanesh on 12/3/16.
  */
 public class LoginController {
     public Stage primaryStage;
+
+    private SQLController sqlContr = new SQLController();
+
+    private Boolean getIsValid(String u, String p) {
+        try {
+            sqlContr.getUser(u, p);
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
+    }
+
+    private Boolean getIsAdmin(String u, String p) {
+        try {
+            return sqlContr.getUser(u, p).getUserType().equals("Admin");
+        } catch (SQLException e) {
+            return false;
+        }
+    }
     /* ===============================================================
                            LOGIN SCREEN FUNCTIONS
      ===============================================================
@@ -27,6 +47,7 @@ public class LoginController {
 
     @FXML
     private TextField username;
+
 
     @FXML
     private TextField password;
@@ -60,22 +81,18 @@ public class LoginController {
         } else {
             invalidUsername.setVisible(false);
             invalidPassword.setVisible(false);
-            //TODO: CHECK HERE FOR VALID LOG IN CREDENTIALS
 
-            boolean isValid = true;
-            System.out.println(username.getText());
+
+            boolean isValid = getIsValid(username.getText(), password.getText());
             if (isValid) {
-                //TODO: CHECK IF THE USER LOG IN IS ADMIN OR NOT
-
-                boolean isAdmin = true;
-
+                System.out.println("Logged in! Welcome, " + username.getText());
+                boolean isAdmin = getIsAdmin(username.getText(),password.getText());
+                MasterController.setUsername(username.getText());
                 if (isAdmin) {
                     MasterController.getInstance().loadChooseFunctionalityScene();
                 } else {
                     MasterController.getInstance().loadMainPageScene();
                 }
-
-
             }
             else {
                 invalidMsg.setVisible(true);

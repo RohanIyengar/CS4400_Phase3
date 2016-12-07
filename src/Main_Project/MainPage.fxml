@@ -20,7 +20,7 @@
                         <Font size="28.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="108.0" layoutY="63.0" prefHeight="27.0" prefWidth="215.0" />
+                  <TextField fx:id="titleMP" layoutX="108.0" layoutY="63.0" prefHeight="27.0" prefWidth="215.0" />
                   <Text layoutX="11.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="62.12890625">
                      <font>
                         <Font name="BebasNeue" size="17.0" />
@@ -46,15 +46,10 @@
                         <Font name="BebasNeue" size="17.0" />
                      </font>
                   </Text>
-                  <Text layoutX="567.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Category" underline="true">
-                     <font>
-                        <Font size="8.0" />
-                     </font>
-                  </Text>
                   <RadioButton fx:id="projectRadio" layoutX="355.0" layoutY="118.0" mnemonicParsing="false" onMouseClicked="#setRadioBtn" prefHeight="57.0" prefWidth="297.0" text="Project" />
                   <RadioButton fx:id="courseRadio" layoutX="439.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#setRadioBtn" prefHeight="17.0" prefWidth="129.0" text="Course" />
                   <RadioButton fx:id="bothRadio" layoutX="517.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#setBothRadio" prefHeight="18.0" prefWidth="69.0" text="Both" />
-                  <Button layoutX="394.0" layoutY="193.0" mnemonicParsing="false" text="Apply filter">
+                  <Button fx:id="set" layoutX="394.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#setApplyFilter" text="Apply filter">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -64,7 +59,6 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <ListView editable="true" layoutX="48.0" layoutY="239.0" prefHeight="128.0" prefWidth="516.0" />
                   <ImageView fitHeight="58.0" fitWidth="38.0" layoutX="37.0" layoutY="3.0" onMouseClicked="#setMe">
                      <image>
                         <Image url="@Resources/me.png" />
@@ -74,6 +68,17 @@
                   <ComboBox fx:id="designationMP" layoutX="108.0" layoutY="100.0" prefWidth="150.0" />
                   <ComboBox fx:id="majorMP" layoutX="108.0" layoutY="135.0" prefWidth="150.0" />
                   <ComboBox fx:id="yearMP" layoutX="108.0" layoutY="168.0" prefWidth="150.0" />
+                  <TableView fx:id="mainPageTable" layoutX="42.0" layoutY="237.0" prefHeight="135.0" prefWidth="543.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="82.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#setLogOut" text="Log Out">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
